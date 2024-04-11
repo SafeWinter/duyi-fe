@@ -8,13 +8,13 @@ HTML、CSS、JavaScript 的编程模式：结构、行为、样式相分离。
 >
 > 一面要 20 分钟内解决，不要拖太久：主流的浏览器及其内核都有哪些？
 
-|       名称        |                   内核                    |
-| :---------------: | :---------------------------------------: |
-| Internet Explorer | 最早为 Trident（三叉戟）后来改用 Chromium |
-|      Firefox      |               Gecko（壁虎）               |
-|   Google Chrome   |              WebKit / Blink               |
-|      Safari       |                  WebKit                   |
-|       Opera       | Presto（从 Opera 15 开始，改为 Chromium） |
+|       名称        |                             内核                             |
+| :---------------: | :----------------------------------------------------------: |
+| Internet Explorer |          最早为 Trident（三叉戟）后来改用 Chromium           |
+|      Firefox      |                        Gecko（壁虎）                         |
+|   Google Chrome   |                        WebKit / Blink                        |
+|      Safari       |                            WebKit                            |
+|       Opera       | Presto（意大利语，意为【很快】。从 Opera 15 开始，改为 Chromium（铬）） |
 
 主流浏览器须满足：
 
@@ -75,5 +75,5 @@ CSS 全称：**C**ascading **S**tyle **S**heet，层叠样式表
 
 注意：
 
-- 这里的 `Infinity` 在计算机中是确定的值，因此 (Infinity + 1) > Infinity
+- `Infinity` 是 **确定的值**： (Infinity + 1) > Infinity
 - 上述权重是 256 进制，不是 10 进制（*？存疑？*）
