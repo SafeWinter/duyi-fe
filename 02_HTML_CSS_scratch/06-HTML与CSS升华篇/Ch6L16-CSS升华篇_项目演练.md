@@ -11,6 +11,7 @@
 用伪类实现一个带前后缀效果的列表项。（用上下内边距将文字挤到中间）
 
 ```css
+/* HTML: <body><div class="box">姬教授贴吧</div></body> */
 * { margin: 0; padding: 0; }
 
 .box {
