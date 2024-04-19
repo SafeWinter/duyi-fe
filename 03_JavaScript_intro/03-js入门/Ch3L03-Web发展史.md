@@ -43,3 +43,15 @@ JS 作者：***Brendan Eich***（`/ˈbrɛndən aɪk/`）
 > **Brendan Eich** ([/ˈaɪk/](https://en.wikipedia.org/wiki/Help:IPA/English); born July 4, 1961)[[1\]](https://en.wikipedia.org/wiki/Brendan_Eich#cite_note-:0-1) is an American computer programmer and technology executive. He created the [JavaScript](https://en.wikipedia.org/wiki/JavaScript) [programming language](https://en.wikipedia.org/wiki/Programming_language) and co-founded the [Mozilla](https://en.wikipedia.org/wiki/Mozilla) project, the [Mozilla Foundation](https://en.wikipedia.org/wiki/Mozilla_Foundation), and the [Mozilla Corporation](https://en.wikipedia.org/wiki/Mozilla_Corporation). He served as the Mozilla Corporation's [chief technical officer](https://en.wikipedia.org/wiki/Chief_technical_officer) before he was appointed [chief executive officer](https://en.wikipedia.org/wiki/Chief_executive_officer), but resigned shortly after his appointment due to pressure over his firm opposition to same-sex marriage. He subsequently became the CEO of [Brave Software](https://en.wikipedia.org/wiki/Brave_(web_browser)).
 >
 > from: [Wikipedia](https://en.wikipedia.org/wiki/Brendan_Eich)
+
+
+
+## 3 浏览器的组成
+
+浏览器的组成：
+
+1. Shell 部分
+2. 内核部分
+   1. 渲染引擎（语法规则和渲染）
+   2. JavaScript 引擎
+   3. 其他模块
