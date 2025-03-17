@@ -38,12 +38,9 @@
   - `isNaN(x)`：先 `Number(x)`，再判定结果
 
   - `++`、`--`、`+`/`-`（一元正负）：先 `Number(x)`，再计算
-
     - 能不能转成一个数不确定，但类型一定是 `number`
 
-  - `+`： 加号，先调 `String()`，再运算。
-
-    - 只要有一侧为字符串，则会先调用 `String()`，然后再拼接
+  - `+`： 加号，只要有一侧为字符串，则会先调用 `String()`，然后再拼接（位置：`1:10:30`）。
 
   - `-`、`*`、`%`：先用 `Number(x)` 转换，在算下一步。
 
@@ -84,6 +81,7 @@ parseInt("10", 16); // 16
 parseInt('3', 2); // NaN
 // 去除右边的非数字
 parseInt('12a'); // 12
+parseInt('a12'); // NaN
 ```
 
 
@@ -94,6 +92,7 @@ parseInt('12a'); // 12
 
 ```js
 parseFloat('123.9abc');  // 123.9
+parseFloat('abc123.9');  // NaN
 ```
 
 
@@ -164,7 +163,7 @@ NaN == undefined // false
 1 === '1'  // false
 parseInt('123abc')  // 123
 var num = 123123.345789;
-num.toFixed(3)  // 123123.345(wrong) | '123123.346'(right)
+num.toFixed(3)  // '123123.346'
 typeof(a)  // 'string', a: '123abc'
 ```
 
