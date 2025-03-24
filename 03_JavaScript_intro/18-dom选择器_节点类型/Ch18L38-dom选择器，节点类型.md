@@ -50,14 +50,30 @@
 
 ## 4 DOM 节点的类型
 
-常见类型（`nodeType`）的取值：
+节点类型由定义在 Node 类型上的 12 个数值常量表示。共 12 个：
 
-- 元素：0001（1）
-- 属性：0010（2）
-- 文本：0011（3）
-- 注释：1000（8）
-- 文档：1001（9，即 `document`）
-- 片段：1011（11，即 `DocumentFragment`）
+- 元素：`Node.ELEMENT_NODE`（1）
+- 属性：`Node.ATTRIBUTE_NODE`（2）
+- 文本：`Node.TEXT_NODE`（3）
+- CDATA：`Node.CDATA_SECTION_NODE`（4）
+- `Node.ENTITY_PREFERENCE_NODE`（5）
+- `Node.ENTITY_NODE`（6）
+- `Node.PROCESSING_INSTRUCTION_NODE`（7）
+- 注释：`Node.COMMENT_NODE`（8）
+- 文档：`Node.DOCUMENT_NODE`（9，即 `document`）
+- 文档类型：`Node.DOCUMENT_TYPE_NODE`（10，即 `DOCTYPE`）
+- 片段：`Node.DOCUMENT_FRAGMENT_NODE`（11，即 `DocumentFragment`）
+- `Node.NOTATION_NODE`（12）
+
+应用：
+
+```js
+if(someNode.nodeType == Node.ELEMENT_NODE) {
+    alert('Node is an element.');
+}
+```
+
+
 
 
 
