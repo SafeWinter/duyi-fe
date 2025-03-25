@@ -245,3 +245,14 @@ const div = document.querySelector('.target')
 console.log(div.hasChildren());  // true
 ```
 
+
+
+## 2 appendChild
+
+该方法可将页面存在的元素 **剪切** 到指定位置。
+
+
+
+## 3 insertBefore
+
+`parent.insertBefore(a, b)` 执行的操作：`in parent, insert a before b`。
