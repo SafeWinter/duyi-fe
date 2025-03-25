@@ -249,10 +249,38 @@ console.log(div.hasChildren());  // true
 
 ## 2 appendChild
 
-该方法可将页面存在的元素 **剪切** 到指定位置。
+该方法可将页面存在的元素 **剪切** 到指定位置。类似的还有 `removeChild`，返回被移除的元素。
 
 
 
 ## 3 insertBefore
 
 `parent.insertBefore(a, b)` 执行的操作：`in parent, insert a before b`。
+
+
+
+## 4 data- 自定义属性值的读取
+
+`data-log="1"`：点过页面元素的自定义日志标识，通过 `getAttribute` 方法获取：
+
+```js
+a.onclick = function(e) {
+    console.log(this.getAttribute('data-log'));
+    // or
+    console.log(this.dataset.log);
+    // or 
+    console.log(e.target.dataset.log);
+}
+```
+
+
+
+## 5 获取标签名并放入自定义属性
+
+```js
+var tags = document.getElementByTagName('*');
+for(var i = 0, len = tags.length; i < len; i++) {
+    tags[i].setAttribute('this-name', tags[i].nodeName);
+}
+```
+
