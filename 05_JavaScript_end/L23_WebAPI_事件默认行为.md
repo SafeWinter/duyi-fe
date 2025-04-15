@@ -4,7 +4,7 @@
 
 ## dom 进阶
 
-### 事件默认行为
+### 1 事件默认行为
 
 某些元素的某些事件，浏览器会有自己的默认行为
 
@@ -22,47 +22,114 @@
 e.preventDefault();
 ```
 
-### dom 尺寸和位置
 
-![](assets/22.1.png)
 
-![](assets/22.2.png)
+### 2 习题训练
 
-![](assets/22.3.png)
+#### 2.1 表单验证
 
-![](assets/22.4.png)
+几种元素隐藏效果的区别和联系：
 
-> 调用 `dom.scrollTo(x, y)` 可以设置元素的滚动位置，`x` 和 `y` 分别表示 `scrollLeft` 和 `scrollTop`
->
-> 该方法通用元素回到元素顶部 `dom.scrollTo(0, 0)`
->
-> 如果要监听元素的滚动，可以监听事件类型：==scroll==
+|       样式声明       |    生成 DOM 盒     |    占用页面空间    |     可注册事件     |
+| :------------------: | :----------------: | :----------------: | :----------------: |
+|   `display: none`    |        :x:         |        :x:         |        :x:         |
+| `visibility: hidden` | :heavy_check_mark: | :heavy_check_mark: |        :x:         |
+|     `opacity: 0`     | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 
-[Element.getBoundingClientRect()](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/getBoundingClientRect)
+实测效果图：
 
-![element-box-diagram](http://mdrs.yuanjin.tech/img/202210151248555.png)
+![](assets/23.1.png)
 
-> 上图中的 `top`、`left`、`right`、`bottom` 均相对于视口
-
-### 事件传播机制
-
-<img src="http://mdrs.yuanjin.tech/img/20211216105521.jpg" alt="事件流" style="zoom: 50%;" />
+校验 JS：
 
 ```js
-// 在冒泡阶段触发
-div.onclick = function () {};
-
-// 在捕获阶段触发事件
-div.addEventListener('click', function () {}, true);
-
-// 在冒泡阶段触发事件（默认）
-div.addEventListener('click', function () {}, false);
-```
-
-```js
-// 事件处理函数
-function handler(e) {
-  e.target; // 获取事件源（目标阶段的dom）
-  e.stopPropagation(); // 阻止事件继续冒泡
+// 完成表单验证
+function validateForm() {
+    const r1 = validateId();
+    const r2 = validatePwd();
+    return r1 && r2;
 }
+
+function validateId() {
+    const field1 = document.getElementById("field1"),
+        input = field1.querySelector("input"),
+        msg = field1.querySelector(".msg");
+
+    let errMsg = '';
+    if (input.value === "") {
+        errMsg = "账号不能为空";
+    } else if (input.value.length < 6) {
+        errMsg = "账号长度不能小于6";
+    } else if (input.value.length > 20) {
+        errMsg = "账号长度不能大于20";
+    } else if (!/^[a-zA-Z0-9]+$/.test(input.value)) {
+        errMsg = "账号只能包含字母和数字";
+    }
+
+    renderErr(errMsg, msg, field1);
+
+    return !errMsg;
+}
+
+function validatePwd() {
+    const field2 = document.getElementById("field2"),
+        input = field2.querySelector("input"),
+        msg = field2.querySelector(".msg");
+
+    let errMsg = '';
+    if (input.value === "") {
+        errMsg = "密码不能为空";
+    } else if (input.value.length < 6) {
+        errMsg = "密码长度不能小于6";
+    } else if (input.value.length > 20) {
+        errMsg = "密码长度不能大于20";
+    }
+    
+    renderErr(errMsg, msg, field2);
+
+    return !errMsg;
+}
+
+function renderErr(errMsg, msg, field2) {
+    if (errMsg) {
+        msg.innerText = errMsg;
+        field2.classList.add('err');
+    } else {
+        msg.innerText = '';
+        field2.classList.remove('err');
+    }
+}
+
+
+const username = document.querySelector('#field1 input'),
+    password = document.querySelector('#field2 input'),
+    form = document.querySelector('form');
+
+form.addEventListener('submit', (e) => {
+    const pass = validateForm();
+    if (!pass) {
+        e.preventDefault();
+    } else {
+        alert('登录成功');
+    }
+});
+username.addEventListener('change', validateId);
+password.addEventListener('change', validatePwd);
 ```
+
+
+
+#### 2.2 文本框只能输入数字
+
+```js
+// <input type="text" placeholder="请输入商品价格" />
+// 上面的文本框只能输入数字
+const input = document.querySelector("input");
+input.addEventListener("input", e => 
+    // 只允许输入数字
+    e.target.value = e.target.value.replace(/[^0-9]/g, ''));
+```
+
+实测效果：
+
+![](assets/23.2.png)
