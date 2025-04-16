@@ -25,19 +25,23 @@
 flowchart TD
     A[创建 document 对象\n开始解析页面\ndocument.readyState='loading'] --> B{遇到元素类型}
     B -->|link 外部 CSS| C[创建线程加载 CSS]
-    B -->|script 无 async/defer| D[同步加载并阻塞\n加载后执行脚本]
-    B -->|script 含 async/defer| E[异步加载脚本]
     B -->|img 等带 src 的元素| F[异步加载资源]
+    B -->|script 无 async/defer| D[同步加载并阻塞
+    加载后执行脚本]
+    B -->|script 含 async/defer| E[异步加载脚本]
     C --> G[继续解析]
     D --> G
     E --> G
     F --> G
     G --> B
     G -->|文档解析完成| H[document.readyState='interactive']
-    H --> I[执行所有 defer 脚本\n按先后顺序执行]
-    I --> J[触发 DOMContentLoaded 事件\n进入事件驱动阶段]
+    H --> I[执行所有 defer 脚本
+    按先后顺序执行]
+    I --> J[触发 DOMContentLoaded 事件
+    进入事件驱动阶段]
     J --> K{等待异步资源}
-    K -->|所有 async 脚本执行完成\n且图片等资源加载完毕| L[document.readyState='complete']
+    K -->|所有 async 脚本执行完成
+    且图片等资源加载完毕| L[document.readyState='complete']
     L --> M[window 触发 load 事件]
     M --> N[进入异步响应阶段\n处理用户输入/网络事件等]
     
