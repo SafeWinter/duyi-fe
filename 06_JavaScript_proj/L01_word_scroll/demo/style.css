@@ -1,0 +1,31 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    background-color: skyblue;
+    padding: 1em;
+    font-size: 0.8rem;
+    position: relative;
+}
+
+.title {
+    display: inline-block;
+    padding-right: .5em;
+    border-right: 2px solid #808080;
+}
+
+.list {
+    list-style-type: none;
+    padding: 0;
+    overflow: hidden;
+    position: absolute;
+    left: 143px;
+    top: 20px;
+    height: 24px;
+    line-height: 24px;
+    font-size: 1.3em;
+}

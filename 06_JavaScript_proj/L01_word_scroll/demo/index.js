@@ -1,70 +1,10 @@
-# L01 文字拖动效果
-
----
-
-## 1 需求描述
-
-根据给定的页面和数据，手动实现一版文字滚动效果。要求每两秒上翻一次列表，每次滚动一条列表项内容：
-
-![](../assets/1.1.png)
-
-`index.html`：
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>S06L01 - Word Scroll Effect</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-    <div class="container">
-        <h1 class="title">最新公告</h1>
-        <ul class="list"></ul>
-    </div>
-    <script src="index.js"></script>
-</body>
-
-</html>
-```
-
-给定列表数据：
-
-```js
 const data = [
     {text: '把大象装冰箱总共分几步？'},
     {text: '1. 邓哥打开冰箱门'},
     {text: '2. 邓哥把大象放进去'},
     {text: '3. 邓哥关上冰箱门'}
 ];
-```
 
-
-
-## 2 实现代码
-
-详见 `demo` 文件夹。
-
-要点归纳：
-
-1. 通过 `overflow: hidden;` 与 `domContainer.scrollTop = h` 结合实现列表项内容的切换；
-2. 通过 `setInterval(fn, timeout)` 的嵌套，手动实现相邻两个列表项的过渡效果；
-3. 为了实现过渡不停顿，需要将原始数据的第一项 **追加到数组的末尾**，以便实现最后一项到第一项的动态过渡；
-4. 本效果需要至少四个配置参数：
-   1. 每次滚动位移量 `step1`（单位：像素）；
-   2. 外层切换显示的时间间隔 `timeout1`（单位：毫秒）；
-   3. 过渡效果的总帧数 `frames`（单位：帧）；
-   4. 内层完成一次过渡需要的时间间隔 `timeout2`（单位：毫秒）；
-
-
-
-核心 JS 逻辑如下（`L40` 至 `L56`）：
-
-```js
 const {stop, start} = (function(data){
     
     // 定义列表渲染函数
@@ -88,6 +28,13 @@ const {stop, start} = (function(data){
 
     /**
      * 通过 HOF 创建一个文字滚动函数
+     * 
+     * @param {object} options 文字滚动的配置项
+     * @param {number} options.frames 滚动的帧数（如：50(帧)）
+     * @param {number} options.step1 外围列表项滚动的步长（即单行高度，如：24(px)）
+     * @param {number} options.timeout1 外围列表项滚动的时间间隔（）
+     * @param {number} options.timeout2 内部列表项滚动的时间间隔
+     * @returns {function} 滚动函数，接收一个DOM元素作为参数
      */
     const makeScroll = ({
         frames = 50,
@@ -123,15 +70,30 @@ const {stop, start} = (function(data){
             }, timeout1);
         };
     };
-    
+
+    // 4. 创建文字滚动函数
+    const startScroll = makeScroll(options);
+
+    /**
+     * 停止滚动函数
+     */
+    const stopScroll = () => {
+        if(outer) {
+            clearInterval(outer);
+            outer = null;
+        }
+    }
+
     // 1. 渲染列表内容
     const list = document.querySelector('.list');
     render(list, data);
 
     // 2. 初始化文字滚动
-    const startScroll = makeScroll(options);
     startScroll(list);
 
+    // 3. 导出滚动函数（用于在控制台启动或暂停文字滚动）
+    return {
+        start: startScroll,
+        stop: stopScroll
+    };
 }(data));
-```
-
