@@ -1,40 +1,56 @@
-const createAnimate = function(options){
-    'use strict';
+const {createAnimation, stopPlay} = (function(container) {
 
-    const defaults = {
-        duration: 1000,
-        frames: 50,
-        from: 0,
-        to: 1,
-        onStart: function(elem){
-            console.log('animation start, element:', elem);
-        },
-        onMove: function(n, elem){
-            console.log('animation playing, element:', elem, ', target value:', n);
-        },
-        onEnd: function(elem){
-            console.log('animation ended, element:', elem);
-        }
-    };
-
-    options = Object.assign({}, defaults, options);
-
-    return elem => {
-        const {onStart, onMove, onEnd, duration, frames, from, to } = options;
-        const step = (to - from) / frames;
-        const interval = duration / frames;
-        let curIdx = 0;
-        let curVal = from;
-
-        onStart(elem);
-        const timer = setInterval(function(){
-            curIdx++;
-            curVal += step;
-            onMove(curVal, elem);
-            if (curIdx >= options.frames) {
-                clearInterval(timer);
-                onEnd(elem);
+    let outer = null;
+    
+    function createAnimation({
+        step1,
+        timeout1,
+        timeout2,
+        frames
+    } = options) {
+    
+        const step2 = step1 / frames;
+        const timeout3 = timeout2 / frames;
+    
+        return dom => {
+            if(outer) {
+                return;
             }
-        }, interval);
-    };
-};
+    
+            let i = curIdx;
+            updateIndicator(curIdx);
+            outer = setInterval(() => {
+                curIdx = i + 1;
+                // console.log('i, curIdx:', i, curIdx);
+                const h1 = step1 * i;
+                dom.style.marginLeft = `${-h1}px`;
+                
+                if(++i === data.length) {
+                    curIdx = i = 0;
+                }
+                
+                let h2 = h1;
+                const inner = setInterval(function(){
+                    h2 += step2;
+                    dom.style.marginLeft = `${-h2}px`;
+                    if(h2 >= h1 + step1) {
+                        updateIndicator(curIdx);
+                        clearInterval(inner);
+                    }
+                }, timeout3);
+            }, timeout1);
+        };
+    
+    }
+    
+    function stopPlay() {
+        if(outer) {
+            clearInterval(outer);
+            outer = null;
+        }
+    }
+    return {
+        createAnimation,
+        stopPlay
+    }
+}(document.querySelector('.carousel-container')))

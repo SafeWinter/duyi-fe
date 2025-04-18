@@ -6,21 +6,21 @@
 
 .carousel-container {
     position: relative;
-    width: 60vw;
-    height: 65vh;
+    width: 65vw;
+    height: 60vh;
     margin: 5em auto 0;
     overflow: hidden;
 }
 
 .carousel-list {
-    width: 300%;
+    width: calc(65vw * 6);
     height: 100%;
     display: flex;
 }
 
 .carousel-list>img {
     object-fit: cover;
-    width: 60vw;
+    width: 65vw;
     height: 100%;
 }
 

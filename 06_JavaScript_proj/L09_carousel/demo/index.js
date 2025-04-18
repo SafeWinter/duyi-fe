@@ -1,53 +1,55 @@
 const data = [...Array(5).keys()]
     .map(i => `./img/wallpaper${i + 1}.jpg`);
+
 const container = document.querySelector('.carousel-container');
 const $ = container.querySelector.bind(container);
-const $$ = container.querySelectorAll.bind(container);
+
+const getOptions = box => ({
+    step1: parseFloat(getComputedStyle(box).width),
+    timeout1: 2000,
+    timeout2: 500,
+    frames: 50
+});
+
+const options = getOptions(container);
 
 let curIdx = 0;
 
-// 轮播图效果：
-// 1. 自动播放效果
-// 2. 注册事件：
-//   2.1 悬停主图：停止自动播放
-//   2.2 离开主图：继续自动播放
-//   2.3 点击小图：切换主图
-//   2.4 点击两侧按钮：切换主图
-// 3. 过渡动画效果：飞入飞出
-
-// 1. 渲染主图容器
-function renderCarousel() {
-    const fragImg = document.createDocumentFragment();
-    data.concat(data[0]).forEach((src, i) => {
-        const img = document.createElement('img');
-        img.src = src;
-        img.setAttribute('alt', `image${i + 1}`);
-        fragImg.appendChild(img);
-    });
-    
-    const fragPnt = document.createDocumentFragment();
+function renderIndicator(parent) {
+    const indicator = document.createElement('div');
+    indicator.className = 'indicator';
     data.forEach((_, i) => {
         const point = document.createElement('div');
         point.className = `indicator-item ${i === 0 ? 'active' : ''}`;
         point.setAttribute('data-index', i);
-        fragPnt.appendChild(point);
+        indicator.appendChild(point);
     });
-    const caroList = $('.carousel-list');
-    caroList.innerHTML = '';
-    caroList.appendChild(fragImg);
-
-    const indicator = $('.indicator');
-    indicator.innerHTML = '';
-    indicator.appendChild(fragPnt);
+    
+    parent.insertBefore(indicator, $('.arrow'));
 }
 
-renderCarousel();
+function renderCaroList(parent) {
+    const caroList = document.createElement('div');
+    caroList.className = 'carousel-list';
 
+    data.concat(data[0]).forEach((src, i) => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.setAttribute('alt', `image${i + 1}`);
+        caroList.appendChild(img);
+    });
 
+    // 动态计算主图容器实际宽度
+    const imgCount = data.length + 1; // 轮播图多一张图片
+    const caroWidth = getOptions(container).step1 * imgCount;
+    // console.log('caroWidth:', caroWidth);
+    caroList.style.width = `${caroWidth}px`;
+
+    parent.insertBefore(caroList, $('.arrow'));
+}
 
 function toggleImg(index) {
-    const width = getComputedStyle(container).width;
-    const distance = index * parseFloat(width);
+    const distance = index * getOptions(container).step1;
     const caroList = $('.carousel-list');
     caroList.style.marginLeft = `${-distance}px`;
 }
@@ -60,8 +62,7 @@ function updateIndicator(index) {
 }
 
 function bindIndicatorClick() {
-    const indicator = $('.indicator');
-    indicator.addEventListener('click', function({target}) {
+    $('.indicator').addEventListener('click', function({target}) {
         if(target.classList.contains('indicator-item')) {
             // toggle active class
             const prev = this.querySelector('.active');
@@ -80,102 +81,58 @@ function bindIndicatorClick() {
 }
 
 
-
 function bindHoverEvents() {
-    const arrowLeft = $('.arrow-left');
-    const arrowRight = $('.arrow-right');
-    arrowLeft.addEventListener('click', function(e) {
-        // console.log('left arrow clicked, current index: ', curIdx);
-        curIdx = (curIdx - 1 + data.length) % data.length;
+    const length = data.length;
+    
+    // 1. 左箭头点击事件
+    $('.arrow-left').addEventListener('click', function() {
+        curIdx = (curIdx - 1 + length) % length;
         toggleImg(curIdx);
         updateIndicator(curIdx);
     });
-    arrowRight.addEventListener('click', function(e) {
-        // console.log('right arrow clicked, current index: ', curIdx);
-        curIdx = (curIdx + 1) % data.length;
+
+    // 2. 右箭头点击事件
+    $('.arrow-right').addEventListener('click', function() {
+        curIdx = (curIdx + 1) % length;
         toggleImg(curIdx);
         updateIndicator(curIdx);
     });
+}
+
+function bindMouseEnterLeave() {
+
+    container.addEventListener('mouseenter', stopPlay);
+    
+    container.addEventListener('mouseleave', function () {
+        const autoPlay = createAnimation(getOptions(container));
+        autoPlay($('.carousel-list'));
+    });
+}
+
+// 1. 渲染主图容器
+function renderCarousel(parent) {
+    // 1. 主图容器
+    renderCaroList(parent);
+    // 2. 导航条容器
+    renderIndicator(parent);    
 }
 
 function bindEvents() {
+    // 1. 注册导航条点击事件
     bindIndicatorClick();
+    // 2. 注册左右箭头点击事件
     bindHoverEvents();
+    // 3. 注册鼠标悬停/移出事件
+    bindMouseEnterLeave();
 }
 
-const options = {
-    step1: parseFloat(getComputedStyle(container).width),
-    timeout1: 2000,
-    timeout2: 500,
-    frames: 50
-};
-let outer = null;
-
-function makeAnimation({
-    step1,
-    timeout1,
-    timeout2,
-    frames
-} = options) {
-
-    const step2 = step1 / frames;
-    const timeout3 = timeout2 / frames;
-
-    return dom => {
-        if(outer) {
-            return;
-        }
-
-        let i = curIdx;
-        updateIndicator(curIdx);
-        outer = setInterval(() => {
-            curIdx = i + 1;
-            // console.log('i, curIdx:', i, curIdx);
-            const h1 = step1 * i;
-            dom.style.marginLeft = `${-h1}px`;
-            
-            if(++i === data.length) {
-                curIdx = i = 0;
-            }
-            
-            let h2 = h1;
-            const inner = setInterval(function(){
-                h2 += step2;
-                dom.style.marginLeft = `${-h2}px`;
-                if(h2 >= h1 + step1) {
-                    updateIndicator(curIdx);
-                    clearInterval(inner);
-                }
-            }, timeout3);
-        }, timeout1);
-    };
-
-}
-
-function stopPlay() {
-    if(outer) {
-        clearInterval(outer);
-        outer = null;
-    }
-}
-
-
-const autoPlay = makeAnimation({
-    step1: parseFloat(getComputedStyle(container).width),
-    timeout1: 2000,
-    timeout2: 500,
-    frames: 50
-});
-
-const caroList = $('.carousel-list');
-autoPlay(caroList);
-
-bindEvents();
-
-container.addEventListener('mouseenter', stopPlay);
-container.addEventListener('mouseleave', function() {
-    const step1 = parseFloat(getComputedStyle(container).width);
-    const opts = Object.assign(options, {step1});
-    const autoPlay = makeAnimation(opts);
+function initPlay(box) {
+    const caroList = $('.carousel-list');
+    const autoPlay = createAnimation(getOptions(box));
     autoPlay(caroList);
-});
+}
+
+
+renderCarousel(container);
+initPlay(container);
+bindEvents();
