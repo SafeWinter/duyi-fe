@@ -1,0 +1,52 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.hidden {
+    display: none;
+}
+
+.menu-container {
+    width: 35vw;
+    margin: 10vh auto;
+
+    &>.menu {
+        background-color: rgb(177, 215, 230);
+
+        &>h2 {
+            font-size: 1.2rem;
+            padding: 0.2em 1em;
+            background-color: rgb(104, 198, 242);
+        }
+
+        &>.submenu {
+            height: 0;
+            overflow: hidden;
+            background-color: rgb(177, 215, 230);
+            padding-inline: 1.6em;
+        
+            &>li {
+                height: 30px;
+                line-height: 30px;
+                font-size: 1rem;
+        
+                &:hover {
+                    background-color: rgb(196, 230, 246);
+                    padding-inline: 1.6em;
+                    margin-inline: -1.6em;
+                }
+            }
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+.menu+.menu {
+    margin-top: 1em;
+}
