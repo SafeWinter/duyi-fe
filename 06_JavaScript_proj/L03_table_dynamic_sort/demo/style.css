@@ -1,0 +1,27 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.table-container {
+    text-align: center;
+    margin: 20px auto;
+    width: 60vw;
+    min-width: 500px;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding-block: .3em;
+}
+
+th, input[type="checkbox"] {
+    cursor: pointer;
+}
+
+th {
+    color: #555;
+}
