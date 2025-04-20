@@ -2,4 +2,54 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    list-style-type: none;
 }
+
+body {
+    background-color: lightblue;
+    width: 100vw;
+}
+
+.content {
+    margin: 5em auto;
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.item {
+    flex: 1;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    padding-block: 0.3em;
+    color: rgb(18, 142, 219);
+    font-weight: 700;
+
+    &>.left, &>.right {
+        line-height: 1.8em;
+    }
+    & > .left {
+        float: left;
+        width: 25%;
+        padding: 0.1em .3em;
+        text-align: center;
+        border-right: 2px solid #ccc;
+    }
+    & > .right {
+        float: right;
+        width: 65%;
+        margin-right: .8em;
+
+        & > select {
+            width: 100%;
+            padding: 0.5em;
+            border-color: transparent;
+            background-color: inherit;
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+}
+
