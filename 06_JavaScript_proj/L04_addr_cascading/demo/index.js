@@ -28,6 +28,9 @@
         if(notDefault(cityCode)) {
             const schoolData = allschool[cityCode] || {};
             doms.school.innerHTML += buildOptionsWith(schoolData);
+            if(schoolData && schoolData.length > 0) {
+                doms.school.value = '0';  // 更正：级联选中该市第一个学校
+            }
         }
     };
 
@@ -36,6 +39,11 @@
         if (notDefault(provCode)) {
             const cityData = city[provCode] || {};
             doms.city.innerHTML += buildOptionsWith(cityData);
+            const firstSchool = Object.keys(cityData)[0] || '0000'; // Get first city code or default
+            if(notDefault(firstSchool)) { // 更正：级联选中第一个市、以及该市第一个学校
+                doms.city.value = firstSchool;
+                renderSchoolBar(firstSchool);
+            }
         }
     };
 
@@ -56,4 +64,4 @@
     };
 
     init();
-}());
+}())
