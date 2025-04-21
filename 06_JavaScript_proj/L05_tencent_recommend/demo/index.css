@@ -1,0 +1,134 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.container {
+    position: relative;
+    height: 500px;
+
+    &>.header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 70px;
+        background-color: rgb(255 255 255 / 0.4);
+        /* outline: 1px solid violet; */
+    }
+
+    &>.side-bar {
+        position: absolute;
+        top: 70px;
+        right: 0;
+        height: 430px;
+        width: 350px;
+        background-color: rgb(15 15 30 / 0.4);
+        color: rgb(255 255 255 / 0.7);
+        /* outline: 1px solid violet; */
+    }
+}
+
+.picks>h2 {
+    position: relative;
+    display: block;
+    height: 35px;
+    font-size: 1.375rem;
+    line-height: 35px;
+    text-indent: 3.2ch;
+    margin: 10px 0;
+
+    &::before {
+        position: absolute;
+        content: '';
+        display: block;
+        width: 35px;
+        height: 35px;
+        left: 10px;
+    }
+}
+
+.picks>.potential {
+    margin-bottom: 20px;
+
+    &::before {
+        background: url(./img/all.png) no-repeat center center;
+    }
+
+    &&::after {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        left: 0;
+        top: 45px;
+        background-color: rgb(255 255 255 / 0.1);
+    }
+}
+
+.picks>.hot {
+    &::before {
+        background: url(./img/tj.png) no-repeat center center;
+    }
+}
+
+.main-content {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    &>.bg {
+        margin: 0 auto;
+        text-align: center;
+        background-color: rgb(25, 117, 180);
+    }
+}
+
+.hot-list {
+    margin-inline-start: 45px;
+    padding-inline-end: 2em;
+
+    &>li {
+        display: block;
+        height: 35px;
+        line-height: 35px;
+
+        &>a {
+            display: block;
+            height: 100%;
+
+            /* 超出部分用省略号表示 */
+            width: 300px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            & .desc {
+                display: none;
+            }
+        }
+
+        &.active>a {
+            color: #ff5c38;
+
+            &>.title {
+                font-size: 1.375em;
+                font-weight: 700;
+            }
+
+            &>.desc {
+                display: inline;
+                width: 100%;
+                margin-inline-start: 0.3em;
+            }
+        }
+    }
+}
