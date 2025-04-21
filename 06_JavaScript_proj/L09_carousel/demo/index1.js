@@ -85,20 +85,12 @@ function next() {
 
 function prev() {
     let newIdx = curIdx - 1;
-    let cbEnd = null;
     if(newIdx < 0) {
         // 初始加载点击左箭头时，按最后一张向倒数第二张考虑
         curIdx = maxIdx;
         newIdx = curIdx - 1;
     }
-    if (newIdx === 0) { 
-        // 结束是在第一张图片，过渡到第一张图片后，快速移到最后一张图片
-        cbEnd = elem => {
-            curIdx = maxIdx;
-            elem.style.marginLeft = `${-maxIdx * container.clientWidth}px`;
-        }
-    }
-    moveTo(newIdx, cbEnd);
+    moveTo(newIdx);
 }
 
 let timer = null;
