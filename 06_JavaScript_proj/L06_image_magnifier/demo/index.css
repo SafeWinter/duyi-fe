@@ -1,0 +1,67 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    /* the size for the mask layer */
+    --mask-size: calc(450px * 450 / 800);
+}
+.show {
+    display: block;
+}
+.container {
+    display: block;
+    width: 920px;
+    margin: 50px auto;
+
+    &>.left-img, &>.right-img {
+        display: inline-block;
+        width: 450px;
+        height: 450px;
+    }
+    &>.left-img {
+        position: relative;
+        margin-right: 10px;
+
+        &>.mask {
+            display: none;
+            width: var(--mask-size);
+            height: var(--mask-size);
+            background-image: url(./img/bg.png);
+        }
+
+        &:hover > .mask {
+            position: absolute;
+            display: block;
+            cursor: move;
+        }
+    }
+
+    &>.img-list-wrapper {
+        width: 450px;
+        margin-top: 10px;
+        text-align: center;
+    }
+}
+
+.img-list > li {
+    display: inline-block;
+    cursor: pointer;
+    vertical-align: middle;
+    margin-inline-end: 0.5em;
+
+    &>img {
+        display: block;
+        height: 100%;
+        padding: 0.3em;
+        border-radius: 5px;
+        font-size: 0;
+    }
+
+    &.active {
+        outline: 3px solid white;
+        outline-offset: -5px;
+        border: 2px solid rgb(252, 117, 33);
+        border-radius: 5px;
+    }
+}
