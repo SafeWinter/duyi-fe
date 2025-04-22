@@ -10,6 +10,8 @@ const data = [
 
 let curIdx = 0;
 const SCALE_RATIO = 800 / 450;
+const MASK_SIZE = 450 / SCALE_RATIO;
+const HALF_MASK_SIZE = MASK_SIZE / 2;
 
 function updateCurrentImg(index) {
     const src = data[index].l;
@@ -50,8 +52,6 @@ function bindHoverEventForCurrImg() {
         left: boxLeft, 
         top: boxTop
     } = box.getBoundingClientRect();
-    const MASK_SIZE = 450 / SCALE_RATIO;
-    const HALF_MASK_SIZE = MASK_SIZE / 2;
 
     function clamp (value, min, max) {
         return Math.max(min, Math.min(value, max));
@@ -65,14 +65,14 @@ function bindHoverEventForCurrImg() {
     }
 
     function getCenterCoordinates({clientX, clientY}) {
-        const x = clientX - boxLeft; // 鼠标在图片框内的横坐标
-        const y = clientY - boxTop;  // 鼠标在图片框内的纵坐标
+        const x = clientX - boxLeft - HALF_MASK_SIZE; // 鼠标在遮罩中心时，遮罩左上角的横坐标
+        const y = clientY - boxTop - HALF_MASK_SIZE;  // 鼠标在遮罩中心时，遮罩左上角的纵坐标
         
         const maxLeft = boxWidth - MASK_SIZE;
         const maxTop = boxHeight - MASK_SIZE;
         
-        const left = clamp(x - HALF_MASK_SIZE, 0, maxLeft);
-        const top = clamp(y - HALF_MASK_SIZE, 0, maxTop);
+        const left = clamp(x, 0, maxLeft);
+        const top = clamp(y, 0, maxTop);
 
         return [left, top];
     }
