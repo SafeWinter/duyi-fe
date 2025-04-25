@@ -1,0 +1,207 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: url(./img/bg.jpg) no-repeat 100% / cover;
+    color: #ffb100;
+}
+
+h2{
+    display: inline-block;
+    font-size: 1.2em;
+    height: 80px;
+    line-height: 80px;
+}
+
+.container {
+    position: relative;
+    width: 800px;
+    height: 500px;
+    margin: 5em auto;
+    padding-block: 60px;
+    background: url(./img/bg.png) no-repeat 100% / contain;
+
+    &>.row1,&>.row3 {
+        width: 96%;
+        height: 80px;
+        margin: 5px 1.25em;
+    }
+
+    &>.row2 {
+        width: 95%;
+        height: 205px;
+        margin: 5px 1.25em;
+    }
+}
+
+.prize-item {
+    display: inline-block;
+    width: 250px;
+    height: 80px;
+    margin-left: 0.1em;
+    border-radius: 0.25em;
+    background-color: rgb(255 255 255 / 0.1);
+
+
+    &.active {
+        background-color: #ffb100;
+        &>.prize-name {
+            color: #470c1b;
+        }
+    }
+
+    &>.prize-img {
+        float: left;
+        margin: 0.35em 2.5em 0 1.5em;
+        height: 85%;
+
+        &.narrow {
+            width: 80px;
+            height: auto;
+            margin: 1em 1.8em 0 1em;
+        }
+    }
+
+    &.left {
+        float: left;
+        width: 100px;
+        height: 205px;
+        text-align: center;
+
+        &>.prize-img {
+            width: 65px;
+            height: auto;
+            margin-inline: 15px;
+            padding-top: 15px;
+        }
+        &>.prize-name {
+            height: 100%;
+            line-height: 160px;
+        }
+    }
+    &.right {
+        float: right;
+        width: 100px;
+        height: 205px;
+        text-align: center;
+
+        &>.prize-img {
+            width: 60px;
+            height: auto;
+            margin-inline: 20px;
+            padding-top: 10px;
+        }
+        &>.prize-name {
+            height: 100%;
+            line-height: 140px;
+        }
+    }
+}
+
+.control {
+    display: inline-block;
+    width: 72%;
+    height: 100%;
+    margin-left: 5px;
+    text-align: center;
+
+    &>.left{
+        float: left;
+        width: 25%;
+        height: 100%;
+        line-height: 80px;
+        &>img {
+            height: 35%;
+            margin: 65px auto 0;
+        }
+    }
+    &>.right{
+        float: right;
+        width: 36%;
+        height: 100%;
+        line-height: 80px;
+        &>.btn {
+            display: block;
+            height: 100%;
+            width: 100%;
+            margin: 5px 0 0;
+            cursor: pointer;
+            border: none;
+            color: transparent;
+            background: url(./img/start_btn.png) no-repeat 100% / contain;
+        }
+    }
+    &>.desc {
+        display: inline-block;
+        height: 205px;
+        line-height: 205px;
+        font-size: 1.85em;
+        margin-left: -0.8em;
+        >.count {
+            display: inline-block;
+            margin-inline: 0.25em;
+        }
+    }
+
+}
+
+.mask {
+    position: fixed;
+    background-color: rgb(0 0 0 / 0.5);
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+
+    &>.popup {
+        position: absolute;
+        background-color: rgb(255 255 255);
+        width: 400px;
+        height: 170px;
+        top: 35%;
+        left: 50%;
+        margin: -85px 0 0 -200px;
+
+        &>header {
+            background-color: #e99c3d;
+            color: white;
+            font-size: 1em;
+            padding: 0.5em 0 0.5em 1em;
+            &>.close {
+                float: right;
+                height: 100%;
+                font-size: 2em;
+                margin: -13px 10px 0 0;
+                cursor: pointer;
+            }
+        }
+
+        & .msg {
+            width: 100%;
+            text-align: center;
+            font-size: 1.4em;
+            color: #622230;
+        }
+
+        & .btn {
+            background-color: #fca825;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 3px;
+            padding: 0.2em 0.7em;
+            float: right;
+            margin-right: 20px;
+            cursor: pointer;
+        }
+    }
+}
+
+.show {
+    display: block;
+}

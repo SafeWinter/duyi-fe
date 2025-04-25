@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>S06L07 - Random Draw</title>
+  <link rel="stylesheet" href="./index.css">
+  <link rel="shortcut icon" href="./img/logo.png" type="image/x-icon">
+</head>
+<body>
+  <main class="container">
+    <section class="row1">
+      <figure data-id="1" class="prize-item"><img src="./img/prize_1.png" alt="" class="prize-img"><h2 class="prize-name">IphoneX</h2></figure>
+      <figure data-id="2" class="prize-item"><img src="./img/prize_2.png" alt="" class="prize-img"><h2 class="prize-name">现金50元</h2></figure>
+      <figure data-id="3" class="prize-item"><img src="./img/prize_3.png" alt="" class="prize-img"><h2 class="prize-name">HUAWEI</h2></figure>
+    </section>
+    <section class="row2">
+      <figure data-id="8" class="prize-item left"><img src="./img/prize_8.png" alt="" class="prize-img"><h2 class="prize-name">U盘</h2></figure>
+      <figure class="control">
+        <div class="left">
+          <img src="./img/center_1.png" alt="center_1">
+        </div>
+        <h1 class="desc">还可以抽奖<span class="count">0</span>次</h1>
+        <div class="right"><button class="btn">开始抽奖</button></div>
+      </figure>
+      <figure data-id="4" class="prize-item right"><img src="./img/prize_4.png" alt="" class="prize-img"><h2 class="prize-name">现金10元</h2></figure>
+    </section>
+    <section class="row3">
+      <figure data-id="7" class="prize-item"><img src="./img/prize_7.png" alt="" class="prize-img narrow"><h2 class="prize-name">电脑优惠券</h2></figure>
+      <figure data-id="6" class="prize-item"><img src="./img/prize_6.png" alt="" class="prize-img narrow"><h2 class="prize-name">手机优惠券</h2></figure>
+      <figure data-id="5" class="prize-item"><img src="./img/prize_5.png" alt="" class="prize-img"><h2 class="prize-name">谢谢参与</h2></figure>
+    </section>
+  </main>
+  <div class="mask">
+    <div class="popup">
+      <header>
+        <span>温馨提示</span>
+        <div class="close">×</div>
+      </header>
+      <main>
+        <h2 class="msg">很遗憾您没有中奖</h2>
+        <div>
+          <button class="btn" >再来一次</button>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script src="./index.js"></script>
+</body>
+
+</html>
