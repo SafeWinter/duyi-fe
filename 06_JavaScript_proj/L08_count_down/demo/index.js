@@ -33,10 +33,7 @@ function comeToZero(digit) {
 }
 
 function prevDigitsAllZero(digits) {
-    return digits.every(digit => {
-        const currentItem = $(CURRENT_ITEM_SELECTOR, digit);
-        return currentItem.className === 'num0';
-    });
+    return digits.every(comeToZero);
 }
 
 // 1st digit of hours
