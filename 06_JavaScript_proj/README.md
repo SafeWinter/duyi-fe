@@ -8,11 +8,11 @@
 |  4   | :heavy_check_mark: | 丁永志 | JS 实现三级联动效果  |
 |  5   | :heavy_check_mark: | 丁永志 | 腾讯视频重磅推荐模块 |
 |  6   | :heavy_check_mark: | 丁永志 | 图片放大镜           |
-|  7   |                    |  韩刚  | 积分抽奖效果         |
-|  8   |                    |  韩刚  | JS 实现倒计时特效    |
+|  7   | :heavy_check_mark: |  韩刚  | 积分抽奖效果         |
+|  8   | :heavy_check_mark: |  韩刚  | JS 实现倒计时特效    |
 |  9   | :heavy_check_mark: |  袁进  | 轮播图               |
-|  10  |                    |  谢杰  | 图片瀑布流           |
-|  11  |                    |  谢杰  | 分页插件             |
+|  10  | :heavy_check_mark: |  谢杰  | 图片瀑布流           |
+|  11  | :heavy_check_mark: |  谢杰  | 分页插件             |
 |  12  |                    |  谢杰  | 五子棋游戏           |
 |  13  |                    |  谢杰  | 读心术小游戏         |
 |  14  |                    |  谢杰  | 图片拖动验证         |
