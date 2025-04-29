@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>S06L10 - Masonry Layout with Firefox</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      padding: 1em;
+      background-color: skyblue;
+    }
+
+    .canvas {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      grid-template-rows: masonry;
+      gap: 1em;
+
+      &>img {
+        object-fit: cover;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <article class="canvas"></article>
+  </main>
+  <script>
+    const canvas = document.querySelector('.canvas');
+    const renderImgs = () => {
+      const frag = document.createDocumentFragment();
+      Array.from({ length: 41 }, (_, i) => {
+        const img = document.createElement('img');
+        img.src = `./img/${i}.jpg`;
+        img.alt = `demo image_${i}`;
+        frag.appendChild(img);
+      });
+      canvas.appendChild(frag);
+    };
+    renderImgs();
+  </script>
+</body>
+
+</html>
