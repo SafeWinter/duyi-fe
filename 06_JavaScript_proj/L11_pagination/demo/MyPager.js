@@ -62,16 +62,13 @@ const MyPager = (function(){
 
         getCurrentRange() {
             const half = Math.floor(this.pageSize / 2);
-            let start, end;
-            if(this.page - half <= 1) {
+            let start = this.page - half,
+                end = this.page + half;
+            if(start <= 1) {
                 start = 1;
                 end = this.pageSize;
                 end = Math.min(end, this.total);
-            } else if(this.page + half <= this.total) {
-                start = this.page - half;
-                end = this.page + half;
-                end = Math.min(end, this.page + half);
-            } else {
+            } else if(end > this.total) {
                 end = this.total;
                 start = end - this.pageSize + 1;
                 start = Math.max(1, start);
