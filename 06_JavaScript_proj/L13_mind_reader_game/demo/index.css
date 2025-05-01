@@ -1,0 +1,85 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    margin-block-start: 8px;
+    margin-inline: auto;
+    width: 1000px;
+    height: 750px;
+    display: flex;
+    justify-items: center;
+
+    & > .content {
+        flex: 4 4 0;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        & > .images {
+            position: relative;
+            flex: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url(./img/bg.gif) center center / contain no-repeat;
+            transition: transform 3s ease-in-out;
+
+            & > img {
+                position: absolute;
+                object-fit: contain;
+                cursor: pointer;
+            }
+            /* & > .mask {
+                transition: transform 3s ease-in-out;
+            } */
+        }
+        & > .instructions {
+            flex: 3;
+            padding-top: 1em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.3em;
+            font-weight: 300;
+            &>p {
+                width: 72%;
+            }
+        }
+    }
+    & > .refs {
+        flex: 6 6 0;
+        display: grid;
+        height: 100%;
+        grid-template-columns: repeat(5, 110px);
+        grid-template-rows: repeat(20, 1fr);
+        grid-auto-flow: column;
+        flex-direction: column;
+        flex-wrap: wrap;
+        & > .item {
+            /* width: 120px; */
+            height: 35px;
+            justify-content: flex-start;
+            display: flex;
+            font-weight: 100;
+            & > .item__num {
+                flex: 2 0;
+                text-align: right;
+                line-height: 35px;
+                display: inline-block;
+            }
+            & > .item__img {
+                flex: 3 0;
+                text-align: left;
+                object-fit: contain;
+                padding-inline-end: 1em;
+                display: inline-block;
+            }
+        }
+    }
+}
+
+.hidden {
+    display: none;
+}
