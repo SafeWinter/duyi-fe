@@ -1,0 +1,101 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 32em;
+    height: 32em;
+    margin: 5em auto;
+    background-color: rgb(247, 230, 183);
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &>.board {
+        display: grid;
+        grid-template-columns: repeat(14, 1fr);
+        grid-template-rows: repeat(14, 1fr);
+        gap: 0;
+        border-top: 1px solid rgb(0 0 0 / 0.5);
+        border-left: 1px solid rgb(0 0 0 / 0.5);
+        outline: 3px solid rgb(0 0 0 / 0.7);
+        outline-offset: 2px;
+
+        &>div {
+            width: 32px;
+            height: 32px;
+            border-right: 1px solid rgb(0 0 0 / 0.5);
+            border-bottom: 1px solid rgb(0 0 0 / 0.5);
+        }
+    }
+
+    &>.stones {
+        position: absolute;
+        width: 480px;
+        height: 480px;
+        left: 1em;
+        top: 1em;
+        cursor: pointer;
+        display: grid;
+        grid-template-columns: repeat(15, 1fr);
+        grid-template-rows: repeat(15, 1fr);
+        gap: 0;
+
+        &>div {
+            border-radius: 50%;
+
+            &.semi-black:hover {
+                background-color: rgba(0, 0, 0, 0.4);
+            }
+
+            &.semi-white:hover {
+                background-color: rgba(255, 255, 255, 0.7);
+            }
+        }
+
+        &>.stone {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1.8px solid #ccc;
+            transform: scale(0.95);
+            cursor: not-allowed;
+
+            &.active {
+                transform: scale(0.90);
+                border: 1px solid rgb(0, 149, 255);
+                box-shadow: 0 0 3px 2px rgb(0, 149, 255);
+            }
+
+            &.black,
+            &.white {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 0.8em;
+                font-weight: 600;
+                line-height: 32px;
+            }
+
+            &.black {
+                background-color: black;
+                color: rgb(207, 207, 207);
+            }
+
+            &.white {
+                color: #323232;
+                background-color: white;
+            }
+
+            &.win {
+                transform: scale(0.90);
+                border: 1px solid red;
+                box-shadow: 0 0 3px 2px red;
+            }
+        }
+    }
+}
