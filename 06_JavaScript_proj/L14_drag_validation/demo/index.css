@@ -1,0 +1,118 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    /* outline: 1px solid #ccc; */
+    width: 350px;
+    margin: 5em auto;
+    padding: 1em;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    align-items: center;
+
+    &>.header {
+        &>.tip{
+            cursor: pointer;
+            display: flex;
+            gap: 0.5em;
+            align-items: center;
+            user-select: none;
+    
+            &>.refresh {
+                height: 26px;
+            }
+            &>.tip-text {
+                font-size: 1rem;
+                font-weight: 700;
+                color: rgb(126, 57, 218);
+            }
+        }
+    }
+
+    &>.content {
+        width: 85%;
+        height: 300px;
+        border: 1.5px solid #ccc;
+        border-radius: 0.8em;
+        box-shadow: 0 0 3px rgb(0 0 0 / 0.3);
+        padding: 1em;
+        display: flex;
+        gap: 0.7em;
+        flex-direction: column;
+        align-items: center;
+
+        &>.msg {
+            font-size: 1.2em;
+        }
+        &>.image {
+            width: 100%;
+            height: 200px;
+            background: url(./img/t1.png) center center no-repeat;
+            background-position: 0 0;
+            position: relative;
+
+            &>div {
+                position: absolute;
+                width: 50px;
+                height: 50px;
+            }
+            &>.blank {
+                background-color: white;
+            }
+            &>.square {
+                background-image: url(./img/t1.png);
+            }
+        }
+        &>.slider {
+            height: 32px;
+            width: 100%;
+            background-color: #ddd;
+            border-radius: 0.7em;
+
+            position: relative;
+
+            &>.tip {
+                height: 100%;
+                font-weight: 200;
+                line-height: 32px;
+                text-align: center;
+                transition: opacity 0.3s ease-in-out;
+            }
+
+            &>.plug {
+                position: absolute;
+                width: 42px;
+                height: 42px;
+                background-color: white;
+                border-radius: 50%;
+                top: 50%;
+                transform: translate(-2px, -50%);
+                cursor: pointer;
+                background-image: url(./img/yz.png);
+                background-size: contain;
+
+                &:active {
+                    cursor:grab
+                }
+                &.forbidden {
+                    cursor: not-allowed;
+                }
+            }
+        }
+    }
+}
+
+.hidden {
+    display: none;
+}
+.fail {
+    color: green;
+}
+.pass {
+    color: red;
+}

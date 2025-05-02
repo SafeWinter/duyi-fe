@@ -15,7 +15,7 @@
 |  11  | :heavy_check_mark: |  谢杰  | 分页插件             |
 |  12  | :heavy_check_mark: |  谢杰  | 五子棋游戏           |
 |  13  | :heavy_check_mark: |  谢杰  | 读心术小游戏         |
-|  14  |                    |  谢杰  | 图片拖动验证         |
+|  14  | :heavy_check_mark: |  谢杰  | 图片拖动验证         |
 
 对于每个案例，分为四步完成：
 
