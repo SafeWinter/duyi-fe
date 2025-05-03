@@ -34,16 +34,16 @@
     <p>鼠标移动上去试一试</p>
     <p>颜色值：#579ef8</p>
     <script>
-// 实测 {once: true}：配置后 mouseout 事件只会触发一次
-const box = document.querySelector('.box');
-let k = 0;
-box.addEventListener('mouseover', e1 => {
-  e1.target.classList.add('down');
-  e1.target.addEventListener('mouseout', e2 => {
-    e2.target.classList.remove('down');
-    console.log('mouseout', ++k);
-  }, { once: true });
-});
+      // 实测 {once: true}：配置后 mouseout 事件只会触发一次
+      const box = document.querySelector('.box');
+      let k = 0;
+      box.addEventListener('mouseover', e1 => {
+        e1.target.classList.add('down');
+        e1.target.addEventListener('mouseout', e2 => {
+          e2.target.classList.remove('down');
+          console.log('mouseout', ++k);
+        }, { once: true });
+      });
     </script>
   </body>
 </html>
