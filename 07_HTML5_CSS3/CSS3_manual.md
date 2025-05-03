@@ -187,7 +187,7 @@ grid-area: 起始行线编号/起始列线编号/结束行线编号/结束列线
 
 通过设置 `border-radius`，可以设置盒子的圆角（即曲率半径）：
 
-![image-20210512131026084](http://mdrs.yuanjin.tech/img/20210512131026.png)
+![](assets/0.15.png)
 
 `border-radius` 可以有很多灵活的用法，将下面的代码依次粘贴到页面中测试一下：
 
@@ -214,7 +214,7 @@ border-radius: 10px 20px 30px 40px; /* 分别设置左上、右上、右下、�
 background: linear-gradient(to bottom, #e66465, #9198e5);
 ```
 
-![image-20210512135024676](http://mdrs.yuanjin.tech/img/20210512135028.png)
+![](assets/0.16.png)
 
 ## 2.4 变形
 
@@ -239,13 +239,13 @@ background: linear-gradient(to bottom, #e66465, #9198e5);
 
 使用 `translate` 可以让盒子在原来位置上产生位移，类似于 **相对定位**：
 
-![image-20210512140622630](http://mdrs.yuanjin.tech/img/20210512140643.png)
+![](assets/0.17.png)
 
 ### 2.4.2 scale 缩放
 
 使用 `scale` 可以让盒子基于原来的尺寸发生缩放：
 
-![image-20210512141500499](http://mdrs.yuanjin.tech/img/20210512141500.png)
+![](assets/0.18.png)
 
 ### 2.4.3 rotate 旋转
 
@@ -308,9 +308,9 @@ transform: translate(100px, 100px) rotate(45deg);
 
 # 3 过渡和动画
 
-使用过渡和动画，可以让css属性变化更加丝滑
+使用过渡和动画，可以让 CSS 属性变化更加丝滑
 
-**过渡和动画无法对所有的CSS属性产生影响，能够产生影响的只有数值类属性**，例如：颜色、宽高、字体大小等等
+**过渡和动画无法对所有的 CSS 属性产生影响，能够产生影响的只有数值类属性**，例如：颜色、宽高、字体大小等等。
 
 ## 3.1 过渡
 
@@ -356,9 +356,9 @@ transition: 过渡属性 持续时间 过渡函数 过渡延迟
 >
 > [MDN 详细文档](https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Animations)
 
-**动画的本质是预先定义的一套 CSS 变化规则，然后给该规则取个名字**
+**动画的本质是预先定义的一套 CSS 变化规则，然后给该规则取个名字**：
 
-![image-20210513172902413](http://mdrs.yuanjin.tech/img/20210513172902.png)
+![](assets/0.19.png)
 
 然后，其他元素即可使用这样的规则：
 
@@ -387,7 +387,7 @@ animation: 规则名 持续时间 重复次数 时间函数 动画方向 延迟�
 
 一图胜千言
 
-![image-20210514150015660](http://mdrs.yuanjin.tech/img/20210514150015.png)
+![](assets/0.20.png)
 
 使用 `border-box` 控制尺寸更加直观，因此，很多网站都会加入下面的代码：
 
@@ -429,7 +429,7 @@ CSS3 属性 `object-fit` 可以控制 **多媒体内容和与元素** 的适应�
 
 下图中的所有 `img` 元素均被固定了宽高，溢出 `img` 的部分实际上均不会显示
 
-![image-20210514134908778](http://mdrs.yuanjin.tech/img/20210514134908.png)
+![](assets/0.21.png)
 
 ## 4.4 视口单位
 
@@ -441,7 +441,7 @@ CSS3 支持使用 `vw` 和 `vh` 作为单位，分别表示 `视口宽度` 和 `
 
 通过 `::before` 和 `::after` 选择器，可以通过 CSS 给元素生成两个子元素：
 
-<img src="http://mdrs.yuanjin.tech/img/20210514140049.png" alt="image-20210514140049244" style="zoom:50%;" />
+<img src="assets/0.22.png" alt="pseudo elements" style="zoom:50%;" />
 
 使用伪元素可以 **避免在 HTML 中使用过多的空元素**。
 
