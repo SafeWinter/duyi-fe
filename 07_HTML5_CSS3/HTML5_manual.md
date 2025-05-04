@@ -2,7 +2,7 @@
 
 ---
 
-<img src="http://mdrs.yuanjin.tech/img/20210518112557.png" alt="image-20210518112556986" style="zoom:50%;" />
+<img src="assets/0.23.png" alt="image-20210518112556986" style="zoom:50%;" />
 
 `HTML5` 包含两个部分的更新，分别是 `文档` 和 `Web API`。
 
@@ -30,9 +30,9 @@
 
 #### 1.2.1 多媒体
 
-可以使用 `audio` 元素表达一个音频
+可以使用 `audio` 元素表达一个音频。
 
-可以使用 `video` 元素表达一个视频
+可以使用 `video` 元素表达一个视频。
 
 它们均具有以下属性：
 
@@ -46,9 +46,9 @@
 
 > [!note]
 >
-> 新版浏览器不允许「带声音的自动播放」，可能将来甚至不允许自动播放
+> 新版浏览器不允许「**带声音的自动播放**」，可能将来甚至不允许自动播放。
 >
-> 浏览器希望播放行为 **由用户决定**
+> 浏览器希望播放行为 **由用户决定**。
 
 
 
@@ -117,7 +117,7 @@
 
 #### 1.3.1 自定义数据属性
 
-<img src="http://mdrs.yuanjin.tech/img/20210518123117.png" alt="image-20210518123117393" style="zoom:50%;" />
+<img src="assets/0.24.png" alt="image-20210518123117393" style="zoom:50%;" />
 
 #### 1.3.2 input 的新增属性
 
@@ -168,9 +168,8 @@ dom.classList.toggle('a'); // <div class="a b c"></div>
 
 ### 2.3 本地存储
 
-`localStorage`，永久保存到本地
-
-`sessionStorage`，临时保存到本地，关闭浏览器后消失
+- `localStorage`，永久保存到本地；
+- `sessionStorage`，临时保存到本地，关闭浏览器后消失。
 
 ```js
 // 保存一个键值对到本地，值必须是字符串
@@ -192,7 +191,7 @@ sessionStorage.clear();
 sessionStorage.removeItem('key');
 ```
 
-无论是`localStorage`还是`sessionStorage`，它们都只能保存字符串，如果需要保存对象或数组，可以先将对象和数组转换为`JSON`字符串再进行保存
+无论是 `localStorage` 还是 `sessionStorage`，它们都只能保存字符串，如果需要保存对象或数组，可以先将对象和数组转换为 `JSON` 字符串再进行保存：
 
 ```js
 JSON.stringify(obj); // 将对象或数组转换为JSON搁置
@@ -209,7 +208,7 @@ JSON.parse(jsonString); // 将JSON格式的字符串转换为对象或数组
 
 浮动的帧率就导致一个问题，我们在使用 `setInterval` 等计时器实现某些动画效果时，如何才能保证每一帧只执行一次动画效果呢？
 
-![image-20210518133821647](http://mdrs.yuanjin.tech/img/20210518133821.png)
+![image-20210518133821647](assets/0.25.png)
 
 为了解决该问题，`HTML5` 新增 API `requestAnimationFrame`，用于在每一帧渲染 **之前** 做某些事：
 
