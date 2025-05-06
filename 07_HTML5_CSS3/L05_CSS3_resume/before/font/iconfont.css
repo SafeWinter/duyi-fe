@@ -1,0 +1,27 @@
+@font-face {
+  font-family: "rsicon"; /* Project id 4912903 */
+  src: url('iconfont.woff2?t=1746504324061') format('woff2'),
+       url('iconfont.woff?t=1746504324061') format('woff'),
+       url('iconfont.ttf?t=1746504324061') format('truetype');
+}
+
+.rsicon {
+  font-family: "rsicon" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.rs-tel:before {
+  content: "\e6a2";
+}
+
+.rs-email:before {
+  content: "\e66f";
+}
+
+.rs-web:before {
+  content: "\e600";
+}
+

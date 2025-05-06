@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>邓旭明的个人简历</title>
+    <link rel="stylesheet" href="font/iconfont.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <article class="container">
+        <section class="block profile">
+            <main class="info">
+                <h1 class="name">邓旭明<span class="title">前端工程师</span></h1>
+                <i class="gd2-1 label rsicon rs-tel"></i>
+                <a class="gd2-2 link tel-num" href="">138 0101 0101</a>
+                <span class="gd2-3 label edu">学历</span>
+                <span class="gd2-4 content edu">研究僧</span>
+                <i class="gd3-1 label rsicon rs-email"></i>
+                <span class="gd2-2 link email"><a href="mailto:dengxuming@myinc.com">dengxuming@myinc.com</a></span>
+                <span class="gd2-3 label birthdate">生日</span>
+                <span class="gd2-4 content birthdate">2010-01-01</span>
+                <i class="gd4-1 label rsicon rs-web"></i>
+                <a class="gd4-2 link web" href="http://www.dengxuming.com">www.dengxuming.com</a>
+                <span class="gd4-3 label exp">开发经验</span>
+                <span class="gd4-4 content exp">5年</span>
+            </main>
+            <aside class="avatar">
+                <img src="../img/avatar.png" alt="邓旭明的头像">
+            </aside>
+        </section>
+        <section class="block education">
+            <h2 class="title">教育经历</h2>
+            <ul class="timeline">
+                <li class="item"><summary><span class="period">2005 ~ 2009</span><span class="university">克莱登大学</span><span class="dtl">进口挖掘机修理</span></summary></li>
+                <li class="item"><summary><span class="period">2009 ~ 2013</span><span class="university">西太平洋圣地亚哥大学</span><span class="dtl">母猪的产后护理</span></summary></li>
+            </ul>
+        </section>
+        <section class="block experience">
+            <h2 class="title">工作经历</h2>
+            <ul class="timeline">
+                <li class="item">
+                    <details open>
+                        <summary><span class="period">2013 ~ 2015</span><span class="organization">国家蓝翔战略研究院</span><span class="dtl">挖掘机质检员</span></summary>
+                        <p class="details">负责对挖掘机的各种零部件进行检测、维修。对生产线的各个环节进行把控，及时发现风险。负责产品质量状态标识工作，严格控制不良品。也会对进口挖掘机的品质进行把控，制定符合公司战略需要的质检标准。</p>
+                    </details>
+                </li>
+                <li class="item">
+                    <details open>
+                        <summary><span class="period">2016 ~ 2021</span><span class="organization">新东方牛栏山分部</span><span class="dtl">肉质检验师</span></summary>
+                        <p>负责给新东方厨师训练班的学员提供优质的猪肉，严格控制猪肉质量。同时还要管理生猪，特别是母猪的生产护理，包括母猪产前指导、产后修复，还要负责母猪的产后咨询等。然后.......实在编不下了去了。</p>
+                    </details>
+                </li>
+            </ul>
+        </section>
+        <section class="block skillset">
+            <h2 class="title">专业技能</h2>
+            <ul class="skills">
+                <li class="skill"><span class="skill1 content">英语四级</span></li>
+                <li class="skill"><span class="skill2 content">计算机二级</span></li>
+                <li class="skill"><span class="skill3 content">挖掘机修理</span></li>
+                <li class="skill"><span class="skill4 content">挖掘机原理</span></li>
+                <li class="skill"><span class="skill5 content">肉质检查</span></li>
+                <li class="skill"><span class="skill6 content">猪肉成分分析</span></li>
+            </ul>
+        </section>
+        <section class="block projects">
+            <h2 class="title">项目经验</h2>
+            <section class="project">
+                <h3>在线时间管理系统</h3>
+                <section class="content">
+                    <div class="desc"><span class="label">访问地址</span><span><a href="">www.todolist.com</a></span></div>
+                    <div class="desc"><span class="label">GitHub</span><span><a href="">github.com/dengxuming/todolist</a></span></div>
+                    <div class="desc"><span class="label">项目背景</span><span>本系统在学习 vue 后，凭个人兴趣，开发的用于进行时间管理的系统</span></div>
+                    <div class="desc">
+                        <span class="label">项目实现</span>
+                        <div class="desc-details">
+                            <p>系统包含<em>任务清单</em>、<em>任务分类</em>、<em>日志薄</em>、<em>废纸篓</em>等模块，本人参与了所有模块的开发。</p>
+                            <p>系统分为前后端两个部分。前端部分使用<em>vue</em>作为框架，并使用脚手架<em>vue-cli</em>搭建。</p>
+                            <p>其中，使用<em>vue-router</em>处理路由，使用<em>vuex</em>处理共享数据，使用<em>element-ui</em>构建界面。</p>
+                            <p>后端部分使用<em>node</em>搭建轻量级服务器，通过<em>express</em>为前端提供REST风格的接口，数据方面利用<em>mysql</em>持久化数据，并利用库<em>sequelize</em>提供的接口操作数据库</p>
+                            <p>项目开发中遇到了<em>打包体积过大</em>的问题，经过研究，最终利用<em>tree shaking</em>、<em>dynamic import</em>、<em>gzip</em>，很好的解决了该问题</p>
+                        </div>
+                    </div>
+                </section>
+            </section>
+            <section class="project">
+                <h3>在线时间管理系统</h3>
+                <section class="content">
+                    <div class="desc"><span class="label">访问地址</span><span><a href="">www.todolist.com</a></span></div>
+                    <div class="desc"><span class="label">GitHub</span><span><a href="">github.com/dengxuming/todolist</a></span></div>
+                    <div class="desc"><span class="label">项目背景</span><span>本系统在学习 vue 后，凭个人兴趣，开发的用于进行时间管理的系统</span></div>
+                    <div class="desc">
+                        <span class="label">项目实现</span>
+                        <div class="desc-details">
+                            <p>系统包含<em>任务清单</em>、<em>任务分类</em>、<em>日志薄</em>、<em>废纸篓</em>等模块，本人参与了所有模块的开发。</p>
+                            <p>系统分为前后端两个部分。前端部分使用<em>vue</em>作为框架，并使用脚手架<em>vue-cli</em>搭建。</p>
+                            <p>其中，使用<em>vue-router</em>处理路由，使用<em>vuex</em>处理共享数据，使用<em>element-ui</em>构建界面。</p>
+                            <p>后端部分使用<em>node</em>搭建轻量级服务器，通过<em>express</em>为前端提供REST风格的接口，数据方面利用<em>mysql</em>持久化数据，并利用库<em>sequelize</em>提供的接口操作数据库</p>
+                            <p>项目开发中遇到了<em>打包体积过大</em>的问题，经过研究，最终利用<em>tree shaking</em>、<em>dynamic import</em>、<em>gzip</em>，很好的解决了该问题</p>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </section>
+        <section class="block assessment">
+            <h2 class="title">个人评价</h2>
+            <p class="desc">对用户运营有一定经验，半年内成功扩展300+用户，主持举办了VIP用户交流访谈活动，善于沟通，成功转化60+用户成为忠实用户</p>
+        </section>
+    </article>
+    <script>
+        const dtls = document.querySelectorAll('details');
+        dtls.forEach(dtl => {
+            dtl.querySelector('summary').addEventListener('click', e => e.preventDefault());
+            dtl.addEventListener('toggle', ({target}) => {
+                if(!target.open) {
+                    target.open = true;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
