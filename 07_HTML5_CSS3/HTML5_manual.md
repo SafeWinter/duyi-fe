@@ -127,7 +127,7 @@
 
 进入下面的地址查看各种属性及其效果：
 
-http://mdrs.yuanjin.tech/html/html-manual/input-property.html
+<iframe src="http://mdrs.yuanjin.tech/html/html-manual/input-property.html" style="height:1100px;" />
 
 
 
