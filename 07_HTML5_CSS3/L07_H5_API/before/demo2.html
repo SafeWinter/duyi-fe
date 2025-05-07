@@ -18,60 +18,59 @@
   <body>
     <div class="form">
       <div class="item">
-        <label>姓名</label>
-        <input id="txtName" type="text" />
+        <label for="name">姓名</label>
+        <input id="name" name="name" type="text" />
       </div>
       <div class="item">
-        <label>年龄</label>
-        <input id="txtAge" type="number" />
+        <label for="age">年龄</label>
+        <input id="age" name="age" type="number" />
       </div>
       <div class="item">
         <label>性别</label>
         <label>
-          <input checked id="sexMale" name="sex" type="radio" />
+          <input id="male" name="sex" value="1" type="radio" />
           男
         </label>
         <label>
-          <input id="sexFemale" name="sex" type="radio" />
+          <input id="female" name="sex" value="0" type="radio" />
           女
         </label>
       </div>
     </div>
     <script>
       // 填写表单时，保存数据到本地
-      var inputs = document.querySelectorAll('input');
-      for (var i = 0; i < inputs.length; i++) {
-        inputs[i].addEventListener('input', save);
-      }
-      var txtName = document.querySelector('#txtName');
-      var txtAge = document.querySelector('#txtAge');
-      var sexMale = document.querySelector('#sexMale');
-      var sexFemale = document.querySelector('#sexFemale');
-      // 将表单信息放到localStorage中
-      function save() {
-        var obj = {
-          name: txtName.value,
-          age: txtAge.value ? +txtAge.value : 0,
-          sex: sexMale.checked ? '男' : '女',
+      const inputs = document.querySelectorAll('.form input');
+      const formName = document.getElementById('name');
+      const formAge = document.getElementById('age');
+      const male = document.querySelector('#male');
+      const female = document.querySelector('#female');
+
+      inputs.forEach(input => input.addEventListener('input', saveData));
+      function saveData() {
+        const json = {
+          name: formName.value,
+          age: formAge.value ? +formAge.value : 0,
+          sex: male.checked ? '1' : female.checked ? '0' : '',
         };
-        var json = JSON.stringify(obj);
-        localStorage.setItem('form', json);
+        localStorage.setItem('formData', JSON.stringify(json));
       }
-
+      
       // 打开页面时，从本地加载数据到表单
-
       function load() {
-        var json = localStorage.getItem('form');
-        if (!json) {
-          return;
-        }
-        var obj = JSON.parse(json);
-        txtName.value = obj.name;
-        txtAge.value = obj.age;
-        if (obj.sex === '男') {
-          sexMale.checked = true;
-        } else {
-          sexFemale.checked = true;
+        const data = localStorage.getItem('formData');
+        if (data) {
+          const {name, age, sex} = JSON.parse(data);
+          formName.value = name;
+          formAge.value = age;
+
+          if(sex === '1') {
+            male.checked = true;
+          } else if(sex === '0') {
+            female.checked = true;
+          } else {
+            male.checked = false;
+            female.checked = false;
+          }
         }
       }
 
