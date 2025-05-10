@@ -18,8 +18,9 @@ const lrc = $('.lrc', container);
 
 let lyrics = [];
 const lrcHeight = 32; // px
+const numLines = 15;  // 歌词区域展示的总行数
 const initOffset = 5; // 行数
-const correction = 0.3; // 秒,歌词偏移量
+const correction = 0.5; // 秒,歌词偏移量
 
 /**
  * 解析歌词
@@ -29,61 +30,94 @@ const correction = 0.3; // 秒,歌词偏移量
 function parseLyrics(data) {
   const regexp = /^\[(\d{2}):(\d{2})\.(\d{2})\](.*)$/;
   const lines = data.split('\n');
-  const lyrics = lines
+  // console.log('lines:', lines);
+  return lines
     .filter(line => regexp.test(line))
     .reduce((acc, line) => {
-      const [, m, s, fr, text] = line.match(regexp);
+      const [_, m, s, fr, text] = line.match(regexp);
       const time = parseInt(m) * 60 + parseInt(s) + parseInt(fr) / 100;
       acc.push({time, text});
       return acc;
     }, []);
-  console.log(lyrics);
-  return lyrics;
 }
 
-function computeOffset(index) {
+function offsetLyrics(index, lrcBox = lrc) {
   const init = initOffset * lrcHeight;
-  return init - Math.max(0, index) * lrcHeight;
+  const offset = init - Math.max(0, index) * lrcHeight;
+  lrcBox.style.transform = `translateY(${offset}px)`;
 }
 
-function highLightLyric(index) {
-  const lis = Array.from($$('li', lrc));
-  lis.forEach((li, i) => {
-    li.classList.toggle('active', i === index);
-  });
+function highLightLyric(index, parent = lrc) {
+  // $$('li', lrc).forEach((li, i) => 
+  //   li.classList.toggle('active', i === index));
+  const prev = $('.active', parent);
+  prev && prev.classList.remove('active');
+  const curr = $(`li:nth-child(${index + 1})`, parent);
+  curr && curr.classList.add('active');
 }
 
 async function renderPage() {
-  const data = await getLrc();
-  lyrics = parseLyrics(data);
-  const fragment = document.createDocumentFragment();
-  lyrics.reduce((frag, {text}) => {
+  // 1. 获取并解析歌词数据
+  lyrics = parseLyrics(await getLrc());
+  // console.log(lyrics);
+  // 2. 渲染歌词
+  const fragment = lyrics.reduce((frag, {text}) => {
     const li = document.createElement('li');
-    li.innerText = text;
+    li.innerText = text.trim().length === 0 ? '(music)' : text;
     frag.appendChild(li);
     return frag;
-  }, fragment);
+  }, document.createDocumentFragment());
   lrc.innerHTML = '';
   lrc.appendChild(fragment);
-  // 初始偏移5行歌词
-  const offset = initOffset * lrcHeight;
-  lrc.style.transform = `translateY(${offset}px)`;
+  // 3. 设置歌词区高度
+  lrc.style.height = `${numLines * lrcHeight}px`;
+  // 4. 设置歌词初始位置
+  offsetLyrics(0);
+}
+
+function throttle(fn, delay) {
+  let t0 = Date.now() - delay;
+  return (...args) => {
+    const now = Date.now();
+    if(now - t0 >= delay) {
+      t0 = now;
+      fn.apply(null, args);
+    }
+  }
 }
 
 function bindEvents() {
-  player.addEventListener('timeupdate', function (ev) {
-    const currentTime = ev.target.currentTime;
-    const index = lyrics.findIndex(({time}) => (currentTime + correction) < time);
+  player.addEventListener('timeupdate', throttle(({target}) => {
+    const index = findTargetIndex(target.currentTime);
     highLightLyric(index - 1);
-    const offset = computeOffset(index);
-    // console.log({index, offset});
-    lrc.style.transform = `translateY(${offset}px)`;
-  });
+    offsetLyrics(index);
+  }, 500));
 }
 
-async function init() {
-  await renderPage();
-  bindEvents();
+function findTargetIndex(currentTime, data = lyrics, corr = correction) {
+  // use binary search
+  let [left, right] = [0, data.length - 1];
+  let target = currentTime + corr;
+  // let k = 0;
+  while (left <= right) {
+    const mid = Math.floor((left + right) / 2);
+    if (data[mid].time < target) {
+      left = mid + 1;
+    } else {
+      right = mid - 1;
+    }
+    // k++;
+  }
+  // console.log('二分查找次数:', k);
+  return left;
+}
+
+function init() {
+  renderPage()
+    .then(bindEvents)
+    .catch(err => {
+      console.error('页面初始化失败:', err);
+    })
 }
 
 init();
