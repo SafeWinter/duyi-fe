@@ -7,7 +7,7 @@ const $$ = (selector, parent = body) => parent.querySelectorAll(selector);
  * @returns Promise
  */
 async function getLrc() {
-  return await fetch('https://study.duyiedu.com/api/lyrics')
+  return await fetch('./lyrics.json')  // https://study.duyiedu.com/api/lyrics
     .then(res => res.json())
     .then(({data}) => data);
 }
@@ -30,9 +30,8 @@ const correction = 0.5; // 秒,歌词偏移量
 function parseLyrics(data) {
   const regexp = /^\[(\d{2}):(\d{2})\.(\d{2})\](.*)$/;
   const lines = data.split('\n');
-  // console.log('lines:', lines);
   return lines
-    .filter(line => regexp.test(line))
+    .filter(regexp.test.bind(regexp))  // line => regexp.test(line)
     .reduce((acc, line) => {
       const [_, m, s, fr, text] = line.match(regexp);
       const time = parseInt(m) * 60 + parseInt(s) + parseInt(fr) / 100;
@@ -50,48 +49,12 @@ function offsetLyrics(index, lrcBox = lrc) {
 function highLightLyric(index, parent = lrc) {
   // $$('li', lrc).forEach((li, i) => 
   //   li.classList.toggle('active', i === index));
+  const target = index - 1; // 高亮当前歌词为不超过当前时间的最后一行
   const prev = $('.active', parent);
   prev && prev.classList.remove('active');
-  const curr = $(`li:nth-child(${index + 1})`, parent);
+  const curr = $(`li:nth-child(${target + 1})`, parent);
   curr && curr.classList.add('active');
-}
-
-async function renderPage() {
-  // 1. 获取并解析歌词数据
-  lyrics = parseLyrics(await getLrc());
-  // console.log(lyrics);
-  // 2. 渲染歌词
-  const fragment = lyrics.reduce((frag, {text}) => {
-    const li = document.createElement('li');
-    li.innerText = text.trim().length === 0 ? '(music)' : text;
-    frag.appendChild(li);
-    return frag;
-  }, document.createDocumentFragment());
-  lrc.innerHTML = '';
-  lrc.appendChild(fragment);
-  // 3. 设置歌词区高度
-  lrc.style.height = `${numLines * lrcHeight}px`;
-  // 4. 设置歌词初始位置
-  offsetLyrics(0);
-}
-
-function throttle(fn, delay) {
-  let t0 = Date.now() - delay;
-  return (...args) => {
-    const now = Date.now();
-    if(now - t0 >= delay) {
-      t0 = now;
-      fn.apply(null, args);
-    }
-  }
-}
-
-function bindEvents() {
-  player.addEventListener('timeupdate', throttle(({target}) => {
-    const index = findTargetIndex(target.currentTime);
-    highLightLyric(index - 1);
-    offsetLyrics(index);
-  }, 500));
+  return index;
 }
 
 function findTargetIndex(currentTime, data = lyrics, corr = correction) {
@@ -110,6 +73,44 @@ function findTargetIndex(currentTime, data = lyrics, corr = correction) {
   }
   // console.log('二分查找次数:', k);
   return left;
+}
+
+function throttle(fn, delay) {
+  let t0 = Date.now() - delay;
+  return (...args) => {
+    const now = Date.now();
+    if(now - t0 >= delay) {
+      t0 = now;
+      fn.apply(null, args);
+    }
+  }
+}
+
+function bindEvents(data) {
+  player.addEventListener('timeupdate', throttle(({target}) => {
+    const index = findTargetIndex(target.currentTime, data, correction);
+    highLightLyric(index);
+    offsetLyrics(index);
+  }, 500));
+}
+
+async function renderPage() {
+  // 1. 获取并解析歌词数据
+  lyrics = parseLyrics(await getLrc());
+  // 2. 渲染歌词
+  const fragment = lyrics.reduce((frag, {text}) => {
+    const li = document.createElement('li');
+    li.innerText = text.trim().length === 0 ? '(music)' : text;
+    frag.appendChild(li);
+    return frag;
+  }, document.createDocumentFragment());
+  lrc.innerHTML = '';
+  lrc.appendChild(fragment);
+  // 3. 设置歌词区高度
+  lrc.style.height = `${numLines * lrcHeight}px`;
+  // 4. 设置歌词初始位置
+  offsetLyrics(0);
+  return lyrics;
 }
 
 function init() {
