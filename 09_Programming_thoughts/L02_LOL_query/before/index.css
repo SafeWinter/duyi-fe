@@ -1,0 +1,183 @@
+:root,
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+.hidden {
+    display: none;
+}
+body {
+    background-color: #ecedf2;
+}
+
+.container {
+    width: 90%;
+    max-width: 1140px;
+    min-width: 1100px;
+    margin: 1em auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.search {
+    display: flex;
+    height: 100px;
+    color: rgb(102 102 102);
+    font-size: 0.875em;
+    background-color: #fff;
+
+    & > .criteria {
+        flex: 1;
+        display: flex;
+        gap: 1em;
+        & > .label {
+            width: 80px;
+            background: rgb(84, 136, 213);
+            border-radius: 10px 0px 0px 10px;
+            color: #fff;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            &>div {
+                line-height: 50px;
+            }
+        }
+        & > .options {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            
+            &>.integrated, &>.role {
+                display: flex;
+                height: 50px;
+                line-height: 50px;
+                gap: 2em;
+            }
+            &>.integrated {
+                
+            }
+            &>.role {
+
+            }
+        }
+    };
+
+    & > .search-bar {
+        width: 330px;
+        display: flex;
+
+        & > .content {
+            flex: 1;
+            line-height: 50px;
+            margin-block-start: 45px;
+            display: flex;
+            margin-inline-end: 2em;
+            position: relative;
+
+            & > .keyword {
+                flex: 1;
+                height: 50px;
+                border: 1px solid rgb(204 204 204);
+                border-right: none;
+                border-radius: 8px 0 0 8px;
+                padding: 0.1em 1em;
+                &:focus-visible {
+                    outline: none;
+                }
+            }
+            & > .search-btn {
+                width: 50px;
+                height: 50px;
+                border-radius: 0 8px 8px 0;
+                border-width: 1px;
+                border-style: solid;
+                background-color: #fff;
+                background: url(./search_icon.png) no-repeat center center / 40%;
+                border-color: rgb(204 204 204) rgb(204 204 204) rgb(204 204 204) transparent;
+                cursor: pointer;
+                position: relative;
+                color: transparent;
+            }
+
+            &::before {
+                content: '';
+                position: absolute;
+                width: 1px;
+                height: 30px;
+                right: 50px;
+                top: -4px;
+                bottom: 0;
+                color: rgb(103, 103, 103);
+                margin-block: auto;
+                background-color: rgb(204 204 204);
+            }
+        }
+
+    }
+}
+
+.rdio {
+    display: inline-block;
+    top: -2px;
+    width: 1.4em;
+    height: 1.4em;
+    line-height: 50px;
+    border-radius: 50%;
+    border: 1px solid rgb(204 204 204);
+    vertical-align: middle;
+    position: relative;
+    margin-inline-end: 0.5em;
+
+    &.active::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0.9em;
+        height: 0.9em;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background-color: rgb(95 137 207);
+    }
+}
+
+.option > label {
+    cursor: pointer;
+    height: 50px;
+    line-height: 50px;
+    padding-block: 1em;
+    user-select: none;
+}
+
+.result {
+    display: grid;
+    grid-template-columns: repeat(11, 1fr);
+    row-gap: 1em;
+    color: #333;
+    font-size: 0.875em;
+
+    & > .item {
+        border-radius: 10px;
+        text-align: center;
+        & > a {
+            display: block;
+            height: 100%;
+        }
+        & .avatar {
+            border: 2px solid #5f89cf;
+            border-radius: 10px 0 10px 0;
+            height: 77px;
+            width: 77px;
+        }
+    }
+}
