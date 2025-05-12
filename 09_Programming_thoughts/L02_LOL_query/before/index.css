@@ -161,7 +161,7 @@ body {
 
 .result {
     display: grid;
-    grid-template-columns: repeat(11, 1fr);
+    grid-template-columns: repeat(10, 1fr);
     row-gap: 1em;
     color: #333;
     font-size: 0.875em;
