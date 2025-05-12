@@ -41,15 +41,12 @@ function toggleActive(currElem) {
 }
 
 function selectFilter(value) {
-    const target = parseInt(value, 10);
-    if(target === 0) {
-      return () => true;
-    } else if(target >= 10) {
-      return ({pay_type}) => pay_type === target;
-    } else {
-      return ({hero_type, hero_type2}) => 
-        [hero_type, hero_type2].includes(target);
-    }
+  const target = parseInt(value, 10);
+  return (target === 0) 
+    ? () => true
+    : (target >= 10) 
+      ? ({pay_type}) => pay_type === target
+      : ({hero_type, hero_type2}) => [hero_type, hero_type2].includes(target);
 }
 
 function getHandler(data) {
