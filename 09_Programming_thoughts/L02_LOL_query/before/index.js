@@ -1,5 +1,5 @@
 (function(){
-    /**
+  /**
    * 从网络获取当前的英雄数据
    * @returns Promise
    */
