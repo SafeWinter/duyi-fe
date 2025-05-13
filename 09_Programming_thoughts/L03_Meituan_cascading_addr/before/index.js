@@ -40,7 +40,7 @@
   const fillCity = data => fillSelect(doms.selCity, data);
   const fillArea = data => fillSelect(doms.selArea, data);
 
-  const regCommonEvent = (selElem, fillSub) => {
+  const regSelEvent = (selElem, fillSub) => {
     // 1. 菜单标题点击事件
     const title = $('.title', selElem);
     title.addEventListener('click', (ev) => {
@@ -74,9 +74,9 @@
   };
   
   const bindEvents = () => {
-    regCommonEvent(doms.selProvince, fillCity);
-    regCommonEvent(doms.selCity, fillArea);
-    regCommonEvent(doms.selArea);
+    regSelEvent(doms.selProvince, fillCity);
+    regSelEvent(doms.selCity, fillArea);
+    regSelEvent(doms.selArea);
   };
 
   const init = async () => {

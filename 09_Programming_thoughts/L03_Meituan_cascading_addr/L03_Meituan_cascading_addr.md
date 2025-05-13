@@ -25,12 +25,35 @@
 ## 2 要点梳理
 
 1. 菜单标题使用 `Flexbox` 布局，下拉列表区域使用 `Grid` 布局；
+
 2. 下拉菜单宽度的自动延伸实现：
+
    1. 指定最小宽度为 `100%`，让下拉区与标题栏等宽；
    2. 外层容器设置 `white-space: nowrap;`，实现宽度不足时自动延展；
+
 3. 设计样式时提前为后续 JS 逻辑做好相应的切换状态效果（展开、选中、图标的反转、过渡等）。
+
 4. DIY：将页面渲染变更为递归调用形式，可以避免对省份下拉菜单单独讨论；
+
 5. DIY：注册事件时，可通过 `CPS` 模式传入一个下级菜单的渲染回调函数，实现代码高度复用（前提：数据源呈嵌套结构）。
+
+6. 充分利用 `dom.classList.toggle(clsName, condition)` 实现状态的切换；
+
+7. 充分利用 `ES6` 中的访问器模式，实现了对象属性值的实时计算（`L5`）：
+
+   ```js
+   const doms = {
+     selProvince: $('#selProvince'),
+     selCity: $('#selCity'),
+     selArea: $('#selArea'),
+     get sels() { return [this.selProvince, this.selCity, this.selArea] }, 
+   };
+   ```
+
+8. 和第六章 JS 实战第 4 课中的下拉菜单相比，本次数据源层次更深，且完全脱离 `select-option` 结构，难度更大。DIY 实现功能时的主要区别：
+
+   1. 之前通过递归调用的 `resetCityBar()` 和 `resetSchoolBar()` 重置下级菜单状态；注册 `change` 事件完成下级菜单数据的加载和重新渲染；
+   2. 本例通过递归调用的 `fillSelect()` 和 `CPS` 风格的 `regSelEvent()` 函数实现了从渲染到事件注册的一气呵成，结构更加紧凑。唯一不足之处在于 `DOM` 元素本身会缓存大量的业务数据（`dom.data = data`），可能降低页面性能。
 
 核心 JS 逻辑：
 
@@ -56,7 +79,7 @@ const fillProvince = data => fillSelect(doms.selProvince, data);
 const fillCity = data => fillSelect(doms.selCity, data);
 const fillArea = data => fillSelect(doms.selArea, data);
 
-const regCommonEvent = (selElem, fillSub) => {
+const regSelEvent = (selElem, fillSub) => {
   // 1. 菜单标题点击事件
   const title = $('.title', selElem);
   title.addEventListener('click', (ev) => {
@@ -90,9 +113,9 @@ const initPage = async () => {
 };
 
 const bindEvents = () => {
-  regCommonEvent(doms.selProvince, fillCity);
-  regCommonEvent(doms.selCity, fillArea);
-  regCommonEvent(doms.selArea);
+  regSelEvent(doms.selProvince, fillCity);
+  regSelEvent(doms.selCity, fillArea);
+  regSelEvent(doms.selArea);
 };
 
 const init = async () => {
