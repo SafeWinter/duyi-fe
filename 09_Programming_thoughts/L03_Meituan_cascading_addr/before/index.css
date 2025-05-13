@@ -1,0 +1,120 @@
+:root,
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    margin: 1em;
+}
+
+.select {
+    display: inline-block;
+    margin: 0 5px;
+    position: relative;
+    white-space: nowrap;
+    color: #666;
+
+    & > .title {
+        min-width: 150px;
+        /* background-color: lightblue; */
+        height: 40px;
+        line-height: 40px;
+        padding-inline: 0.625em;
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.875em;
+        border: 1px solid #ccc;
+        border-radius: 0.3125em;
+        cursor: pointer;
+
+        & .iconfont {
+            font-size: 1.5em;
+            transform-origin: center center;
+            transition: 0.3s ease-in-out;
+        }
+    }
+
+    & > .options {
+        font-size: 0.75em;
+        border: 1px solid #ccc;
+        border-radius: 0.3125em;
+        max-height: 300px;
+        position: absolute;
+        min-width: 100%;
+        padding: 10px;
+        top: 50px;
+        background-color: #fff;
+        box-shadow: 0 0 3px rgb(0 0 0 / 20%);
+
+        /* 配合外层 expand 类的初始样式 */
+        transform-origin: center -10px;
+        transform: scaleY(0);
+        opacity: 0;
+        transition: 0.2s ease-in-out;
+
+        display: grid;
+        grid-template-rows: repeat(auto-fit, 20px);
+        grid-auto-flow: column;
+        gap: 6px 26px;
+        justify-items: left;
+
+        & > li {
+            height: 20px;
+            line-height: 20px;
+            padding-inline: 6px;
+            border-radius: 0.3125em;
+            user-select: none;
+            cursor: pointer;
+            &.active {
+                background-color: #eec05a;
+            }
+            &:hover {
+                background-color: #f7e6c3;
+            }
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border: 1px solid #ccc;
+            transform: rotate(-45deg);
+            top: -5px;
+            left: 30%;
+            border-color: #ccc #ccc transparent transparent;
+            background-color: #fff;
+        }
+    }
+
+    /* 用 expand 类控制下拉收起 */
+    &.expand > .options {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+    &.expand .iconfont {
+        transform: rotate(180deg);
+    }
+
+    /* 设置禁用状态 */
+    &.disabled {
+        user-select: none;
+        color: #ccc;
+        & > .title {
+            cursor: not-allowed;
+        }
+        & > .options {
+            pointer-events: none;
+        }
+    }
+}

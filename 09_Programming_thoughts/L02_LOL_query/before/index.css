@@ -63,12 +63,6 @@ body {
                 line-height: 50px;
                 gap: 2em;
             }
-            &>.integrated {
-                
-            }
-            &>.role {
-
-            }
         }
     };
 
