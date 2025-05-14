@@ -424,19 +424,23 @@ Content-Type: multipart/form-data
 
 ## 3 AJAX
 
-> AJAX 就是浏览器赋予 JS 的一套 API，通过这套 API 能够使 JS 具备网络通信的能力
+> `AJAX` 就是浏览器赋予 `JS` 的一套 `API`，通过这套 `API` 能够使 `JS` 具备网络通信的能力。
 
 ### 3.1 历史
 
-浏览器本身就具备网络通信的能力，但在早期，浏览器并没有把这个能力开放给 JS。
+浏览器本身就具备网络通信的能力，但在早期，浏览器并没有把这个能力开放给 `JS`。
 
-最早是微软在 IE 浏览器中把这一能力向 JS 开放，让 JS 可以在代码中实现发送请求，这项技术在 2005 年被正式命名为 AJAX（**A**synchronous **J**avascript **A**nd **X**ML）
+最早是微软在 IE 浏览器中把这一能力向 `JS` 开放，让 `JS` 可以在代码中实现发送请求，这项技术在 2005 年被正式命名为 `AJAX`（**A**synchronous **J**avascript **A**nd **X**ML）
 
-IE 使用了一套 API 来完成请求的发送，这套 API 主要依靠一个构造函数完成。该构造函数的名称为`XMLHttpRequest`，简称为`XHR`，所以这套 API 又称之为`XHR API`
+`IE` 使用了一套 `API` 来完成请求的发送，这套 `API` 主要依靠一个构造函数完成。该构造函数的名称为 `XMLHttpRequest`，简称为 `XHR`，所以这套 `API` 又称之为 `XHR API`
 
-由于`XHR API`有着诸多缺陷，在 HTML5 和 ES6 发布之后，产生了一套更完善的 API 来发送请求。这套 API 主要使用的是一个叫做`fetch`的函数，因此这套 API 又称之为`Fetch API`
+由于 `XHR API` 有着诸多缺陷，在 `HTML5` 和 `ES6` 发布之后，产生了一套更完善的 `API` 来发送请求。这套 `API` 主要使用的是一个叫做 `fetch` 的函数，因此这套 `API` 又称之为 `Fetch API`。
 
-**无论是`XHR`还是`Fetch`，它们都是实现 ajax 的技术手段，只是 API 不同。**
+> [!important]
+>
+> **无论是 `XHR` 还是 `Fetch`，它们都是实现 Ajax 的技术手段，只是 API 不同。**
+
+
 
 ### 3.2 XHR API
 
@@ -458,10 +462,12 @@ xhr.setRequestHeader('Content-Type', 'application/json'); //设置请求头
 xhr.send('请求体内容'); //构建请求体，发送到服务器，如果没有请求体，传递null
 ```
 
+
+
 ### 3.3 Fetch API
 
 ```js
-const resp = await fetch('`URL`地址', {
+const resp = await fetch('URL 地址', {
   // 请求配置对象，可省略，省略则所有配置为默认值
   method: '请求方法', // 默认为GET
   headers: {
@@ -470,20 +476,26 @@ const resp = await fetch('`URL`地址', {
     a: 'abc',
   },
   body: '请求体内容', // 请求体
-}); // fetch会返回一个Promise，该Promise会在接收完响应头后变为fulfilled
+}); // fetch 会返回一个 Promise，该 Promise 会在【接收完响应头后】变为 fulfilled
 
 resp.headers; // 获取响应头对象
-resp.status; // 获取响应状态码，例如200
-resp.statusText; // 获取响应状态码文本，例如OK
-resp.json(); // 用json的格式解析即将到来的响应体，返回Promise，解析完成后得到一个对象
-resp.text(); // 用纯文本的格式解析即将到来的响应体，返回Promise，解析完成后得到一个字符串
+resp.status; // 获取响应状态码，例如 200
+resp.statusText; // 获取响应状态码文本，例如 OK
+resp.json(); // 用 JSON 的格式解析即将到来的响应体，返回 Promise，解析完成后得到一个对象
+resp.text(); // 用 纯文本 的格式解析即将到来的响应体，返回 Promise，解析完成后得到一个字符串
 ```
+
+
 
 ### 3.4 特别注意
 
-**无论使用哪一种 API，AJAX 始终都是异步的**
+> [!important]
+>
+> **无论使用哪一种 API，AJAX 始终都是异步的**
 
-在初学的时候，可以把网络传输的时间想象的夸张一点，比如每一次请求和响应都要经过一年才能完成。这样有助于理解网络是异步这一点
+在初学的时候，可以把网络传输的时间想象的夸张一点，比如每一次请求和响应都要经过一年才能完成。这样有助于理解网络是异步这一点。
+
+
 
 ## 4 附录
 
