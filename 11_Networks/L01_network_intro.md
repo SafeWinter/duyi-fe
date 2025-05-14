@@ -24,5 +24,13 @@
 
 ## 2 测试接口文档的访问
 
-URL：`mock.duyiedu.com`
+URL：`mock.duyiedu.com` [^1]
+
+
+
+---
+
+[^1]: 已更新为：`https://app.apifox.com/invite?token=9wP_M2QjoHEqhE2NWC9aJ`
+
+
 
