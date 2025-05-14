@@ -418,7 +418,9 @@ Content-Type: multipart/form-data
 
 > 试试这个地址：oss.duyiedu.com/test/index.html
 
-![image-20220428165629557](http://mdrs.yuanjin.tech/img/20220428165634.png)
+![image-20220428165629557](assets/0.11.png)
+
+
 
 ## 3 AJAX
 
@@ -485,7 +487,7 @@ resp.text(); // 用纯文本的格式解析即将到来的响应体，返回Prom
 
 ## 4 附录
 
-### 4.1 PostMan
+### 4.1 Postman
 
 下载地址：https://www.postman.com/downloads/
 
