@@ -91,7 +91,9 @@ class FieldValidator {
 >
 > **注意**
 >
-> 第 `L11` 行需要用到 `bind` 绑定实例方法的 `this` 指向，否则事件注册失败。
+> - 第 `L11` 行需要用到 `bind` 绑定实例方法的 `this` 指向，否则事件注册失败。
+>
+> - 第 `L33` 行的静态方法 `validate()` 利用了 `Promise.all()` 语法糖，可快速校验页面上所有的表单字段，尽可能提高代码复用率。
 
 表单提交逻辑：
 
@@ -127,4 +129,76 @@ form.onsubmit = async function (e) {
 > 第 `L11-12` 行用 `new FormData(formElem)` 实例化了一个表单数据实例，通过和 `Object.entries()` 结合，可以快速得到表单字段的 `KV` 对象。
 
 注册页面和登录页面的校验逻辑类似，只是多了几个字段，且注册成功后需要跳转到登录页。
+
+
+
+---
+
+
+
+
+
+# L12：示例项目：聊天机器人 —— 实现聊天页面
+
+本节实现聊天界面的核心功能。
+
+
+
+## 1 关于让滚动条移至聊天窗口最末端
+
+```js
+function scrollBottom() {
+    doms.chatContainer.scrollTop = doms.chatContainer.scrollHeight;
+}
+```
+
+
+
+## 2 关于发送消息的细节处理
+
+我方发送信息应该立即渲染到聊天窗口中，不应让页面出现等待：
+
+```js
+async function sendChat() {
+  const content = doms.txtMsg.value.trim();
+  if (!content) {
+    return;
+  }
+  // 我方消息立即渲染，无需等待：
+  addChat({
+    from: user.loginId,
+    to: null,
+    createdAt: Date.now(),
+    content,
+  });
+  doms.txtMsg.value = '';
+  scrollBottom();
+  // 以下为聊天机器人回复内容，只能等待：
+  const resp = await API.sendChat(content);
+  addChat({
+    from: null,
+    to: user.loginId,
+    ...resp.data,
+  });
+  scrollBottom();
+}
+```
+
+
+
+## 3 关于聊天页面的初始加载逻辑
+
+聊天页面只能登录后访问，否则将重定向到登录页。
+
+判定依据：用 `localStorage` 中的访问令牌请求用户信息，成功则表明已登录：
+
+```js
+const resp = await API.profile();
+const user = resp.data;
+if (!user) {
+  alert('未登录或登录已过期，请重新登录');
+  location.href = './login.html';
+  return;
+}
+```
 

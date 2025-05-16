@@ -9,7 +9,7 @@ class FieldValidator {
    * @param {Function} validatorFunc 验证规则函数，当需要对该文本框进行验证时，会调用该函数，函数的参数为当前文本框的值，函数的返回值为验证的错误消息，若没有返回，则表示无错误
    */
   constructor(txtId, validatorFunc) {
-    this.input = $('#' + txtId);
+    this.input = $(`#${txtId}`);
     this.p = this.input.nextElementSibling;
     this.validatorFunc = validatorFunc;
     this.input.onblur = this.validate.bind(this);
@@ -37,7 +37,7 @@ class FieldValidator {
   static async validate(...validators) {
     const proms = validators.map((v) => v.validate());
     const results = await Promise.all(proms);
-    return results.every((r) => r);
+    return results.every(passed => passed);
   }
 }
 
