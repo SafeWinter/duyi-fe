@@ -67,3 +67,18 @@ jobs:
 
 ![](assets/6.2.png)
 
+
+
+## 关于聊天机器人的静态页部署
+
+需要手动修改项目中使用类似 `/login.html` 的路径，统一改为使用相对路径 `./login.html`。
+
+`location.href = '/index.html'` 改为 `location.href = './index.html'`。
+
+在最近的项目代码中，上述路径问题已更正。最终部署后的实测情况如下：
+
+![](assets/6.3.png)
+
+登录后的聊天页面：
+
+![](assets/6.4.png)
