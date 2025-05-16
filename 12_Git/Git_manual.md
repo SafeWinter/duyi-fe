@@ -1,23 +1,31 @@
-# git 常用命令。
+# Git 常用命令汇总
 
-## 创建SSH Key
+
+
+## 1 创建 SSH Key
 ```shell
 $ ssh-keygen -t rsa -C "youremail@example.com"
 ```
 
-## 配置用户信息
+
+
+## 2 配置用户信息
+
 ```shell
 $ git config --global user.name "Your Name"             
 $ git config --global user.email "email@example.com"
 ```
 
-## 仓库
-> 在当前目录新建一个Git代码库
+
+
+## 3 仓库
+
+> 在当前目录新建一个 `Git` 代码库
 ```shell
 $ git init
 ```
 
-> 新建一个目录，将其初始化为Git代码库
+> 新建一个目录，将其初始化为 `Git` 代码库
 ```shell
 $ git init [project-name]
 ```
@@ -26,7 +34,10 @@ $ git init [project-name]
 ```shell
 $ git clone [url]
 ```
-## 增加/删除文件
+
+
+## 4 增加/删除文件
+
 > 添加指定文件到暂存区
 ```shell
 $ git add [file1] [file2] ...
@@ -62,33 +73,39 @@ $ git rm --cached [file]
 ```shell
 $ git mv [file-original] [file-renamed]
 ```
-## 代码提交
+
+
+## 5 代码提交
+
 > 提交暂存区到仓库区
 ```shell
 $ git commit -m [message]
 ```
 
-> 提交工作区自上次commit之后的变化，直接到仓库区
+> 提交工作区自上次 `commit` 之后的变化，直接到仓库区
 ```shell
 $ git commit -a
 ```
 
-> 提交时显示所有diff信息
+> 提交时显示所有 `diff` 信息
 ```shell
 $ git commit -v
 ```
 
-> 使用一次新的commit，替代上一次提交
-> 如果代码没有任何新变化，则用来改写上一次commit的提交信息
+> 使用一次新的 `commit`，替代上一次提交
+> 如果代码没有任何新变化，则用来改写上一次 `commit` 的提交信息
 ```shell
 $ git commit --amend -m [message]
 ```
 
-> 重做上一次commit，并包括指定文件的新变化
+> 重做上一次 `commit`，并包括指定文件的新变化
 ```shell
 $ git commit --amend [file1] [file2] ...
 ```
-## 查看信息
+
+
+## 6 查看信息
+
 > 显示有变更的文件
 ```shell
 $ git status
@@ -99,7 +116,7 @@ $ git status
 $ git log
 ```
 
-> 显示commit历史，以及每次commit发生变更的文件
+> 显示 `commit` 历史，以及每次 `commit` 发生变更的文件
 ```shell
 $ git log --stat
 ```
@@ -109,12 +126,12 @@ $ git log --stat
 $ git log -S [keyword]
 ```
 
-> 显示某个commit之后的所有变动，每个commit占据一行
+> 显示某个 `commit` 之后的所有变动，每个 `commit` 占据一行
 ```shell
 $ git log [tag] HEAD --pretty=format:%s
 ```
 
-> 显示某个commit之后的所有变动，其"提交说明"必须符合搜索条件
+> 显示某个 `commit` 之后的所有变动，其"提交说明"必须符合搜索条件
 ```shell
 $ git log [tag] HEAD --grep feature
 ```
@@ -124,12 +141,12 @@ $ git log [tag] HEAD --grep feature
 $ git log --follow [file]
 ```
 
-> 显示指定文件相关的每一次diff
+> 显示指定文件相关的每一次 `diff`
 ```shell
 $ git log -p [file]
 ```
 
-> 显示过去5次提交
+> 显示过去 5 次提交
 ```shell
 $ git log -5 --pretty --oneline
 ```
@@ -149,12 +166,12 @@ $ git blame [file]
 $ git diff
 ```
 
-> 显示暂存区和上一个commit的差异
+> 显示暂存区和上一个 `commit` 的差异
 ```shell
 $ git diff --cached [file]
 ```
 
-> 显示工作区与当前分支最新commit之间的差异
+> 显示工作区与当前分支最新 `commit` 之间的差异
 ```shell
 $ git diff HEAD
 ```
@@ -188,7 +205,9 @@ $ git show [commit]:[filename]
 ```shell
 $ git reflog
 ```
-## 分支
+
+
+## 7 分支
 
 > 列出所有本地分支
 
@@ -208,19 +227,19 @@ $ git branch -r
 $ git branch -a
 ```
 
-> 新建一个分支，但依然停留在当前分支
+> 新建一个分支，但 **依然停留在当前分支**
 
 ```shell
 $ git branch [branch-name]
 ```
 
-> 新建一个分支，并切换到该分支
+> 新建一个分支，**并切换到该分支**
 
 ```shell
 $ git checkout -b [branch]
 ```
 
-> 新建一个分支，指向指定commit
+> 新建一个分支，指向指定 `commit`
 
 ```shell
 $ git branch [branch] [commit]
@@ -256,7 +275,7 @@ $ git branch --set-upstream [branch] [remote-branch]
 $ git merge [branch]
 ```
 
-> 选择一个commit，合并进当前分支
+> 选择一个 `commit`，合并进当前分支
 
 ```shell
 $ git cherry-pick [commit]
@@ -274,51 +293,53 @@ $ git branch -d [branch-name]
 $ git push origin --delete [branch-name]
 ```
 
-## 标签
 
-> 列出所有tag
+
+## 8 标签
+
+> 列出所有 `tag`
 
 ```shell
 $ git tag
 ```
 
-> 新建一个tag在当前commit
+> 根据当前 `commit` 新建一个 `tag`
 
 ```shell
 $ git tag [tag]
 ```
 
-> 新建一个tag在指定commit
+> 根据指定的 `commit` 新建一个 `tag` 
 
 ```shell
 $ git tag [tag] [commit]
 ```
 
-> 删除本地tag
+> 删除本地 `tag`
 
 ```shell
 $ git tag -d [tag]
 ```
 
-> 删除远程tag
+> 删除远程 `tag`
 
 ```shell
 $ git push origin :refs/tags/[tagName]
 ```
 
-> 查看tag信息
+> 查看 `tag` 信息
 
 ```shell
 $ git show [tag]
 ```
 
-> 提交指定tag
+> 提交指定 `tag`
 
 ```shell
 $ git push [remote] [tag]
 ```
 
-> 提交所有tag
+> 提交所有 `tag`
 
 ```shell
 $ git push [remote] --tags
@@ -330,7 +351,9 @@ $ git push [remote] --tags
 $ git checkout -b [branch] [tag]
 ```
 
-## 远程同步
+
+
+## 9 远程同步
 
 > 下载远程仓库的所有变动
 ```shell
@@ -344,7 +367,7 @@ $ git remote -v
 
 > 显示某个远程仓库的信息
 ```shell
-$ git remote show [remote]
+$ git remote show [remote]  # e.g.: $ git remote show origin
 ```
 
 > 增加一个新的远程仓库，并命名
@@ -357,7 +380,7 @@ $ git remote add [shortname] [url]
 $ git pull [remote] [branch]
 ```
 
-> 允许不相关历史提交,并强制合并
+> 允许不相关历史提交，并强制合并
 ```shell
 $ git pull origin master --allow-unrelated-histories
 ```
@@ -376,13 +399,16 @@ $ git push [remote] --force
 ```shell
 $ git push [remote] --all
 ```
-## 撤销
+
+
+## 10 撤销
+
 > 恢复暂存区的指定文件到工作区
 ```shell
 $ git checkout [file]
 ```
 
-> 恢复某个commit的指定文件到暂存区和工作区
+> 恢复某个 `commit` 的指定文件到暂存区和工作区
 ```shell
 $ git checkout [commit] [file]
 ```
@@ -392,32 +418,32 @@ $ git checkout [commit] [file]
 $ git checkout .
 ```
 
-> 重置暂存区的指定文件，与上一次commit保持一致，但工作区不变
+> 重置暂存区的指定文件，与上一次 `commit` 保持一致，但工作区不变
 ```shell
 $ git reset [file]
 ```
 
-> 重置暂存区与工作区，与上一次commit保持一致
+> 重置暂存区与工作区，与上一次 `commit` 保持一致
 ```shell
 $ git reset --hard 
 ```
 
-> 重置当前分支的指针为指定commit，同时重置暂存区，但工作区不变
+> 重置当前分支的指针为指定 `commit`，同时重置暂存区，但工作区不变
 ```shell
 $ git reset [commit]
 ```
 
-> 重置当前分支的HEAD为指定commit，同时重置暂存区和工作区，与指定commit一致
+> 重置当前分支的 `HEAD` 为指定 `commit`，同时重置暂存区和工作区，与指定 `commit` 一致
 ```shell
 $ git reset --hard [commit]
 ```
 
-> 重置当前HEAD为指定commit，但保持暂存区和工作区不变
+> 重置当前 `HEAD` 为指定 `commit`，但保持暂存区和工作区不变
 ```shell
 $ git reset --keep [commit]
 ```
 
-> 新建一个commit，用来撤销指定commit
+> 新建一个 `commit`，用来撤销指定 `commit`
 > 后者的所有变化都将被前者抵消，并且应用到当前分支
 ```shell
 $ git revert [commit]
@@ -429,35 +455,45 @@ $ git stash
 $ git stash pop
 ```
 
-## 忽略文件配置（.gitignore)
 
-1、配置语法:
 
-> 以斜杠“/”开头表示目录；
+## 11 忽略文件配置（.gitignore)
+
+### 11.1 配置语法
+
+> 以斜杠 `/` 开头表示目录；
 >
-> 以星号“*”通配多个字符；
+> 以星号 `*` 通配多个字符；
 >
-> 以问号“?”通配单个字符
+> 以问号 `?` 通配单个字符；
 >
-> 以方括号“[]”包含单个字符的匹配列表；
+> 以方括号 `[]` 包含单个字符的匹配列表；
 >
-> 以叹号“!”表示不忽略(跟踪)匹配到的文件或目录；
+> 以叹号 `!` 表示不忽略(跟踪)匹配到的文件或目录；
 
-此外，git 对于 .ignore 配置文件是按行从上到下进行规则匹配的，意味着如果前面的规则匹配的范围更大，则后面的规则将不会生效；
+此外，`Git` 对于 `.ignore` 配置文件是 **按行** 从上到下进行规则匹配的，意味着如果前面的规则匹配的范围更大，则后面的规则将不会生效；
 
-2、示例：
 
-　　（1）规则：fd1/*
-　　　　  说明：忽略目录 fd1 下的全部内容；注意，不管是根目录下的 /fd1/ 目录，还是某个子目录 /child/fd1/ 目录，都会被忽略；
 
-　　（2）规则：/fd1/*
-　　　　  说明：忽略根目录下的 /fd1/ 目录的全部内容；
+### 11.2 典型示例
 
-　　（3）规则：
+> **规则**：`fd1/*`
+>
+> **说明**：忽略目录 `fd1` 下的全部内容。
+>
+> 注意：不管是根目录下的 `/fd1/` 目录，还是某个子目录 `/child/fd1/` 目录，都会被忽略。
 
-/*
-!.gitignore
-!/fw/bin/
-!/fw/sf/
+> **规则**：`/fd1/*`
+>
+> **说明**：忽略根目录下的 `/fd1/` 目录的全部内容。
 
-说明：忽略全部内容，但是不忽略 .gitignore 文件、根目录下的 /fw/bin/ 和 /fw/sf/ 目录；
+> **规则**：
+>
+> ```properties
+> /*
+> !.gitignore
+> !/fw/bin/
+> !/fw/sf/
+> ```
+>
+> **说明**：忽略全部内容，但是不忽略 `.gitignore` 文件、根目录下的 `/fw/bin/` 以及 `/fw/sf/` 目录。
