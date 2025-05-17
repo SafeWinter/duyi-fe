@@ -253,13 +253,13 @@ animate__animated animate__效果名
 >
 > `CDN`：https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js
 
-`Axios` 是一个请求库，在浏览器环境中，它封装了 `XHR`，提供更加便捷的 `API` 发送请求
+`Axios` 是一个基于 `Promise` 的网络请求第三方 `JS` 库。在浏览器环境中，它封装了 `XHR`，提供更加便捷的 `API` 发送请求。
 
 ## 基本用法
 
 ```js
 // 发送 get 请求到 https://study.duyiedu.com/api/herolist，输出响应体的内容
-axios.get("https://study.duyiedu.com/api/herolist").then(resp=>{
+axios.get("https://study.duyiedu.com/api/herolist").then(resp => {
   console.log(resp.data); // resp.data 为响应体的数据，Axios 会自动解析 JSON 格式
 })
 
@@ -268,7 +268,7 @@ axios.get("https://study.duyiedu.com/api/user/exists", {
   params: { // 这里可以配置查询参数，Axios 会自动将其进行 URL 编码
     loginId: "abc"
   },
-}).then(resp=>{
+}).then(resp => {
   console.log(resp.data); // resp.data 为响应体的数据，Axios 会自动解析 JSON 格式
 })
 
@@ -306,7 +306,7 @@ const instance = axios.create({
 });
 
 // 发送 GET 请求到 https://study.duyiedu.com/api/herolist，输出响应体的内容
-instance.get("/api/herolist").then(resp=>{
+instance.get("/api/herolist").then(resp => {
   console.log(resp.data); // resp.data 为响应体的数据，Axios 会自动解析 JSON 格式
 })
 ```
@@ -423,13 +423,14 @@ Mock.setup({
 
 ### 单位
 
-| 单位               | 名称 | 换算                  |
-| ------------------ | ---- | --------------------- |
-| hour               | 小时 | 1 day = 24 hours      |
-| minute             | 分钟 | 1 hour = 60 minutes   |
-| second             | 秒   | 1 minute = 60 seconds |
-| millisecond （ms） | 毫秒 | 1 second = 1000 ms    |
-| nanosecond （ns）  | 纳秒 | 1 ms = 1000 ns        |
+| 单位               | 名称 | 换算                   |
+| ------------------ | ---- | ---------------------- |
+| hour               | 小时 | 1 hour = 1/24 day      |
+| minute             | 分钟 | 1 minute = 1/60 hour   |
+| second             | 秒   | 1 second = 1/60 minute |
+| millisecond （ms） | 毫秒 | 1 ms = 1/1000 second   |
+| microsecond （μs） | 微秒 | 1 μs = 1/1000 ms       |
+| nanosecond （ns）  | 纳秒 | 1 ns = 1/1000 μs       |
 
 ### GMT 和 UTC
 
