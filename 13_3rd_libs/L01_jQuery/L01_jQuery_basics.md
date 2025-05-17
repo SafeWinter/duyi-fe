@@ -2,6 +2,8 @@
 
 ---
 
+> 课程内容详见 `Third_libraries_manual.md` 的 `jQuery` 小节。
+
 
 
 ## 1 关于 prop 和 attr 方法的区别
