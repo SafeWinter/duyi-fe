@@ -17,7 +17,7 @@ export const b = 2;
 export function c() {}
 
 export default {
-  a: 1,
-  b: 2,
+  a: 3,
+  b: 4,
 };
 
