@@ -10,6 +10,7 @@
 
 <script>
 export default {
+    name: 'Avatar',
     props: {
         url: {
             type: String,
