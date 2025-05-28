@@ -1,29 +1,34 @@
 <template>
   <div>
     <h1>App 组件</h1>
-    <Icon :type="type" />
+    <Pager 
+      :current="current" 
+      :total="total" 
+      @pageChange="handlePageChange" 
+    />
   </div>
 </template>
 
 <script>
-import Icon from './components/Icon';
+import Pager from './components/Pager';
 
 export default {
   name: 'App',
   components: {
-    Icon
+    Pager
   },
   data() {
     return {
-      type: 'home'
+      current: 1,
+      total: 302
     }
   },
+  methods: {
+    handlePageChange(newPage) {
+      this.current = newPage;
+    }
+  }
 }
 </script>
 
-<style scoped>
-  .iconfont {
-    font-size: 26px;
-    color: #f00;
-  }
-</style>
+<style scoped></style>
