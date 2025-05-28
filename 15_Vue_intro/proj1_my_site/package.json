@@ -4,7 +4,10 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "preview:Pager": "vue serve ./src/components/Pager/preview.vue",
+    "preview:Avatar": "vue serve ./src/components/Avatar/preview.vue",
+    "preview:Icon": "vue serve ./src/components/Icon/preview.vue"
   },
   "dependencies": {
     "core-js": "^3.6.5",

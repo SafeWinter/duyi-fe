@@ -1,5 +1,5 @@
 <template>
-  <i class="iconfont" :class="fontClass"></i>
+  <i class="iconfont icon-container" :class="fontClass"></i>
 </template>
 
 <script>
@@ -22,6 +22,8 @@ const classMap = new Map([
   ["empty", "iconempty"],
   ["chat", "iconliuyan"],
 ]);
+
+export const types = [...classMap.keys()];
 
 export default {
   name: "Icon",
