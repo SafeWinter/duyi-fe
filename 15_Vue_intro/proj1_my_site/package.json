@@ -7,7 +7,11 @@
     "build": "vue-cli-service build",
     "preview:Pager": "vue serve ./src/components/Pager/preview.vue",
     "preview:Avatar": "vue serve ./src/components/Avatar/preview.vue",
-    "preview:Icon": "vue serve ./src/components/Icon/preview.vue"
+    "preview:Icon": "vue serve ./src/components/Icon/preview.vue",
+    "preview:Empty": "vue serve ./src/components/Empty/preview.vue",
+    "preview:ImageLoader": "vue serve ./src/components/ImageLoader/preview.vue",
+    "preview:Contact": "vue serve ./src/components/Contact/preview.vue",
+    "preview:ContactItem": "vue serve ./src/components/ContactItem/preview.vue"
   },
   "dependencies": {
     "core-js": "^3.6.5",
