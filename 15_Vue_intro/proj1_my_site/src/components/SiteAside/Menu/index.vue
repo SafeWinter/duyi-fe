@@ -46,6 +46,7 @@ export default {
 
 .menu-container {
   color: @lightWords;
+  width: 100%;
 
   &>.menu-item {
     &.selected {

@@ -98,8 +98,13 @@ export default {
       cursor: pointer;
       display: flex;
       gap: 0.3em;
-      justify-self: flex-start;
+      justify-content: flex-start;
+      align-items: center;
       width: 100%;
+
+      & span {
+        font-size: 0.875em;
+      }
     }
 
     & .icon-container {

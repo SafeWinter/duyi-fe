@@ -10,8 +10,10 @@
     "preview:Icon": "vue serve ./src/components/Icon/preview.vue",
     "preview:Empty": "vue serve ./src/components/Empty/preview.vue",
     "preview:ImageLoader": "vue serve ./src/components/ImageLoader/preview.vue",
-    "preview:Contact": "vue serve ./src/components/Contact/preview.vue",
-    "preview:ContactItem": "vue serve ./src/components/ContactItem/preview.vue"
+    "preview:Contact": "vue serve ./src/components/SiteAside/Contact/preview.vue",
+    "preview:ContactItem": "vue serve ./src/components/SiteAside/Contact/ContactItem/preview.vue",
+    "preview:Menu": "vue serve ./src/components/SiteAside/Menu/preview.vue",
+    "preview:SiteAside": "vue serve ./src/components/SiteAside/preview.vue"
   },
   "dependencies": {
     "core-js": "^3.6.5",
