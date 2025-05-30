@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import ContactItem from '@/components/Contact/ContactItem';
+import ContactItem from '@/components/SiteAside/Contact/ContactItem';
 
 import qrCode from '@/assets/qrcode.png';
 export default {

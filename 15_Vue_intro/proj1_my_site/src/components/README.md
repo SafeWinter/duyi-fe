@@ -166,7 +166,7 @@ DIY：该组件已改造为由若干个 `ContactItem` 组件构成。
 
 # SiteAside
 
-<img src="../../../assets/9.6.png" alt="image-20201130200148681" style="zoom:33%;" />
+<img src="../../../assets/9.6.png" alt="image-20201130200148681" style="zoom:50%;" />
 
 网站侧边栏
 
