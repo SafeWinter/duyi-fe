@@ -124,9 +124,11 @@ DIY：该组件已改造为由若干个 `ContactItem` 组件构成。
 
 ![](../../../assets/9.3.png)
 
+经调整，`ContactItem` 组件已放入 `Contact` 文件夹中，以进一步明确依赖关系。
+
 # Menu
 
-<img src="http://mdrs.yuanjin.tech/img/20201130195147.png" alt="image-20201130195147086" style="zoom:33%;" />
+<img src="../../../assets/9.5.png" alt="image-20201130195147086" style="zoom:50%;" />
 
 该组件需要横向撑满容器，背景色透明
 
@@ -134,37 +136,37 @@ DIY：该组件已改造为由若干个 `ContactItem` 组件构成。
 
 > **首页**
 >
-> 链接地址：/
+> 链接地址：`/`
 >
-> 选中条件：路径等于 /
+> 选中条件：路径等于 `/`
 >
 > **文章**
 >
-> 链接地址：/blog
+> 链接地址：`/blog`
 >
-> 选中条件：路径以`/blog`开头
+> 选中条件：路径以 `/blog` 开头
 >
 > **关于我**
 >
-> 链接地址：/about
+> 链接地址：`/about`
 >
-> 选中条件：路径等于`/about`
+> 选中条件：路径等于 `/about`
 >
 > **项目&效果**
 >
-> 链接地址：/project
+> 链接地址：`/project`
 >
-> 选中条件：路径等于`/project`
+> 选中条件：路径等于 `/project`
 >
 > **留言板**
 >
-> 链接地址：/message
+> 链接地址：`/message`
 >
-> 选中条件：路径等于`/message`
+> 选中条件：路径等于 `/message`
 
 # SiteAside
 
-<img src="http://mdrs.yuanjin.tech/img/20201130200148.png" alt="image-20201130200148681" style="zoom:33%;" />
+<img src="../../../assets/9.6.png" alt="image-20201130200148681" style="zoom:33%;" />
 
 网站侧边栏
 

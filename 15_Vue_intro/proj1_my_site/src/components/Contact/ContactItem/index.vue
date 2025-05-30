@@ -58,9 +58,9 @@ export default {
 .contact-item-container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   position: relative;
   height: 40px;
-  line-height: 40px;
 
   & > .pop {
     position: absolute;
