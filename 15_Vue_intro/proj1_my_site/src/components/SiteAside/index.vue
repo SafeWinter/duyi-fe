@@ -39,9 +39,13 @@ export default {
 @import '~@/styles/global.less';
 @import '~@/styles/variables.less';
 .site-aside-container {
+  height: 100%;
+  padding-block: 1.5em;
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: @lightWords;
+  background-color: @dark;
 
   header {
     text-align: center;

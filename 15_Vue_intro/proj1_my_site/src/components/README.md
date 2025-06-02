@@ -168,9 +168,61 @@ DIY：该组件已改造为由若干个 `ContactItem` 组件构成。
 
 <img src="../../../assets/9.6.png" alt="image-20201130200148681" style="zoom:50%;" />
 
-网站侧边栏
+网站侧边栏。
 
-宽度和高度撑满外层容器
+宽度和高度撑满外层容器。
+
+
+
+# Layout
+
+使用示例：
+
+```html
+<Layout>
+  <template #left>
+  	<div>
+      左边栏区域，宽度适应内容，溢出隐藏
+    </div>
+  </template>
+  <div>
+      主区域，宽度占满剩余空间，溢出隐藏
+  </div>
+  <template #right>
+  	<div>
+      右边栏区域，宽度适应内容，溢出隐藏
+    </div>
+  </template>
+</Layout>
+```
+
+<img src="../../../assets/10.3.png" alt="image-20201202154014492" style="zoom:40%;" />
+
+## 插槽
+
+| 插槽名    | 含义       |
+| --------- | ---------- |
+| `default` | 中间主区域 |
+| `left`    | 左边栏     |
+| `right`   | 右边栏     |
+
+左边栏固定宽度：
+
+```css
+.left {
+    flex: 0 0 auto;
+}
+```
+
+正文栏自动缩放：
+
+```css
+.main {
+    flex: 1 1 auto;
+}
+```
+
+
 
 
 

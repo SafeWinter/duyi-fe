@@ -13,7 +13,8 @@
     "preview:Contact": "vue serve ./src/components/SiteAside/Contact/preview.vue",
     "preview:ContactItem": "vue serve ./src/components/SiteAside/Contact/ContactItem/preview.vue",
     "preview:Menu": "vue serve ./src/components/SiteAside/Menu/preview.vue",
-    "preview:SiteAside": "vue serve ./src/components/SiteAside/preview.vue"
+    "preview:SiteAside": "vue serve ./src/components/SiteAside/preview.vue",
+    "preview:Layout": "vue serve ./src/components/Layout/preview.vue"
   },
   "dependencies": {
     "core-js": "^3.6.5",

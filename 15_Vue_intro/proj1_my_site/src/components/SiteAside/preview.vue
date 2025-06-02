@@ -22,9 +22,6 @@ export default {
   width: 260px;
   height: 800px;
   margin-inline: auto;
-  padding-block-start: 2em;
-  color: @lightWords;
-  background-color: @dark;
   border-radius: 5px;
 }
 </style>
