@@ -7,7 +7,7 @@
         </aside>
       </template>
       <template v-slot:default>
-        <main class="main">主内容区</main>
+        <router-view />
       </template>
     </Layout>
   </div>

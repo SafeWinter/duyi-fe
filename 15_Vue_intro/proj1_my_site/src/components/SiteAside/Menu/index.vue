@@ -1,55 +1,56 @@
 <template>
   <nav class="menu-container">
-    <li class="menu-item" :class="{selected: isSelected({link, matchPrefix})}" 
-    v-for="{link, icon, label, matchPrefix} in items" :key="link">
-      <a :href="link" class="link">
-        <Icon :type="icon"/>
-        <span class="label">{{label}}</span>
-      </a>
+    <li
+      class="menu-item"
+      v-for="{ name, icon, label, exact } in items"
+      :key="name"
+    >
+      <router-link
+        :to="{name}"
+        class="link"
+        :exact="exact"
+        active-class="selected"
+        exact-active-class=""
+      >
+        <Icon :type="icon" />
+        <span class="label">{{ label }}</span>
+      </router-link>
     </li>
   </nav>
 </template>
 
 <script>
-import Icon from '@/components/Icon';
+import Icon from "@/components/Icon";
 
 export default {
-  name: 'Menu',
+  name: "Menu",
   components: {
-    Icon
+    Icon,
   },
   data() {
     return {
       items: [
-        { link: '/', icon: 'home', label: '首页' },
-        { link: '/blog', icon: 'blog', label: '文章', matchPrefix: true},
-        { link: '/about', icon: 'about', label: '关于我' },
-        { link: '/project', icon: 'code', label: '项目 & 效果' },
-        { link: '/message', icon: 'chat', label: '留言板' },
-      ]
+        { name: "Home", icon: "home", label: "首页", exact: true },
+        { name: "Blog", icon: "blog", label: "文章", exact: false },
+        { name: "About", icon: "about", label: "关于我", exact: true },
+        { name: "Project", icon: "code", label: "项目 & 效果", exact: true },
+        { name: "Message", icon: "chat", label: "留言板", exact: true },
+      ],
     };
   },
-  methods: {
-    isSelected({link, matchPrefix = false}) {
-      const curPath = location.pathname;
-      return matchPrefix
-        ? curPath.startsWith('/blog')
-        : curPath === link;      
-    },
-  },
-}
+};
 </script>
 
 <style scoped lang="less">
-@import '~@/styles/global.less';
-@import '~@/styles/variables.less';
+@import "~@/styles/global.less";
+@import "~@/styles/variables.less";
 
 .menu-container {
   color: @lightWords;
   width: 100%;
 
-  &>.menu-item {
-    &.selected {
+  & > .menu-item {
+    &:has(.selected) {
       background-color: @selected;
       color: @white;
     }
@@ -62,16 +63,16 @@ export default {
     height: 40px;
     gap: 8px;
     margin-inline: 40px;
-    
+
     &:hover {
       color: @white;
     }
 
-    &>.icon-container {
+    & > .icon-container {
       font-size: 1.2em;
     }
 
-    &>.label {
+    & > .label {
       display: inline-block;
     }
   }
