@@ -1,6 +1,9 @@
 import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
+import { getMessage } from '@/utils';
+
+Vue.prototype.$getMessage = getMessage
 
 new Vue({
   router,
