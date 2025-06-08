@@ -11,13 +11,20 @@
 <script>
 export default {
   methods: {
+    data() {
+      running: false,
+    },
     showInfo(type) {
+      if(this.running) return;
+      this.running = true;
+      const that = this;
       this.$getMessage({
         content: '示例消息内容',
         type,
         // container: this.$refs.home,
         callback() {
           console.log('消息已显示');
+          that.running = false;
         }
       });
     }

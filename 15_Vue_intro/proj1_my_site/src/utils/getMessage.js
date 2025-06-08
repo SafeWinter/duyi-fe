@@ -28,7 +28,7 @@ export default function getMessage(options) {
   div.innerHTML = `<span class="${styles.icon}">${iconHTML}</span><div>${content}</div>`;
 
   let isStatic = false;
-  if(getComputedStyle(container).position === 'static') {
+  if(options.container && getComputedStyle(container).position === 'static') {
     isStatic = true;
     container.classList.add(styles.relative);
   }
