@@ -17,7 +17,7 @@ export default function getMessage(options) {
   const content = options.content || '';
   const type = options.type || 'info';
   const duration = options.duration || 2000;
-  const container = options.container || document.querySelector('.main'); // 默认容器为 .main，而非 body
+  const container = options.container || document.body; // 默认容器为 .main，而非 body
   const callback = options.callback || (() => {});
 
   // 创建 DOM 元素
@@ -28,7 +28,7 @@ export default function getMessage(options) {
   div.innerHTML = `<span class="${styles.icon}">${iconHTML}</span><div>${content}</div>`;
 
   let isStatic = false;
-  if(getComputedStyle(container).position === 'static') {
+  if(options.container && getComputedStyle(container).position === 'static') {
     isStatic = true;
     container.classList.add(styles.relative);
   }
