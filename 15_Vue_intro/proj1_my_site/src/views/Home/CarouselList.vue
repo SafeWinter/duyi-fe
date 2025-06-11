@@ -7,9 +7,7 @@
       @transitionend="wheeling = false" 
       @transitionstart="wheeling = true"
     >
-      <CarouselItem v-for="(item, idx) in data" :key="item.id" :item="item">
-        {{ `Carousel Item ${idx + 1}` }}
-      </CarouselItem>
+      <CarouselItem v-for="item in data" :key="item.id" :item="item" />
     </nav>
     <!-- 上下翻页图标 -->
     <div class="arrow" v-show="notFirst" @click="changeIdxBy(-1)"><Icon class="arrow-up" type="arrowUp"/></div>
@@ -94,7 +92,7 @@ export default {
   height: 100%;
   overflow: hidden;
   position: relative;
-  background-color: lighten(@dark, 10%);
+  // background-color: lighten(@dark, 10%);
 
   &>.items {
     transition: margin-top 1s ease-in-out;
