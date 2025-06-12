@@ -1,5 +1,5 @@
 <template>
-  <div class="home-container" ref="home">
+  <div v-loading="loading" class="home-container" ref="home">
     <CarouselList :data="banners"/>
   </div>
 </template>
@@ -14,11 +14,13 @@ export default {
   },
   data() {
     return {
+      loading: true,
       banners: [],
     };
   },
   async created() {
     this.banners = await getBanner();
+    this.loading = false;
   },
 }
 </script>
