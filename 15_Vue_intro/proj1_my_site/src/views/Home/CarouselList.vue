@@ -92,10 +92,18 @@ export default {
   height: 100%;
   overflow: hidden;
   position: relative;
-  // background-color: lighten(@dark, 10%);
+
+  // test
+  width: 60%;
+  height: 35%;
+  overflow: visible;
+  margin: 100px auto;
 
   &>.items {
     transition: margin-top 1s ease-in-out;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #008c8c; // test
   }
 
   & .arrow-up, & .arrow-down {
