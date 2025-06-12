@@ -94,16 +94,16 @@ export default {
   position: relative;
 
   // test
-  width: 60%;
-  height: 35%;
-  overflow: visible;
-  margin: 100px auto;
+  // width: 60%;
+  // height: 35%;
+  // overflow: visible;
+  // margin: 100px auto;
 
   &>.items {
     transition: margin-top 1s ease-in-out;
     width: 100%;
     height: 100%;
-    border: 2px solid #008c8c; // test
+    // border: 2px solid #008c8c; // test
   }
 
   & .arrow-up, & .arrow-down {

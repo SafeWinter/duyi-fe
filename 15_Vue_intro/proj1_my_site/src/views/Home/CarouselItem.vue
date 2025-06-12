@@ -127,12 +127,12 @@ export default {
   position: relative;
   overflow: hidden;
 
-  overflow: visible; // test
+  // overflow: visible; // test
   & > .inner {
     width: 110%;
     height: 110%;
 
-    z-index: -1; //test
+    // z-index: -1; //test
 
     &.valid { transition: transform 0.3s; }
     &.invalid { transition: none; }
@@ -147,7 +147,7 @@ export default {
     color: lighten(@lightWords, 30%);
     letter-spacing: 0.4em;
 
-    opacity: 0; // test
+    // opacity: 0; // test
 
     & > .title, & > .description {
       text-shadow: 1px 0 rgba(0 0 0 / 0.5),
