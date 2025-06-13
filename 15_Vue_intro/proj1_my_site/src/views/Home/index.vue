@@ -1,28 +1,26 @@
 <template>
   <div v-loading="loading" class="home-container" ref="home">
-    <CarouselList :data="banners"/>
+    <CarouselList :data="banners" />
   </div>
 </template>
 
 <script>
-import { getBanner } from '@/api/banner';
-import CarouselList from './CarouselList.vue';
+import { getBanner } from "@/api/banner";
+import CarouselList from "./CarouselList.vue";
+import fetchBanner from '@/mixins/fetchBanners';
 
 export default {
   components: {
-    CarouselList
+    CarouselList,
   },
-  data() {
-    return {
-      loading: true,
-      banners: [],
-    };
-  },
-  async created() {
-    this.banners = await getBanner();
-    this.loading = false;
-  },
-}
+  mixins: [fetchBanner([])],
+  methods: {
+    async getRemoteData() {
+      // implement the instance mothod in fetchBanner mixin
+      return await getBanner();
+    }
+  }
+};
 </script>
 
 <style scoped lang="less">
