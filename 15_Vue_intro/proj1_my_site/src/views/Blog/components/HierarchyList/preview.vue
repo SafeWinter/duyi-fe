@@ -48,6 +48,12 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped lang="less">
+@import '~@/styles/variables.less';
+.hierachy-list-preview {
+  width: 20%;
+  margin: 2em auto;
+  padding-inline: 2em;
+  border: 2px solid @selected;
+}
 </style>
