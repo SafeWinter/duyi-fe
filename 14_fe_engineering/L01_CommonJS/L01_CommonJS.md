@@ -41,7 +41,7 @@
 
 `NodeJS` 规定：
 
-1. `NodeJS` 中的每个 `JS` 文件都是一个 `CMJ` 模块，通过 `node` 命令运行的模块，叫做入口模块；
+1. `NodeJS` 中的每个 `JS` 文件都是一个 `CMJ` 模块，通过 `node` 命令运行的模块，叫做 **入口模块**；
 
 2. 模块中的所有全局定义的变量、函数，都不会污染到其他模块；
 
@@ -96,7 +96,6 @@
 function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
-
 ```
 
 
@@ -113,7 +112,9 @@ function delay(ms) {
  * @param {number} index 
  */
 function print(index){
-
+  console.clear();
+  const txt = config.text.substring(0, index + 1);
+  console.log(txt);
 }
 ```
 
@@ -128,7 +129,14 @@ function print(index){
  * 运行该函数，会逐字打印config.js中的文本
  * 每个字之间的间隔在config.js已有配置
  */
-function run() {}
+function run() {
+  let index = 0;
+  while (index < config.text.length) {
+    print(index); // 打印到这个位置
+    await delay(config.wordDuration);
+    index++;
+  }
+}
 
 run();
 ```

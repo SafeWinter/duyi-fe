@@ -164,7 +164,7 @@ const url = './assets/1.png'; // ❌
 img.src = url;
 ```
 
-正确的做法是，通过模块化的方式导入资源，并获取资源路径
+正确的做法是，通过 **模块化的方式** 导入资源，并获取资源路径
 
 ```js
 // 打包前
@@ -215,8 +215,8 @@ import '../../../b/b1/index.js';
 
 上面的导入代码可简化为
 
-```js
-import '@/b/b1'; // @ 表示 src 目录，同时省略了 index. `JavaScript` 
+```javascript
+import '@/b/b1'; // @ 表示 src 目录，同时省略了 index.js
 ```
 
 
@@ -227,7 +227,7 @@ import '@/b/b1'; // @ 表示 src 目录，同时省略了 index. `JavaScript`
 
 具体的处理方案涉及到两个配置文件：
 
-- `babel.config. `JavaScript` `：通过配置该文件，可以设置对哪些 `JS` 代码进行降级处理；
+- `babel.config.js`：通过配置该文件，可以设置对哪些 `JS` 代码进行降级处理；
 - `.browserslistrc`：通过配置该文件，可以设置在降级时，要兼容哪些浏览器，兼容的范围越广，降级产生的代码就越多，自然，打包后的体积就越大；
 
 你无须知晓具体的配置方式。
