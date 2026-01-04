@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<div id="app">
+  <h1>标题：商品管理系统</h1>
+  <ul>
+    <li v-for="item in products" key="item.id">
+      商品名称：{{ item.name }}，商品数量：
+      <button v-on:click="changeStock(item, item.stock - 1)">-</button>
+      {{ item.stock || '已售罄'}}
+      <button v-on:click="changeStock(item, item.stock + 1)">+</button>
+      <button @click="remove(item.id)">删除</button>
+    </li>
+  </ul>
+  <p>总库存：{{total}}</p>
+</div>
+<script src="js/vue.min.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'Hello, Vue!',
+      products: [
+        { id: 1, name: 'iPhone', stock: 5 },
+        { id: 2, name: 'Xiaomi', stock: 6 },
+        { id: 3, name: 'Huaway', stock: 7 }
+      ]
+    },
+    computed: {
+      total() {
+        return this.products.reduce((sum, {stock}) => sum + stock, 0);
+      }
+    },
+    methods: {
+      changeStock(item, newStock) {
+        item.stock = Math.max(newStock, 0);
+      },
+      remove(id) {
+        this.products = this.products.filter(item => item.id !== id);
+      }
+    }
+  });
+  console.log(Vue.version); // 2.7.16
+</script>
+</body>
+</html>
