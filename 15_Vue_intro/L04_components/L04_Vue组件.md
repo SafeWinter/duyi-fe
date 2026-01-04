@@ -90,7 +90,7 @@ Vue.component('my-comp', myComp)
 局部注册的方式是，在要使用组件的组件或实例中加入一个配置：
 
 ```js
-// 这是另一个要使用my-comp的组件
+// 这是另一个要使用 my-comp 的组件
 var otherComp = {
   components:{
     // 属性名为组件名称，模板中将使用该名称
@@ -105,6 +105,8 @@ var otherComp = {
   `;
 }
 ```
+
+
 
 ### 1.3 组件应用
 
@@ -182,6 +184,8 @@ var OtherComp = {
 于是就形成了一个组件树：
 
 <img src="../assets/4.3.png" style="zoom:50%;" />
+
+
 
 ## 3 向组件传递数据
 
