@@ -183,8 +183,8 @@ img.src = url;
 导入模块时，所有 `JS` 模块均可省略 `.js`，若导入的模块文件名为 `index.js`，可省略文件名：
 
 ```js
-import './home'; // 若存在 home. `JavaScript` ，可省略 . `JavaScript` 
-import './movie'; // 若 movie 是一个目录，此次导入的是 ./movie/index. `JavaScript` 
+import './home'; // 若存在 home.js ，可省略 .js
+import './movie'; // 若 movie 是一个目录，此次导入的是 ./movie/index.js
 ```
 
 
