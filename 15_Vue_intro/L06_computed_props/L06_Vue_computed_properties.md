@@ -2,6 +2,8 @@
 
 ---
 
+本节通过自定义图标组件引入 `Vue` 计算属性的相关知识点。
+
 
 
 ## 1 计算属性
@@ -41,9 +43,23 @@ computed: {
 
 ## 2 关于透传 Attributes
 
+该知识点是从图标的颜色设置引出的。图标颜色是从父组件的 `style` 标签通过设置 `.iconfont` 透传到子组件的：
+
+```vue
+<style scoped>
+  /* in App.vue (parent) */
+  .iconfont {
+    font-size: 26px;
+    color: #f00;
+  }
+</style>
+```
+
+
+
 > 官方文档：https://cn.vuejs.org/guide/components/attrs#fallthrough-attributes
 
-**透传 Attributes（Fallthrough Attributes）**指的是传递给一个组件、却没有被该组件声明为 [props](https://cn.vuejs.org/guide/components/props.html) 或 [emits](https://cn.vuejs.org/guide/components/events.html#defining-custom-events) 的 `attribute` 或者 `v-on` 事件监听器。最常见的例子就是 `class`、`style` 和 `id`。
+**透传 Attributes（Fallthrough Attributes）** 指的是传递给一个组件、却没有被该组件声明为 [props](https://cn.vuejs.org/guide/components/props.html) 或 [emits](https://cn.vuejs.org/guide/components/events.html#defining-custom-events) 的 `attribute` 或者 `v-on` 事件监听器。最常见的例子就是 `class`、`style` 和 `id`。
 
 如果一个子组件的 `class` 类是从父组件声明的，则该样式类会透传到子组件模板的根元素上，并且和根元素已有的样式类合并到一起：
 
