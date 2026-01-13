@@ -30,4 +30,4 @@ export default function update(el, binding) {
       el.classList.remove(styles.relative);
     }
   }
-};
+}

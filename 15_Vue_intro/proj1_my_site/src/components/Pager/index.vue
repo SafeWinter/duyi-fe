@@ -86,12 +86,13 @@ export default {
 
 .pager-container {
   display: flex;
+  gap: 0.5em;
   justify-content: center;
   align-items: center;
   text-align: center;
 
   a {
-    width: 30px;
+    min-width: 30px;
     cursor: pointer;
     color: @primary;
     user-select: none;

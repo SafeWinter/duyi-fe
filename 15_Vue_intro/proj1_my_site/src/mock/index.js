@@ -3,5 +3,5 @@ import './blog';
 import Mock from "mockjs";
 
 Mock.setup({
-  timeout: "100-2000",
+  timeout: "1000-2000",
 });

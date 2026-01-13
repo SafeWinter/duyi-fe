@@ -1,13 +1,31 @@
 <template>
-  <h1>博客</h1>
+  <layout class="blog-container">
+    <template #default>
+      <blog-list />
+    </template>
+    <template #right>
+      <blog-category />
+    </template>
+  </layout>
 </template>
 
 <script>
-export default {
+import Layout from '@/components/Layout';
+import BlogCategory from './components/BlogCategory';
+import BlogList from './components/BlogList';
 
+export default {
+  name: 'Blog',
+  components: {
+    Layout,
+    BlogCategory,
+    BlogList
+  },
 }
 </script>
 
-<style>
-
+<style lang="less" scoped>
+.blog-container {
+  box-sizing: border-box;
+}
 </style>

@@ -31,7 +31,7 @@ export default {
     return {
       items: [
         { name: "Home", icon: "home", label: "首页", exact: true },
-        { name: "Blog", icon: "blog", label: "文章", exact: false },
+        { name: "Article", icon: "blog", label: "文章", exact: false },
         { name: "About", icon: "about", label: "关于我", exact: true },
         { name: "Project", icon: "code", label: "项目 & 效果", exact: true },
         { name: "Message", icon: "chat", label: "留言板", exact: true },

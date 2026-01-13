@@ -1,8 +1,18 @@
 <template>
   <ul class="hierachy-list-container">
     <li v-for="item in data" :key="item.id">
-      <span :class="{active: item.id === currId}" @click="clickLabel(item)">{{ item.label }}</span>
-      <HierarchyList v-if="item.children.length > 0" 
+      <span 
+        :class="{active: item.id === currId}" 
+        @click="clickLabel(item)"
+      >
+        {{ item.label }}
+        <span 
+          class="stats" 
+          :class="{active: item.id === currId}"
+          v-if="hasCount(item)"
+        >{{ item.count }} 篇</span>
+      </span>
+      <HierarchyList v-if="hasChildren(item)" 
         :data="item.children" 
         :currId="currId"
         @selected="clickLabel"
@@ -21,13 +31,18 @@ export default {
     },
     currId: {
       type: Number,
-      default: 0,
-      immediate: true,
+      default: 0
     }
   },
   methods: {
     clickLabel(item) {
       this.$emit('selected', item);
+    },
+    hasChildren(item) {
+      return item.children && item.children.length > 0;
+    },
+    hasCount({count}) {
+      return count !== undefined && count !== null && count >= 0;
     }
   },
 }
@@ -45,7 +60,7 @@ export default {
     line-height: 40px;
     cursor: pointer;
 
-    & .active {
+    & .active, & .stats.active {
       color: @warn;
       font-weight: bold;
     }
@@ -53,6 +68,12 @@ export default {
     & .hierachy-list-container {
       margin-inline-start: 1em;
       padding: 0;
+    }
+
+    & .stats {
+      color: #999;
+      margin-left: 0.5em;
+      font-size: 0.75rem;
     }
   }
 }

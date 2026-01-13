@@ -49,4 +49,4 @@ export default function getMessage(options) {
       }, { once: true });
     }, duration);
   }, 0);
-};
+}
