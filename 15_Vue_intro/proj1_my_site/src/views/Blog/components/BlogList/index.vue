@@ -13,12 +13,19 @@ import Pager from '@/components/Pager';
 import { fetchRemoteData } from '@/mixins';
 import { getBlogs } from '@/api/blog';
 
+//TODO: 以下指令仅用于 preview.vue 组件页调试
+import vLoading from "@/directives/loading";
+
 export default {
   name: 'BlogList',
   mixins: [fetchRemoteData([])],
   components: {
     BlogCard,
     Pager,
+  },
+  //TODO: 以下指令仅用于 preview.vue 组件页调试
+  directives: {
+    loading: vLoading
   },
   data() {
     return {
@@ -33,6 +40,11 @@ export default {
       return this.data.total || 0;
     },
     routeInfo() {
+      //TODO: 以下判定仅用于 preview.vue 组件页调试
+      if(!this.$route || !this.$route.params || !this.$route.query) {
+        return { cid: -1, page: 1, limit: 10 };
+      }
+
       const {params, query} = this.$route;
       const cid = +params.categoryId || -1;
       const page = +query.page || 1;

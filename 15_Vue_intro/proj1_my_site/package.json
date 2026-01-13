@@ -15,7 +15,8 @@
     "preview:Menu": "vue serve ./src/components/SiteAside/Menu/preview.vue",
     "preview:SiteAside": "vue serve ./src/components/SiteAside/preview.vue",
     "preview:Layout": "vue serve ./src/components/Layout/preview.vue",
-    "preview:HierarchyList": "vue serve ./src/views/Blog/components/HierarchyList/preview.vue"
+    "preview:HierarchyList": "vue serve ./src/views/Blog/components/HierarchyList/preview.vue",
+    "preview:BlogListPreview": "vue serve ./src/views/Blog/components/BlogList/preview.vue"
   },
   "dependencies": {
     "axios": "^0.21.0",
