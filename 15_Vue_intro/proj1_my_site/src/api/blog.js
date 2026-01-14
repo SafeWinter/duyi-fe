@@ -24,3 +24,43 @@ export async function getBlogs(page = 1, limit = 10, categoryId = -1) {
     }
   });
 }
+
+/**
+ * 获取指定博文的内容详情
+ * @param {String} id 博文 ID
+ * @returns 指定博文的内容详情
+ */
+export async function getBlog(id) {
+  return await request.get(`/api/blog/${id}`);
+}
+
+
+/**
+ * 提交指定文章的评论内容
+ * @param {Object} comment 待提交的评论信息对象，包含参数：
+ *   - nickname: 昵称
+ *   - content: 评论内容，纯文本
+ *   - blogId: 评论的博客 id
+ * @returns 操作结果
+ */
+export async function postComment(comment) {
+  return await request.post('/api/comment', comment);
+}
+
+
+/**
+ * 获取指定文章的分页评论列表
+ * @param {String} blogId 博文 ID
+ * @param {Number} page 当前页码，默认为 1
+ * @param {Number} limit 页容量，默认为 10 条
+ * @returns 分页评论列表信息
+ */
+export async function getComments(blogId, page = 1, limit = 10) {
+  return await request.get('/api/comment', {
+    params: {
+      blogid: blogId,
+      page,
+      limit
+    }
+  });
+}

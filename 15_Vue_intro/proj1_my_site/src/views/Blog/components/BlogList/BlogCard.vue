@@ -1,20 +1,47 @@
 <template>
   <figure class="blog-card-container">
-    <img
-      v-if="data.thumb != null"
-      :src="data.thumb"
-      :alt="data.title"
-      class="cover"
-    />
+    <div class="cover" v-if="data.thumb != null">
+      <router-link 
+        class="link" 
+        :to="{
+          name: 'ArticleDetail',
+          params: {
+            id: data.id
+          }
+        }">
+        <img class="thumb" 
+          :src="data.thumb"
+          :alt="data.title"
+        />
+      </router-link>
+    </div>
     <figcaption class="content" :class="{ 'plain-txt': !data.thumb }">
       <h1 class="title">
-        <a href="javascript: void(0)">{{ data.title }}</a>
+        <router-link 
+          class="link" 
+          :to="{
+            name: 'ArticleDetail',
+            params: {
+              id: data.id
+            }
+          }">
+          {{ data.title }}
+        </router-link>
       </h1>
       <section class="blog-info">
         <div class="author-date">日期：{{ formatDate(data.createDate) }}</div>
         <div class="pv">浏览：{{ data.scanNumber }}</div>
         <div class="comments">评论：{{ data.commentNumber }}</div>
-        <div class="category">所在分类：{{ data.category.name }}</div>
+          <div class="category">
+            所在分类：
+            <router-link class="link" 
+              :to="{
+                name: 'CategorizedArticle',
+                params: { categoryId: data.category.id }
+              }">
+              {{ data.category.name }}
+            </router-link>
+          </div>
       </section>
       <p class="summary">{{ data.description }}</p>
     </figcaption>
@@ -54,21 +81,34 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@import '~@/styles/global.less';
+@import '~@/styles/variables.less';
+
 .blog-card-container {
   padding: 0.5em;
   margin: 0;
   border-block: 0.5px solid #eeeeeee1;
   display: flex;
-  height: 150px;
+  height: 180px;
   text-align: left;
+
+  & .link:hover {
+    color: @primary;
+  }
 
   & > .cover {
     width: 250px;
     display: inline-block;
     border-radius: 0.375em;
     margin-inline-end: 1.5em;
-    object-fit: cover;
     height: 100%;
+
+    & .thumb {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      border-radius: 0.375em;
+    }
   }
 
   & > .content {
