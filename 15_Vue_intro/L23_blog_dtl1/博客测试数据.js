@@ -244,39 +244,19 @@ fetch(url, {
 }
 
 // 提交评论模拟数据
-Mock.mock('/api/comment', 'post', function(options) {
-  // console.log('post options:', options);
-  const { blogId, nickname, content } = JSON.parse(options.body);
-  return Mock.mock({
-    code: 0,
-    msg: "提交评论成功",
-    data: {
-      id: "@guid",
-      nickname,
-      content,
-      blog: {
-        id: blogId, // 博客id
-        title: "@ctitle(15, 20)"
-      },
-      createDate: () => parseInt(Mock.Random.date('T')),
-      "avatar|1": [
-        "https://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar6.jpg",
-        "https://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar4.jpg",
-        "https://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar8.jpg",
-        "https://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar2.jpg",
-      ],
-    },
-  };
-
-// 提交评论
+const { blogId, nickname, content } = JSON.parse(options.body);
 var data2 = {
   code: 0,
   msg: "",
   data: {
     id: "@guid",
-    nickname: "@cname",
-    content: "@cparagraph(1, 10)",
-    createDate: Date.now(),
+    nickname,
+    content,
+    blog: {
+      id: blogId, // 博客id
+      title: "@ctitle(15, 20)"
+    },
+    createDate: () => parseInt(Mock.Random.date('T')),
     "avatar|1": [
       "https://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar6.jpg",
       "https://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar4.jpg",
@@ -286,3 +266,35 @@ var data2 = {
   },
 };
 
+
+// 获取分页评论
+const query = options.url.split('?')[1];
+const params = qs.parse(query);
+const limit = parseInt(params.limit) || 10; // 每页数量
+const blogId = params.blogid;
+
+var data3 = {
+  code: 0,
+  msg: '获取文章评论数据成功',
+  data: {
+    'total|50-200': 1, // 总数
+    [`rows|${limit}`]: [ // 当前页列表数据
+      {
+        id: "@guid",
+        nickname: "@cname",
+        content: "@cparagraph(1, 10)",
+        blog: {
+          id: blogId, // 博客id
+          title: "@ctitle(15, 20)",
+        },
+        createDate: () => parseInt(Mock.Random.date('T')),
+        "avatar|1": [
+          "https://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar6.jpg",
+          "https://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar4.jpg",
+          "https://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar8.jpg",
+          "https://qiheizhiya.oss-cn-shenzhen.aliyuncs.com/image/avatar2.jpg",
+        ],
+      }
+    ]
+  },
+}
