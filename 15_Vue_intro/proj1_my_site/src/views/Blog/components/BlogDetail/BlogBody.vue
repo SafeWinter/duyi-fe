@@ -1,6 +1,7 @@
 <template>
   <div class="blog-body-container">
     <h1 class="title">{{ data.title }}</h1>
+    <demo-code :code="code1" :hasPrefix="false"/>是<demo-code :code="code2"/>的一个实例属性。
     <section class="info">
       <dl>
         <dt class="term">日期</dt>
@@ -28,10 +29,13 @@ import { formatDate } from "@/utils";
 import "highlight.js/styles/googlecode.css";
 import '@/styles/markdown.less';
 
+import DemoCode from './DemoCode.vue';
+
 export default {
   name: "BlogBody",
   components: {
     BlogComment,
+    DemoCode
   },
   filters: {
     formatDate,
@@ -41,6 +45,12 @@ export default {
       type: Object,
       required: true,
     },
+  },
+  data() {
+    return {
+      code1: '$listeners',
+      code2: 'Vue'
+    }
   },
 };
 </script>
