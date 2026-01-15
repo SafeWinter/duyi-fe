@@ -71,7 +71,7 @@ export default {
   box-sizing: border-box;
 }
 .blog-category-container {
-  padding: 2em;
+  padding-inline: 2em;
   width: 300px;
   height: 100%;
   overflow-y: auto;

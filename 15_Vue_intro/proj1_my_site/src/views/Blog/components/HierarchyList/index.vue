@@ -30,7 +30,7 @@ export default {
       default: () => []
     },
     currId: {
-      type: Number,
+      type: [Number, String],
       default: 0
     }
   },
