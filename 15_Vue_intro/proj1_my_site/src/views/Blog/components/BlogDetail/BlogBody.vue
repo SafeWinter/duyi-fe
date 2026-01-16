@@ -41,7 +41,7 @@ export default {
       type: Object,
       required: true,
     },
-  },
+  }
 };
 </script>
 
@@ -52,10 +52,7 @@ export default {
 .blog-body-container {
   padding: 1em 2em;
   text-align: left;
-  overflow-y: scroll;
-  scroll-behavior: smooth;
   position: relative;
-  height: 100%;
 }
 .info {
   width: 100%;

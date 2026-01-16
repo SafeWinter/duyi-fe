@@ -354,7 +354,7 @@ Mock.mock(/^\/api\/comment\/?(\?.+)?$/, 'get', function (options) {
         {
           id: "@guid",
           nickname: "@cname",
-          content: "@cparagraph(1, 10)",
+          content: "@cparagraph(1, 8)",
           blog: {
             id: blogId, // 博客id
             title: "@ctitle(15, 20)",

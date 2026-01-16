@@ -16,8 +16,8 @@ new Vue({
 
 
 import * as blogApi from './api/blog';
-blogApi.getBlog('123')
-  .then(data => console.log('test blog detail', data));
+// blogApi.getBlog('123')
+//   .then(data => console.log('test blog detail', data));
 
 // blogApi.postComment({
 //     nickname: "昵称",
@@ -26,5 +26,5 @@ blogApi.getBlog('123')
 //   })
 //   .then(data => console.log('test post comment', data));
 
-// blogApi.getComments('demoblogId')
-//   .then(data => console.log('test get paged comments', data));
+blogApi.getComments('demoblogId')
+  .then(data => console.log('test get paged comments', data));

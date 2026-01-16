@@ -3,6 +3,7 @@
     <template #default>
       <div class="body-container" v-loading="loading">
         <blog-body :data="blogData" v-if="blogData"/>
+        <blog-comment v-if="!loading" />
       </div>
     </template>
     <template #right>
@@ -17,6 +18,7 @@
 import Layout from '@/components/Layout';
 import BlogToc from './BlogToc';
 import BlogBody from './BlogBody';
+import BlogComment from './BlogComment';
 import { fetchRemoteData } from '@/mixins';
 import { getBlog } from '@/api/blog';
 
@@ -26,6 +28,7 @@ export default {
   components: {
     Layout,
     BlogBody,
+    BlogComment,
     BlogToc
   },
   computed: {
@@ -51,6 +54,7 @@ export default {
 .body-container, .toc-container{
   height: 100%;
   overflow-y: auto;
+  scroll-behavior: smooth;
   position: relative;
 }
 .toc-container {
