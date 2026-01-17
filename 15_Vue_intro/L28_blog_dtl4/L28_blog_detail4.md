@@ -161,3 +161,26 @@ export default function(fn, duration = 1000) {
 ```
 
 这样就实现了只在最后一次停顿后触发高亮判定。
+
+
+
+## 3 关于带 hash 锚点的 URL 自动跳转失败的问题
+
+根本原因在与浏览器跳转到指定位置时，页面组件还没有加载完毕。理想情况下需要在 `onload` 回调中重新手动跳转，实际通过 `setTimeout` 估计一个延迟时间实现。在文章详情页的根组件中添加如下逻辑：
+
+```js
+// BlogDetail/index.vue
+methods: {
+  correctHashedUrl() {
+    const hash = location.hash;
+    location.hash = '';
+    setTimeout(function() {
+      location.hash = hash;
+    }, 3000); // 超过请求的最大延迟即可
+  },
+},
+mounted() {
+  this.correctHashedUrl();
+},
+```
+
