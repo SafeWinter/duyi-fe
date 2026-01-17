@@ -10,13 +10,18 @@
         <dt class="term">浏览</dt>
         <dd>{{ data.scanNumber }}</dd>
       </dl>
-      <a href="">
+      <a href="#data-form">
         <dt class="term">评论</dt>
         <dd>{{ data.commentNumber }}</dd>
       </a>
-      <a href="">
+      <router-link :to="{
+        name: 'CategorizedArticle',
+        params: {
+          categoryId: data.category.id
+        }
+      }">
         {{ data.category.name }}
-      </a>
+      </router-link>
     </section>
     <section class="markdown-body" v-html="data.htmlContent"></section>
   </div>

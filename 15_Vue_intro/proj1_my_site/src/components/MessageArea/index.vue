@@ -6,6 +6,8 @@
       <span class="sub">{{ subTitle }}</span>
     </h3>
     <data-list :data="list"/>
+    <div class="no-more" v-if="noMore">-- 数据已全部加载完毕 --</div>
+    <div class="loading" :class="hiddenIfNoMore" v-loading="isListLoading"></div>
   </div>
 </template>
 
@@ -37,10 +39,27 @@ export default {
       default: false
     }
   },
+  computed: {
+    noMore() {
+      if(!this.subTitle) {
+        return false;
+      }
+      // console.log('subTitle:', this.subTitle);
+      const total = parseInt(this.subTitle.match(/\d+/)[0]);
+      return this.list.length >= total;
+    },
+    hiddenIfNoMore() {
+      return {
+        hidden: this.noMore
+      }
+    }
+  },
 };
 </script>
 
 <style lang="less" scoped>
+@import '~@/styles/variables.less';
+
 .message-area-container {
   & .header {
     text-align: left;
@@ -48,6 +67,22 @@ export default {
     & .sub {
       font-size: 0.875em;
     }
+  }
+
+  & > .loading {
+    height: 100px;
+    position: relative;
+
+    &.hidden {
+      display: none;
+    }
+  }
+
+  & > .no-more {
+    margin-block: 3em;
+    font-size: 0.875rem;
+    font-style: italic;
+    color: lighten(@words, 50%);
   }
 }
 </style>

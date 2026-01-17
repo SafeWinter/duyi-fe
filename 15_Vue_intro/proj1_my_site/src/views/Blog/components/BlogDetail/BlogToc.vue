@@ -8,7 +8,6 @@
 <script>
 import HierachyList from "../HierarchyList";
 import { renameToc } from '@/utils';
-import eventBus from '@/eventBus';
 
 export default {
   name: "BlogToc",
@@ -27,9 +26,9 @@ export default {
       return renameToc(this.toc);
     },
     bookMarks() {
-      const navTitles = (trees, marks = []) => {
-        for(const tree of trees) {
-          const {id, children} = tree;
+      const navTitles = (treeNodes, marks = []) => {
+        for(const node of treeNodes) {
+          const {id, children} = node;
           const iDom = document.querySelector(`#${id}`);
           if(iDom) {
             marks.push(iDom);
@@ -50,10 +49,10 @@ export default {
     };
   },
   mounted() {
-    eventBus.$on('myScroll', this.checkActive);
+    this.$bus.$on('mainScroll', this.checkActive);
   },
-  destroyed() {
-    eventBus.$off('myScroll', this.checkActive);
+  beforeDestroy() {
+    this.$bus.$off('mainScroll', this.checkActive);
   },
   methods: {
     handleClick({ id }){
@@ -61,13 +60,22 @@ export default {
       location.hash = id;
     },
     checkActive() {
-      for(const elem of this.bookMarks) {
+      for(let i = 0, len = this.bookMarks.length; i < len; i++) {
+        const elem = this.bookMarks[i];
         const { top } = elem.getBoundingClientRect();
-        const id = elem.getAttribute('id');
-        if(top > this.scope) {
-          // console.log('not reached, skip:', id);
+        const id = elem.id;
+
+        // highlight the 1st item
+        if(i === 0 && top > this.scope + 1000) {
+          this.currId = id;
+          continue;  
+        }
+        
+        if(i > 0 && top > this.scope) {
+          // console.log('out of reach:', id);
           continue;
         }
+        
         // within scope
         this.currId = id;
       }

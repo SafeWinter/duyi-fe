@@ -60,9 +60,9 @@ export default function renameToc(arr, validArr = validateArray) {
 ```js
 // computed:
 bookMarks() {
-  const navTitles = (trees, marks = []) => {
-    for(const tree of trees) {
-      const {id, children} = tree;
+  const navTitles = (treeNodes, marks = []) => {
+    for(const node of treeNodes) {
+      const {id, children} = node;
       const iDom = document.querySelector(`#${id}`);
       if(iDom) {
         marks.push(iDom);
@@ -103,13 +103,13 @@ checkActive() {
 
 上述判定逻辑与滚动事件绑定时的写法也值得借鉴：
 
-首先在详情页的最外层父组件注册 `scroll` 事件（记得同步注销），在其事件处理逻辑中触发事件总线的自定义事件（`myScroll`），至于传什么参数并不重要，实测中并未使用传入的参数：
+首先在详情页的最外层父组件注册 `scroll` 事件（记得同步注销），在其事件处理逻辑中触发事件总线的自定义事件（`mainScroll`），至于传什么参数并不重要，实测中并未使用传入的参数：
 
 ```js
 methods: {
   handleScroll() {
     console.log('滚动条变化了');
-    eventBus.$emit('myScroll', this.$refs.blogBody1);
+    eventBus.$emit('mainScroll', this.$refs.blogBody1);
   },
 },
 mounted() {
@@ -121,14 +121,14 @@ beforeDestroy() {
 },
 ```
 
-然后在目录大纲组件上注册事件总线上的自定义事件 `myScroll`（记得同步注销）：
+然后在目录大纲组件上注册事件总线上的自定义事件 `mainScroll`（记得同步注销）：
 
 ```js
 mounted() {
-  eventBus.$on('myScroll', this.checkActive);
+  eventBus.$on('mainScroll', this.checkActive);
 },
 destroyed() {
-  eventBus.$off('myScroll', this.checkActive);
+  eventBus.$off('mainScroll', this.checkActive);
 },
 methods: {
   checkActive() {

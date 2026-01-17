@@ -349,7 +349,7 @@ Mock.mock(/^\/api\/comment\/?(\?.+)?$/, 'get', function (options) {
     code: 0,
     msg: '获取文章评论数据成功',
     data: {
-      'total|50-200': 1, // 总数
+      total: 52, // 总数
       [`rows|${limit}`]: [ // 当前页列表数据
         {
           id: "@guid",

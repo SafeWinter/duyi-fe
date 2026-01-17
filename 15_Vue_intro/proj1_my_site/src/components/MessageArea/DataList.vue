@@ -18,6 +18,6 @@ export default {
 
 <style lang="less" scoped>
 .data-list-container {
-  margin-block-end: 6em;
+  margin-block-end: 1em;
 }
 </style>

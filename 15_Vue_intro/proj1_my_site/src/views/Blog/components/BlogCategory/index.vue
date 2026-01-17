@@ -16,17 +16,12 @@ export default {
   components: {
     HyerachyList
   },
-  data() {
-    return {
-      // categories: [], // {id: 6, name: '分类6', articleCount: 257}
-      currId: -1
-    };
-  },
   computed: {
     hasData() {
       return this.data && this.data.length && this.data.length > 0;
     },
     categories() {
+      // categories elem: {id: 6, name: '分类6', articleCount: 257}
       if(!this.hasData) {
         return [];
       }
@@ -37,6 +32,9 @@ export default {
         count: d.articleCount
       }));
       return [{id: -1, label: '全部', count}].concat(renamedData);
+    },
+    currId() {
+      return this.$route.params.categoryId || -1;
     }
   },
   methods: {
