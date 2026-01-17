@@ -8,7 +8,6 @@
 <script>
 import HierachyList from "../HierarchyList";
 import { renameToc } from '@/utils';
-import eventBus from '@/eventBus';
 
 export default {
   name: "BlogToc",
@@ -50,10 +49,10 @@ export default {
     };
   },
   mounted() {
-    eventBus.$on('myScroll', this.checkActive);
+    this.$bus.$on('myScroll', this.checkActive);
   },
   destroyed() {
-    eventBus.$off('myScroll', this.checkActive);
+    this.$bus.$off('myScroll', this.checkActive);
   },
   methods: {
     handleClick({ id }){

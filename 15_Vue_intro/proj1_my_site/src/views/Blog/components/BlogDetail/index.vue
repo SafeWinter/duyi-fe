@@ -21,7 +21,6 @@ import BlogBody from './BlogBody';
 import BlogComment from './BlogComment';
 import { fetchRemoteData } from '@/mixins';
 import { getBlog } from '@/api/blog';
-import eventBus from '@/eventBus';
 import { debounce } from '@/utils';
 
 export default {
@@ -50,7 +49,7 @@ export default {
     },
     handleScroll() {
       console.log('滚动条变化了');
-      eventBus.$emit('myScroll', this.$refs.blogBody1);
+      this.$bus.$emit('myScroll', this.$refs.blogBody1);
     },
     correctHashedUrl() {
       const hash = location.hash;
