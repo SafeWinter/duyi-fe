@@ -15,7 +15,7 @@ new Vue({
 }).$mount('#app');
 
 
-import * as blogApi from './api/blog';
+// import * as blogApi from './api/blog';
 // blogApi.getBlog('123')
 //   .then(data => console.log('test blog detail', data));
 
@@ -26,5 +26,5 @@ import * as blogApi from './api/blog';
 //   })
 //   .then(data => console.log('test post comment', data));
 
-blogApi.getComments('demoblogId')
-  .then(data => console.log('test get paged comments', data));
+// blogApi.getComments('demoblogId')
+//   .then(data => console.log('test get paged comments', data));

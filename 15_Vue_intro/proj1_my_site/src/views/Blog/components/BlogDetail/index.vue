@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <template #default>
-      <div class="body-container" v-loading="loading">
+      <div ref="blogBody1" class="body-container" v-loading="loading">
         <blog-body :data="blogData" v-if="blogData"/>
         <blog-comment v-if="!loading" />
       </div>
@@ -21,6 +21,8 @@ import BlogBody from './BlogBody';
 import BlogComment from './BlogComment';
 import { fetchRemoteData } from '@/mixins';
 import { getBlog } from '@/api/blog';
+import eventBus from '@/eventBus';
+import { debounce } from '@/utils';
 
 export default {
   name: 'BlogDetail',
@@ -45,8 +47,28 @@ export default {
   methods: {
     async getRemoteData() {
       return await getBlog(this.id)
-    }
-  }
+    },
+    handleScroll() {
+      console.log('滚动条变化了');
+      eventBus.$emit('myScroll', this.$refs.blogBody1);
+    },
+    correctHashedUrl() {
+      const hash = location.hash;
+      location.hash = '';
+      setTimeout(function() {
+        location.hash = hash;
+      }, 3000); // 超过请求的最大延迟即可
+    },
+  },
+  mounted() {
+    this.scrollDebounced = debounce(this.handleScroll, 50);
+    this.$refs.blogBody1.addEventListener('scroll', this.scrollDebounced);
+
+    this.correctHashedUrl();
+  },
+  beforeDestroy() {
+    this.$refs.blogBody1.removeEventListener('scroll', this.scrollDebounced);
+  },
 }
 </script>
 
