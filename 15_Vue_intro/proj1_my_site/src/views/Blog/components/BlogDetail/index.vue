@@ -19,13 +19,12 @@ import Layout from '@/components/Layout';
 import BlogToc from './BlogToc';
 import BlogBody from './BlogBody';
 import BlogComment from './BlogComment';
-import { fetchRemoteData } from '@/mixins';
+import { fetchRemoteData, mainScroll } from '@/mixins';
 import { getBlog } from '@/api/blog';
-import { debounce } from '@/utils';
 
 export default {
   name: 'BlogDetail',
-  mixins: [fetchRemoteData({})],
+  mixins: [fetchRemoteData({}), mainScroll('blogBody')],
   components: {
     Layout,
     BlogBody,
@@ -47,9 +46,6 @@ export default {
     async getRemoteData() {
       return await getBlog(this.id)
     },
-    handleScroll() {
-      this.$bus.$emit('mainScroll', this.$refs.blogBody);
-    },
     correctHashedUrl() {
       const hash = location.hash;
       location.hash = '';
@@ -57,25 +53,9 @@ export default {
         location.hash = hash;
       }, 3000); // 超过请求的最大延迟即可
     },
-    handleBackToTop(top) {
-      // console.log('detail back to top ...');
-      this.$refs.blogBody.scrollTop = top;
-    }
   },
   mounted() {
-    this.scrollDebounced = debounce(this.handleScroll, 50);
-    this.$refs.blogBody.addEventListener('scroll', this.scrollDebounced);
-
-    this.$bus.$on('backToTop', this.handleBackToTop);
-
     this.correctHashedUrl();
-  },
-  beforeDestroy() {
-    this.$refs.blogBody.removeEventListener('scroll', this.scrollDebounced);
-    // 切换到其他组件前，通知所有观察者停止响应
-    this.$bus.$emit('mainScroll');  // 若不传 dom 参数，则不执行 mainScroll 回调
-
-    this.$bus.$off('backToTop', this.handleBackToTop);
   },
 }
 </script>

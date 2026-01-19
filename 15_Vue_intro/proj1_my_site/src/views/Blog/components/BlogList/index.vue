@@ -10,13 +10,12 @@
 <script>
 import BlogCard from './BlogCard';
 import Pager from '@/components/Pager';
-import { fetchRemoteData } from '@/mixins';
+import { fetchRemoteData, mainScroll } from '@/mixins';
 import { getBlogs } from '@/api/blog';
-import { debounce } from '@/utils';
 
 export default {
   name: 'BlogList',
-  mixins: [fetchRemoteData([])],
+  mixins: [fetchRemoteData([]), mainScroll('blogList')],
   components: {
     BlogCard,
     Pager,
@@ -48,30 +47,7 @@ export default {
       await this.refreshData();
     }
   },
-  mounted() {
-    this.scrollDebounced = debounce(this.handleScroll, 50);
-    this.$refs.blogList.addEventListener('scroll', this.scrollDebounced);
-
-    this.$bus.$on('backToTop', this.handleBackToTop);
-  },
-  beforeDestroy() {
-    this.$refs.blogList.removeEventListener('scroll', this.scrollDebounced);
-    // 切换到其他组件前，通知所有观察者停止响应
-    this.$bus.$emit('mainScroll');  // 若不传 dom 参数，则不执行 mainScroll 回调
-
-    this.$bus.$off('backToTop', this.handleBackToTop);
-  },
   methods: {
-    handleBackToTop(top) {
-      // console.log('blog list back to top');
-      this.$refs.blogList.scrollTop = top;
-    },
-    handleScroll() {
-      this.$bus.$emit('mainScroll', this.$refs.blogList);
-    },
-    checkVisibility(dom) {
-      this.visible = (!dom) ? false : (dom.scrollTop >= this.offset);
-    },
     async getRemoteData() {
       const {page, limit, cid} = this.routeInfo;
       this.current = this.routeInfo.page;
