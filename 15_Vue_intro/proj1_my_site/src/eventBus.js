@@ -14,7 +14,7 @@ const bus = {};
  *   - 事件名：backToTop
  *   - $emit 回调参数：targetTop（指定滚动条到达的最终位置）
  */
-Vue.prototype.$bus = {
+const eventBus = {
   $on(eventName, handler) {
     if(!bus[eventName]) {
       bus[eventName] = new Set();
@@ -35,6 +35,10 @@ Vue.prototype.$bus = {
     }
   }
 };
+
+Vue.prototype.$bus = eventBus;
+
+export default eventBus;
 
 ///////////////////////////////////////////////////////
 // import Vue from 'vue';

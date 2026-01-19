@@ -79,6 +79,5 @@ export default {
   & > .icon-container {
     font-size: 2em;
   }
-  
 }
 </style>

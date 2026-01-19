@@ -97,3 +97,33 @@ methods: {
 设置 `ToTop` 定位时误用 `fixed`，让目录部分多出一截滚动条。改为 `absolute` 解决问题。
 
 实现 `ToTop` 组件功能后，事件总线相关逻辑大量冗余，亟待重构（下节内容，详见分支 `L29_eventBus_mixin`）。
+
+首次尝试补全 `ToTop` 预览组件 `preview.vue` 失败：启动 `vue serve path/to/preview.vue` 命令后，`Vue` 实例一直无法绑定 `$bus` 属性；后经 `DeepSeek` 提示，可以在 `beforeCreate` 钩子中为预览组件及其依赖子组件分别手动注册实例属性 `$bus`：
+
+```js
+// src/components/ToTop/previewMixin.js
+
+import eventBus from "@/eventBus";
+export default {
+  // 在 beforeCreate 中挂载到所有子组件
+  beforeCreate() {
+    // 挂载到当前组件实例
+    this.$bus = eventBus;
+
+    // 确保所有子组件都能访问
+    this.$options.components.ToTop.beforeCreate = function () {
+      this.$bus = eventBus;
+    };
+    this.$options.components.LongPage.beforeCreate = function () {
+      this.$bus = eventBus;
+    };
+  },
+  mounted() {
+    console.log("Preview EventBus:", this.$bus); // 现在应该能正常访问
+  },
+};
+```
+
+预览效果：
+
+![](../assets/29.3.png)
