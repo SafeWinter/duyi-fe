@@ -45,14 +45,14 @@ export default {
   },
   created(){
     // window.getMoreData = this.getMoreData; // for debugging
-    this.$bus.$on('mainScroll', this.handleMainScroll)
+    this.$bus.$on('mainScroll', this.loadMoreComments)
   },
   beforeDestroy(){
-    this.$bus.$off('mainScroll', this.handleMainScroll)
+    this.$bus.$off('mainScroll', this.loadMoreComments)
   },
   methods: {
-    async handleMainScroll(main){
-      if(this.loading) {
+    async loadMoreComments(main){
+      if(this.loading || !main) {
         return;
       }
       const dist = Math.abs(main.scrollHeight - main.scrollTop - main.clientHeight);

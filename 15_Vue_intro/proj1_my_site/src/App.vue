@@ -10,18 +10,28 @@
         <router-view />
       </template>
     </Layout>
+    <to-top :siez="size" :offset="offset"/>
   </div>
 </template>
 
 <script>
 import Layout from '@/components/Layout';
 import SiteAside from '@/components/SiteAside';
+import ToTop from '@/components/ToTop';
+
 export default {
   name: 'App',
   components: {
     Layout,
-    SiteAside
+    SiteAside,
+    ToTop
   },
+  data() {
+    return {
+      size: 70,
+      offset: 200
+    }
+  }
 }
 </script>
 
@@ -32,7 +42,7 @@ export default {
 
 .app-container {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: row;
   .centered();
@@ -47,6 +57,10 @@ export default {
     height: 100%;
     background-color: @gray;
     overflow: hidden;
+  }
+
+  & .to-top-container {
+    position: absolute;
   }
 }
 </style>

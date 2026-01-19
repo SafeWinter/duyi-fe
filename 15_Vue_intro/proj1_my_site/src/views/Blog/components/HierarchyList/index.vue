@@ -2,6 +2,7 @@
   <ul class="hierachy-list-container">
     <li v-for="item in data" :key="item.id">
       <span 
+        class="label"
         :class="{active: item.id === currId}" 
         @click="clickLabel(item)"
       >
@@ -59,6 +60,16 @@ export default {
     min-height: 40px;
     line-height: 40px;
     cursor: pointer;
+    
+    & > .label {
+      width: 100%;
+      height: 100%;
+      display: block;
+      &:hover {
+        background-color: lighten(@primary, 25%);
+        border-radius: 0.25em;
+      }
+    }
 
     & .active, & .stats.active {
       color: @warn;

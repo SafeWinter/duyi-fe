@@ -4,23 +4,24 @@
 
 <script>
 const classMap = new Map([
-  ["home", "iconzhuye"],
-  ["success", "iconzhengque"],
-  ["error", "iconcuowu"],
-  ["close", "iconguanbi"],
-  ["warn", "iconjinggao"],
-  ["info", "iconxinxi"],
-  ["blog", "iconblog"],
-  ["code", "iconcode"],
-  ["about", "iconset_about_hov"],
-  ["weixin", "iconweixin"],
-  ["mail", "iconemail"],
-  ["github", "icongithub"],
-  ["qq", "iconsign_qq"],
-  ["arrowUp", "iconiconfonticonfonti2copy"],
-  ["arrowDown", "iconiconfonticonfonti2"],
-  ["empty", "iconempty"],
-  ["chat", "iconliuyan"],
+  ["home", "icon-home"],
+  ["success", "icon-success"],
+  ["error", "icon-error"],
+  ["close", "icon-close"],
+  ["warn", "icon-warn"],
+  ["info", "icon-info"],
+  ["blog", "icon-blog"],
+  ["code", "icon-code"],
+  ["about", "icon-about"],
+  ["weixin", "icon-wechat"],
+  ["mail", "icon-mail"],
+  ["github", "icon-github"],
+  ["qq", "icon-qq"],
+  ["arrowUp", "icon-up"],
+  ["arrowDown", "icon-down"],
+  ["empty", "icon-empty"],
+  ["chat", "icon-chat"],
+  ["toTop", "icon-to-top"],
 ]);
 
 export const types = [...classMap.keys()];
@@ -41,5 +42,6 @@ export default {
 };
 </script>
 <style>
-@import "//at.alicdn.com/t/font_2164449_nalfgtq7il.css";
+/* @import "//at.alicdn.com/t/font_2164449_nalfgtq7il.css"; // original Duyi icons */
+@import "//at.alicdn.com/t/c/font_5112736_as9xsfpfolg.css"; /* custom my-site icons */
 </style>

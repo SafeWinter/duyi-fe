@@ -15,7 +15,7 @@
 
 图标组件
 
-使用的图标源来自于「阿里巴巴矢量库」
+使用的图标源来自于「[阿里巴巴矢量库](https://www.iconfont.cn/)」
 
 ## 属性
 
@@ -23,9 +23,11 @@
 | ------ | -------- | -------- | ---- | ------ |
 | `type` | 图标类型 | `String` | 是   | 无     |
 
-有效的图标类型：
+有效的图标类型（通过预览组件 `IconPreview` 渲染）：
 
-<img src="../../../assets/8.3.png" alt="iShot2020-11-30下午03.47.09" style="zoom:80%;" />
+<img src="../../../assets/8.3.png" alt="image-20260119123214272" style="zoom:90%;" />
+
+
 
 # Pager
 
@@ -254,6 +256,68 @@ DIY：该组件已改造为由若干个 `ContactItem` 组件构成。
 ```
 
 
+
+# ToTop
+
+用于在博文列表页和详情页内容较长时，通过点击右下角的圆形标记快速返回页面顶部：
+
+![ToTop component preview](../../../assets/29.2.png)
+
+## 属性
+
+| 属性名   | 含义                                   | 类型     | 必填 | 默认值        |
+| -------- | -------------------------------------- | -------- | ---- | ------------- |
+| `offset` | 滚动条滚动到显示该标记的最小页面偏移量 | `Number` | 否   | `500`（像素） |
+| `size`   | 标记的尺寸大小                         | `Number` | 否   | `50`（像素）  |
+| `title`  | 鼠标悬停时显示的提示内容               | `String` | 否   | `"回到顶部"`  |
+
+## 用法
+
+使用该组件时，必须实现两个处理逻辑：
+
+- 在组件内部注册一个点击事件（`backToTop`），并通过【事件总线】触发一个返回顶部的自定义事件；该自定义事件须携带一个 `scrollTop` 值，用于设置目标组件滚轮的最终位置，只要该组件侦听了 `backToTop` 事件；
+- 此外，还需要侦听【事件总线】上的滚轮滚动事件（`mainScroll`），用于检测该组件是否渲染到所有的目标观察者容器内（超过最小偏移量即显示）。
+
+例如：
+
+```vue
+<template>
+  <div class="box">
+    <to-top :siez="size" :offset="offset"/>
+  </div>
+</template>
+<script>
+// 父组件：
+import ToTop from '@/components/ToTop';
+export default {
+  components: {
+    ToTop
+  },
+  data() {
+    return {
+      size: 70,
+      offset: 200
+    }
+  },
+}
+    
+// 子组件：
+methods: {
+  checkVisibility(dom) {
+    this.visible = (!dom) ? false : (dom.scrollTop >= this.offset);
+  },
+  backToTop() {
+    this.$bus.$emit('backToTop', 0);
+  }
+},
+mounted() {
+  this.$bus.$on('mainScroll', this.checkVisibility);
+},
+beforeDestroy() {
+  this.$bus.$off('mainScroll', this.checkVisibility);
+},    
+</script>
+```
 
 
 

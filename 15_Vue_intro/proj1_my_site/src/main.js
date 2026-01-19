@@ -9,8 +9,7 @@ import '@/mock';
 import vLoading from './directives/loading';
 Vue.directive('loading', vLoading);
 
-import eventBus from './eventBus.js';
-Vue.prototype.$bus = eventBus;
+import './eventBus.js';
 
 new Vue({
   router,

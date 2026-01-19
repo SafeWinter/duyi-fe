@@ -32,9 +32,17 @@ export default {
         count: d.articleCount
       }));
       return [{id: -1, label: '全部', count}].concat(renamedData);
-    },
-    currId() {
-      return this.$route.params.categoryId || -1;
+    }
+  },
+  data(){
+    return {
+      // Debug: 不能写到计算属性，后续会根据选中的目录树 id 更新这个值
+      currId: this.$route.params.categoryId || -1
+    }
+  },
+  watch: {
+    '$route'(){
+      this.currId = this.$route.params.categoryId || -1;
     }
   },
   methods: {
@@ -42,6 +50,9 @@ export default {
       return await getBlogCategories();
     },
     async handleSelected({ id }) {
+      if(this.currId === id) {
+        return;
+      }
       this.currId = id;
       // console.log('当前分类：', label);
       const limit = +this.$route.query.limit || 10;

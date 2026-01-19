@@ -57,25 +57,38 @@ export default {
         location.hash = hash;
       }, 3000); // 超过请求的最大延迟即可
     },
+    handleBackToTop(top) {
+      // console.log('detail back to top ...');
+      this.$refs.blogBody.scrollTop = top;
+    }
   },
   mounted() {
     this.scrollDebounced = debounce(this.handleScroll, 50);
     this.$refs.blogBody.addEventListener('scroll', this.scrollDebounced);
 
+    this.$bus.$on('backToTop', this.handleBackToTop);
+
     this.correctHashedUrl();
   },
   beforeDestroy() {
     this.$refs.blogBody.removeEventListener('scroll', this.scrollDebounced);
+    // 切换到其他组件前，通知所有观察者停止响应
+    this.$bus.$emit('mainScroll');  // 若不传 dom 参数，则不执行 mainScroll 回调
+
+    this.$bus.$off('backToTop', this.handleBackToTop);
   },
 }
 </script>
 
 <style lang="less" scoped>
+* {
+  box-sizing: border-box;
+}
 .body-container, .toc-container{
+  position: relative;
   height: 100%;
   overflow-y: auto;
   scroll-behavior: smooth;
-  position: relative;
 }
 .toc-container {
   width: 300px;

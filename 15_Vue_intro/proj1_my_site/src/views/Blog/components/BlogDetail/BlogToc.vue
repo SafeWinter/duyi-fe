@@ -49,17 +49,20 @@ export default {
     };
   },
   mounted() {
-    this.$bus.$on('mainScroll', this.checkActive);
+    this.$bus.$on('mainScroll', this.trackHighlightedTocNode);
   },
   beforeDestroy() {
-    this.$bus.$off('mainScroll', this.checkActive);
+    this.$bus.$off('mainScroll', this.trackHighlightedTocNode);
   },
   methods: {
     handleClick({ id }){
       this.currId = id;
       location.hash = id;
     },
-    checkActive() {
+    trackHighlightedTocNode(dom) {
+      if(!dom) {
+        return;
+      }
       for(let i = 0, len = this.bookMarks.length; i < len; i++) {
         const elem = this.bookMarks[i];
         const { top } = elem.getBoundingClientRect();
