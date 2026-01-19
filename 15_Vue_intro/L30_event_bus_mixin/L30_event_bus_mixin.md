@@ -59,4 +59,33 @@ export default function(refName) {
 
 ## 2 实战备忘
 
-本想趁更新图标库的契机补全 `ToTop` 组件的预览版 `ToTop/preview.vue`，结果使用 `vue serve` 命令始终无法在 `Vue` 示例上成功注册 `$bus` 对象（始终报 `undefined`）。测试到中途不得不暂时搁置。
+本想趁更新图标库的契机补全 `ToTop` 组件的预览版 `ToTop/preview.vue`，结果使用 `vue serve` 命令始终无法在 `Vue` 示例上成功注册 `$bus` 对象（始终报 `undefined`）。后经 `DeepSeek` 帮助，在 `beforeCreate` 钩子完成预览组件及其所有子组件的手动绑定，测试成功：
+
+```js
+// DeepSeek 2026-01-19: 
+// 为预览环境单独创建事件总线
+import eventBus from "@/eventBus";
+
+export default {
+  // 在 beforeCreate 中挂载到所有子组件
+  beforeCreate() {
+    // 挂载到当前组件实例
+    this.$bus = eventBus;
+
+    // 确保所有子组件都能访问
+    // version 1:
+    this.$options.components.ToTop.beforeCreate = function () {
+      this.$bus = eventBus;
+    };
+    this.$options.components.LongPage.beforeCreate = function () {
+      this.$bus = eventBus;
+    };
+  },
+  mounted() {
+    console.log("Preview EventBus:", this.$bus); // 现在应该能正常访问
+  },
+};
+```
+
+（实测效果图详见 `L29_eventBus_mixin` 分支下 `L29` 课笔记）
+
