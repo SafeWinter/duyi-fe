@@ -42,9 +42,9 @@ Mock.mock(/^\/api\/blog(\?.+)?$/, 'get', function (options) {
           },
           'scanNumber|0-3000': 0,
           'commentNumber|0-300': 0,
-          'thumb|1': [
-            Mock.Random.image('300x250', '#2f424ee1', '#FFF', 'Demo Image'),
-            Mock.Random.image('300x250', '#2f424ee1', '#FFF', 'Demo Image'),
+          'thumb|1': [`@image('300x250', '#2f424ee1', '#FFF', '@ctitle')`,
+            `@image('300x250', '#2f424ee1', '#FFF', '@ctitle')`,
+            `@image('300x250', '#2f424ee1', '#FFF', '@ctitle')`,
             null
           ],
           // [`createDate|${startDate}-${endDate}`]: 0

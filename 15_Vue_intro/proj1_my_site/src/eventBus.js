@@ -14,8 +14,11 @@ const bus = {};
  *   - 事件名：backToTop
  *   - $emit 回调参数：targetTop（指定滚动条到达的最终位置）
  */
-Vue.prototype.$bus = {
-  $on(eventName, handler) {
+const eventBus = {
+  $on(eventName, handler, name) {
+    if(handler && name) {
+      handler.desc = name;
+    }
     if(!bus[eventName]) {
       bus[eventName] = new Set();
     }
@@ -33,9 +36,23 @@ Vue.prototype.$bus = {
     for(const handler of bus[eventName]) {
       handler(...args);
     }
+  },
+  // 临时查看自定义指令 v-lazy 已注册的 handler 来源
+  $view(eventName) {
+    if(!bus[eventName] || !(bus[eventName] instanceof Set)) {
+      console.error(`Invalid event name: '${eventName}'`);
+      return;
+    }
+    const withDesc = Array.from(bus[eventName])
+      .filter(handler => (!!handler.desc));
+    withDesc && withDesc.forEach(({desc}, i, arr) => 
+      console.log(`Source(${i+1}/${arr.length}): ${desc}`))
   }
 };
 
+Vue.prototype.$bus = eventBus;
+
+export default eventBus;
 ///////////////////////////////////////////////////////
 // import Vue from 'vue';
 

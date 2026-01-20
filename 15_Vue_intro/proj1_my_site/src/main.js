@@ -9,6 +9,17 @@ import '@/mock';
 import vLoading from './directives/loading';
 Vue.directive('loading', vLoading);
 
+import vLazy from './directives/lazy';
+if(vLazy.timer) {
+  // for debug:
+  let {timer} = vLazy;
+  console.log('timer is still running');
+  clearInterval(timer);
+  timer = void(0);
+  console.log('timer stopped')
+}
+Vue.directive('lazy', vLazy);
+
 import './eventBus.js';
 
 new Vue({

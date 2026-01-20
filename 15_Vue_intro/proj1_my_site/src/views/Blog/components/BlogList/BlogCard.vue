@@ -1,6 +1,6 @@
 <template>
   <figure class="blog-card-container">
-    <div class="cover" v-if="data.thumb != null">
+    <div class="cover">
       <router-link 
         class="link" 
         :to="{
@@ -9,10 +9,12 @@
             id: data.id
           }
         }">
-        <img class="thumb" 
-          :src="data.thumb"
+        <img v-if="data.thumb != null" 
+          class="thumb" 
+          v-lazy:[imgHeight]="data.thumb"
           :alt="data.title"
         />
+        <Empty v-else :text="'暂无图片'" />
       </router-link>
     </div>
     <figcaption class="content" :class="{ 'plain-txt': !data.thumb }">
@@ -50,6 +52,7 @@
 
 <script>
 import thumb from "@/assets/demo_cover.png";
+import Empty from '@/components/Empty';
 import { formatDate } from "@/utils";
 
 const defaults = {
@@ -68,11 +71,19 @@ const defaults = {
 
 export default {
   name: "BlogCard",
+  components: {
+    Empty
+  },
   props: {
     data: {
       type: Object,
       default: () => ({...defaults}),
     },
+  },
+  data(){
+    return {
+      imgHeight: 180
+    }
   },
   methods: {
     formatDate
@@ -102,6 +113,7 @@ export default {
     border-radius: 0.375em;
     margin-inline-end: 1.5em;
     height: 100%;
+    position: relative;
 
     & .thumb {
       height: 100%;
