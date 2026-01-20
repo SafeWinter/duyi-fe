@@ -75,14 +75,14 @@ export default {
       console.log('restart timer');
       timer = setInterval(() => console.log(imgs), 2000);
     }
-    const {value, arg: height} = binding;
+    const {src, height} = binding.value;
     const elem = {
       dom: el,
-      src: value
+      src
     };
     imgs.push(elem);
     // 初始加载时，不等滑屏立即判定一次
-    setImage(elem, +height);
+    setImage(elem, height);
   },
   timer
 }

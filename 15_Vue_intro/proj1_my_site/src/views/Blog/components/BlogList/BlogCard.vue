@@ -11,7 +11,7 @@
         }">
         <img v-if="data.thumb != null" 
           class="thumb" 
-          v-lazy:[imgHeight]="data.thumb"
+          v-lazy="getConfig(data.thumb)"
           :alt="data.title"
         />
         <Empty v-else :text="'暂无图片'" />
@@ -82,11 +82,17 @@ export default {
   },
   data(){
     return {
-      imgHeight: 180
+      height: 180
     }
   },
   methods: {
-    formatDate
+    formatDate,
+    getConfig(src) {
+      return {
+        src,
+        height: this.height
+      }
+    },
   },
 };
 </script>
