@@ -12,7 +12,7 @@
 
 `img` 图片元素在视口范围内的判定条件逻辑是：`top` 值必须在闭区间 `[-height, clientHeight]` 内：
 
-![](../assets/31.2.png)
+![](https://raw.githubusercontent.com/SafeWinter/test-imgbed/main/duyi_fe/31.2.png)
 
 > [!note]
 >
@@ -105,7 +105,7 @@
 
 - 最终效果：
 
-  ![](../assets/31.4.png)
+  ![](https://raw.githubusercontent.com/SafeWinter/test-imgbed/main/duyi_fe/31.4.png)
 
 本次实测还用到了事件总线中的 `mainScroll` 事件回调。由于担心在组件中多次使用自定义指令会重复注册多个 `mainScroll`，就在 `eventBus` 模块扩展了一个 `$view(eventName)` 方法，并将原来的侦听方法 `$on(eventName, handler)` 改为了 `$on(eventName, handler, name)`，目的是给 `v-lazy` 指令注册的 `mainScroll` 做个标记：
 
@@ -134,11 +134,11 @@ const eventBus = {
 
 这样只要调用 `eventBus.$view('mainScroll')` 就能看到所有通过 `v-lazy` 注册的回调逻辑。实测发现，这类回调只新增了一次：**因为 z-lazy 是通过 Vue 全局安装的，在 main.js 中只引入了一次**：
 
-![](../assets/31.3.png)
+![](https://raw.githubusercontent.com/SafeWinter/test-imgbed/main/duyi_fe/31.3.png)
 
 此外，文章列表页在当前页懒加载全部结束后（**阶段①**），如果从分页组件切换到一个新的页面，会先后触发自定义指令中的三个钩子函数：`bind`、`unbind` 和 `inserted`，具体触发时机监控如下：
 
-![](../assets/31.1.png)
+![](https://raw.githubusercontent.com/SafeWinter/test-imgbed/main/duyi_fe/31.1.png)
 
 这表明 `Vue 2.x` 中的自定义指令，其元素更新时的处理顺序是：先绑定新元素 :arrow_right: 再解绑旧元素 :arrow_right: 最后渲染出新元素。
 

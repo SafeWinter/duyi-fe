@@ -1,6 +1,6 @@
 # Avatar
 
-<img src="../../../assets/8.1.png" alt="image-20201130153821293" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/SafeWinter/test-imgbed/main/duyi_fe/8.1.png" style="zoom:50%;" />
 
 ## 属性
 
@@ -11,7 +11,7 @@
 
 # Icon
 
-<img src="../../../assets/8.2.png" alt="image-20201130153927256" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/SafeWinter/test-imgbed/main/duyi_fe/8.2.png" style="zoom:50%;" />
 
 图标组件
 
@@ -25,13 +25,13 @@
 
 有效的图标类型（通过预览组件 `IconPreview` 渲染）：
 
-<img src="../../../assets/8.3.png" alt="image-20260119123214272" style="zoom:90%;" />
+<img src="https://raw.githubusercontent.com/SafeWinter/test-imgbed/main/duyi_fe/8.3.png" style="zoom:90%;" />
 
 
 
 # Pager
 
-<img src="../../../assets/8.4.png" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/SafeWinter/test-imgbed/main/duyi_fe/8.4.png" style="zoom:50%;" />
 
 ## 属性
 
@@ -52,7 +52,7 @@
 
 # Empty
 
-<img src="../../../assets/9.1.png" alt="image-20201130165011681" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/SafeWinter/test-imgbed/main/duyi_fe/9.1.png" style="zoom:50%;" />
 
 该组件需要在外层容器中横向垂直居中
 
@@ -66,7 +66,7 @@
 
 该组件可以实现一个渐进式图片
 
-![](../../../assets/9.2.gif)
+![](https://raw.githubusercontent.com/SafeWinter/test-imgbed/main/duyi_fe/9.2.gif)
 
 ## 属性
 
@@ -95,7 +95,7 @@
 
 # Contact
 
-<img src="../../../assets/9.4.gif" alt="iShot2020-11-30下午04.55.47" style="zoom:40%;" />
+<img src="https://raw.githubusercontent.com/SafeWinter/test-imgbed/main/duyi_fe/9.4.gif" style="zoom:40%;" />
 
 该组件需要横向撑满容器，背景色透明。
 
@@ -124,13 +124,13 @@ DIY：该组件已改造为由若干个 `ContactItem` 组件构成。
 
 实测效果：
 
-![](../../../assets/9.3.png)
+![](https://raw.githubusercontent.com/SafeWinter/test-imgbed/main/duyi_fe/9.3.png)
 
 经调整，`ContactItem` 组件已放入 `Contact` 文件夹中，以进一步明确依赖关系。
 
 # Menu
 
-<img src="../../../assets/9.5.png" alt="image-20201130195147086" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/SafeWinter/test-imgbed/main/duyi_fe/9.5.png" style="zoom:50%;" />
 
 该组件需要横向撑满容器，背景色透明
 
@@ -168,7 +168,7 @@ DIY：该组件已改造为由若干个 `ContactItem` 组件构成。
 
 # SiteAside
 
-<img src="../../../assets/9.6.png" alt="image-20201130200148681" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/SafeWinter/test-imgbed/main/duyi_fe/9.6.png" style="zoom:50%;" />
 
 网站侧边栏。
 
@@ -198,7 +198,7 @@ DIY：该组件已改造为由若干个 `ContactItem` 组件构成。
 </Layout>
 ```
 
-<img src="../../../assets/10.3.png" alt="image-20201202154014492" style="zoom:40%;" />
+<img src="https://raw.githubusercontent.com/SafeWinter/test-imgbed/main/duyi_fe/10.3.png" style="zoom:40%;" />
 
 ## 插槽
 
@@ -229,7 +229,7 @@ DIY：该组件已改造为由若干个 `ContactItem` 组件构成。
 
 消息区域组件，可用于「评论区」和「留言板」
 
-![preview for the MessageArea component](../../../assets/26.1.png)
+<img src="https://raw.githubusercontent.com/SafeWinter/test-imgbed/main/duyi_fe/26.1.png" style="zoom:40%;" />
 
 ## 属性
 
@@ -261,7 +261,7 @@ DIY：该组件已改造为由若干个 `ContactItem` 组件构成。
 
 用于在博文列表页和详情页内容较长时，通过点击右下角的圆形标记快速返回页面顶部：
 
-![ToTop component preview](../../../assets/29.2.png)
+![ToTop component preview](https://raw.githubusercontent.com/SafeWinter/test-imgbed/main/duyi_fe/29.2.png)
 
 ## 属性
 

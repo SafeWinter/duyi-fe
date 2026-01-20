@@ -8,7 +8,7 @@
 
 触底加载增量数据的原理图如下：
 
-![bottom loading principles](../assets/29.1.png)
+![bottom loading principles](https://raw.githubusercontent.com/SafeWinter/test-imgbed/main/duyi_fe/29.1.png)
 
 触底判定：`scrollHeight - (scrollTop + clientHeight)` 的绝对值在最大误差距离内（如 `100px`），即可判为【触底】。
 
@@ -64,7 +64,7 @@ methods: {
 
 实测时重新设计了 `ToTop` 组件，引入全新的图标并更新了自己的图标库（最后一个）：
 
-![](../assets/8.3.png)
+![](https://raw.githubusercontent.com/SafeWinter/test-imgbed/main/duyi_fe/8.3.png)
 
 该组件有两个主要功能：
 
