@@ -323,3 +323,24 @@ declare module 'vuex' {
 `mapState`、`mapGetters`、`mapMutations`、`mapActions` 都是为了快速将 `store` 中的对应要素注入到组件中（前两个是注入 `computed` 中、后两个是注入 `methods` 中）。
 
 模块的写法和项目结构组织可以参考官方给出的 [购物车示例](https://github.com/vuejs/vuex/tree/3.x/examples/shopping-cart)。此外还有其他 [示例](https://github.com/vuejs/vuex/tree/3.x/examples) 可供学习参考。
+
+
+
+> [!important]
+>
+> **关于子模块 state 的写法**
+>
+> 子模块中的 `state` 为了避免对象属性被污染，应该写成 **函数形式**。官方文档摘录如下：
+>
+> > 如果我们使用一个纯对象来声明模块的 `state` 状态，那么这个状态对象会通过引用被共享，导致状态对象被修改时 `store` 或模块间数据互相污染的问题。
+> >
+> > 实际上这和 Vue 组件内的 `data` 是同样的问题。因此解决办法也是相同的——使用一个函数来声明模块状态（仅 2.3.0+ 支持）：
+> >
+> > ```js
+> > const MyReusableModule = {
+> >   state: () => ({
+> >     foo: 'bar'
+> >   }),
+> >   // mutation、action 和 getter 等等...
+> > }
+> > ```
