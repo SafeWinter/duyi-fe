@@ -298,3 +298,28 @@ declare module 'vuex' {
 ![](../assets/32.10.png)
 
 具体代码详见 `15_Vue_intro/proj2_data_share/`。
+
+
+
+## 6 官网拾遗
+
+`Vuex 3.x` 官网：[https://v3.vuex.vuejs.org/zh/](https://v3.vuex.vuejs.org/zh/)
+
+> [!note]
+>
+> **关于 Vuex 版本的兼容问题**
+>
+> [简介中](https://v3.vuex.vuejs.org/zh/guide/#%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84-store) 提到一个【[最基本的 Vuex 记数应用](https://jsfiddle.net/n9jmu5v7/1269/)】，下载到本地发现是一个 `HTML` 页面。正常运行效果需要补充两个 `CDN`：
+>
+> ```html
+> <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+> <script src="https://unpkg.com/vuex@3/dist/vuex.js"></script>
+> ```
+>
+> 如果引入 `Vuex 4.x`，则 `this.$store` 无法使用，结果始终为 `undefined`。
+
+
+
+`mapState`、`mapGetters`、`mapMutations`、`mapActions` 都是为了快速将 `store` 中的对应要素注入到组件中（前两个是注入 `computed` 中、后两个是注入 `methods` 中）。
+
+模块的写法和项目结构组织可以参考官方给出的 [购物车示例](https://github.com/vuejs/vuex/tree/3.x/examples/shopping-cart)。此外还有其他 [示例](https://github.com/vuejs/vuex/tree/3.x/examples) 可供学习参考。
