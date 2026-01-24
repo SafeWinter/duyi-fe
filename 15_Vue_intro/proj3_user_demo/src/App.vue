@@ -3,6 +3,8 @@
     <div id="nav">
       <router-link to="/">Home</router-link>
       |
+      <router-link to="/news">News</router-link>
+      |
       <user-name />
     </div>
     <main class="content">

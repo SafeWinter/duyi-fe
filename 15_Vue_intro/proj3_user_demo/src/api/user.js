@@ -15,7 +15,7 @@ export async function login(loginId, loginPwd) {
   }
   const user = {
     loginId,
-    name: "管理员",
+    name: "Admin",
   };
   localStorage.setItem("user", JSON.stringify(user));
   return user;

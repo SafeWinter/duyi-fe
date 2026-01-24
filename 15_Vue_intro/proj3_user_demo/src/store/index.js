@@ -1,15 +1,18 @@
 import Vue from 'vue'
-import Vuex from 'vuex'
+import {default as Vuex} from 'vuex'
+import user from './user';
+import counter from './counter';
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
+const store = new Vuex.Store({
+  strict: true,
   modules: {
+    user,
+    counter
   }
-})
+});
+
+window.store = store;  // for debugging
+
+export default store;

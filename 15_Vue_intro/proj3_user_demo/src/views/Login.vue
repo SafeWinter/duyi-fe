@@ -17,17 +17,36 @@
   </form>
 </template>
 <script>
+import {mapState} from 'vuex';
+
 export default {
+  computed: {
+    ...mapState({
+      loading: state => state.user.loading
+    })
+  },
   data() {
     return {
       loginId: "",
       loginPwd: "",
-      loading: false,
     };
   },
   methods: {
-    handleSubmit() {
-      console.log("登录", this.loginId, this.loginPwd);
+    async handleSubmit() {
+      // console.log("登录", this.loginId, this.loginPwd);
+      const user = await this.$store.dispatch('user/login', {
+        loginId: this.loginId,
+        loginPwd: this.loginPwd
+      });
+      if(!user) {
+        this.loginId = '';
+        this.loginPwd = '';
+        this.$nextTick(() => 
+          alert('用户名或密码不正确，请重新登录！'));
+      } else {
+        const path = this.$route.query.returnurl || '/';
+        this.$router.push(path);
+      }
     },
   },
 };
