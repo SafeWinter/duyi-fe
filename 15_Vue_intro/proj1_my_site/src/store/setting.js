@@ -1,4 +1,5 @@
 import { getSetting } from "../api/setting";
+import { titleMaker } from '../utils';
 
 export default {
   namespaced: true,
@@ -59,6 +60,10 @@ export default {
         link.rel = 'shortcut icon';
         link.href = data.favicon;
         document.querySelector('head').appendChild(link);
+      }
+
+      if(data.siteTitle) {
+        titleMaker.setSiteTitle(data.siteTitle);
       }
     },
   },

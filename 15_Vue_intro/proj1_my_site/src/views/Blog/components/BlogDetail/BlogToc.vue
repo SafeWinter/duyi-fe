@@ -63,7 +63,8 @@ export default {
       if(!dom) {
         return;
       }
-      for(const elem of this.bookMarks) {
+      for(let i = 0, len = this.bookMarks.length; i < len; i++) {
+        const elem = this.bookMarks[i];
         const { top } = elem.getBoundingClientRect();
         const id = elem.id;
 

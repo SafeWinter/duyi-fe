@@ -29,7 +29,7 @@
 
 <script>
 import BlogComment from "./BlogComment";
-import { formatDate } from "@/utils";
+import { formatDate, titleMaker } from "@/utils";
 import "highlight.js/styles/googlecode.css";
 import '@/styles/markdown.less';
 
@@ -47,6 +47,11 @@ export default {
       required: true,
     },
   },
+  created() {
+    if(this.data.title) {
+      titleMaker.setRouteTitle(this.data.title);
+    }
+  }
 };
 </script>
 
