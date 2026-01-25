@@ -30,7 +30,7 @@ function setImage(elem, height, defaultSrc = imgDefault) {
       imgs = removeFromCache(elem);  // DIY 优化：预加载成功后再移除
     };
     tempImg.onerror = function() {
-      console.error('图片加载失败:', elem.src);
+      // console.error('图片加载失败:', elem.src);
       // 可以设置一个错误占位图
       elem.dom.src = defaultSrc;
     };
@@ -44,9 +44,9 @@ function setImages() {
     if(timer) {
       clearInterval(timer);
       timer = undefined;
-      console.log('所有图片已加载完毕!');
-      console.log('事件总线注册情况：');
-      eventBus.$view('mainScroll');
+      // console.log('所有图片已加载完毕!');
+      // console.log('事件总线注册情况：');
+      // eventBus.$view('mainScroll');
     }
     return;
   }
@@ -58,11 +58,11 @@ eventBus.$on('mainScroll', debounce(setImages, 50), 'from lazy directive');
 
 export default {
   bind() {
-    console.log('from bind', Date.now());
+    // console.log('from bind', Date.now());
   },
   unbind(el) {
     // 从当前组件切走后，随即移除该元素
-    console.log('from: unbind', Date.now());
+    // console.log('from: unbind', Date.now());
     if(timer) {
       clearInterval(timer);
       timer = undefined;
@@ -70,9 +70,9 @@ export default {
     imgs = removeFromCache({dom: el});
   },
   inserted(el, binding) {
-    console.log('from: inserted', Date.now());
+    // console.log('from: inserted', Date.now());
     if(!timer) {
-      console.log('restart timer');
+      // console.log('restart timer');
       timer = setInterval(() => console.log(imgs), 2000);
     }
     const {value, arg: height} = binding;

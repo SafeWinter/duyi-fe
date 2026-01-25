@@ -5,20 +5,18 @@
 </template>
 
 <script>
-import { getBanner } from "@/api/banner";
 import CarouselList from "./CarouselList.vue";
-import { fetchRemoteData } from '@/mixins';
+import { mapState } from "vuex";
 
 export default {
   components: {
     CarouselList,
   },
-  mixins: [fetchRemoteData([])],
-  methods: {
-    async getRemoteData() {
-      // within mixin: this.data = await this.getRemoteData();
-      return await getBanner();
-    }
+  computed: {
+    ...mapState('banner', ['loading', 'data']),
+  },
+  created() {
+    this.$store.dispatch('banner/fetchBanner')
   }
 };
 </script>

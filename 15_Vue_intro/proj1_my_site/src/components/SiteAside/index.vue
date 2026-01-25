@@ -1,7 +1,7 @@
 <template>
   <aside class="site-aside-container">
     <header>
-      <Avatar :url="url"/>
+      <Avatar :url="url" />
       <h1 class="site-title">{{ title }}</h1>
     </header>
     <main>
@@ -9,35 +9,37 @@
       <Contact />
     </main>
     <footer>
-      <p>黑ICP备17001719号</p>
+      <p>{{ icp }}</p>
     </footer>
   </aside>
 </template>
 
 <script>
-import Avatar from '@/components/Avatar';
-import Menu from '@/components/SiteAside/Menu';
-import Contact from '@/components/SiteAside/Contact';
+import Avatar from "@/components/Avatar";
+import Menu from "@/components/SiteAside/Menu";
+import Contact from "@/components/SiteAside/Contact";
+import { mapState } from "vuex";
 
 export default {
-  name: 'SiteAside',
+  name: "SiteAside",
   components: {
     Avatar,
     Menu,
-    Contact
+    Contact,
   },
-  data() {
-    return {
-      url: 'http://mdrs.yuanjin.tech/FgMwAPYq17So9nwVH44ltDHo7u3c',
-      title: '龙傲天的小窝',
-    };
-  }
-}
+  computed: {
+    ...mapState("setting", {
+      url: ({data}) => data && data.avatar,
+      title: ({data}) => data && data.siteTitle,
+      icp: ({data}) => data && data.icp,
+    }),
+  },
+};
 </script>
 
 <style scoped lang="less">
-@import '~@/styles/global.less';
-@import '~@/styles/variables.less';
+@import "~@/styles/global.less";
+@import "~@/styles/variables.less";
 .site-aside-container {
   height: 100%;
   padding-block: 1.5em;

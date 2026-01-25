@@ -22,10 +22,15 @@ Vue.directive('lazy', vLazy);
 
 import './eventBus.js';
 
-new Vue({
-  router,
-  render: h => h(App),
-}).$mount('#app');
+import store from './store';
+store.dispatch('setting/fetchSetting')
+  .then(data => {
+    new Vue({
+      router,
+      store,
+      render: h => h(App),
+    }).$mount('#app');
+  });
 
 
 // import * as blogApi from './api/blog';
@@ -41,3 +46,6 @@ new Vue({
 
 // blogApi.getComments('demoblogId')
 //   .then(data => console.log('test get paged comments', data));
+
+import { getSetting } from './api/setting';
+getSetting().then(data => console.log('settings fetched:', {data}));
