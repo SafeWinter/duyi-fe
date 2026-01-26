@@ -1,6 +1,8 @@
 import './banner';
 import './blog';
 import './setting';
+import './about';
+
 import Mock from "mockjs";
 
 Mock.setup({

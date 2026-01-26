@@ -3,13 +3,15 @@ import Vuex from 'vuex';
 
 import banner from './banner';
 import setting from './setting';
+import about from './about';
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
   modules: {
     banner,
-    setting
+    setting,
+    about
   },
   strict: true,
 });

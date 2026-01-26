@@ -28,16 +28,12 @@
 </template>
 
 <script>
-import BlogComment from "./BlogComment";
 import { formatDate, titleMaker } from "@/utils";
 import "highlight.js/styles/googlecode.css";
 import '@/styles/markdown.less';
 
 export default {
   name: "BlogBody",
-  components: {
-    BlogComment,
-  },
   filters: {
     formatDate,
   },
