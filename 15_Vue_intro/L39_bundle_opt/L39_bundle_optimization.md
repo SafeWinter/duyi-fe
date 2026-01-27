@@ -404,7 +404,7 @@ export default [
 >
 > **重要提醒**
 >
-> 本节示例已另建 `Git` 分支 `L39_bundleOpt` 独立维护，并保留了打包优化前的原始起步版本（`Tag` 标签：`L39_bundleOpt_before`），方便后期继续验证测试。
+> 本节示例已另建 `Git` 分支 `L39_bundleOpt` 独立维护，并保留了打包优化前的原始起步版本（`Tag` 标签：`L39_bundleOpt_start`），方便后期继续验证测试。
 >
 > 字体图标 `CDN` 更新情况（离线备份字体文件详见 `L37_proj_page/iconfont_backup/` 文件夹）：
 >
