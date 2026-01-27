@@ -47,5 +47,8 @@ store.dispatch('setting/fetchSetting')
 // blogApi.getComments('demoblogId')
 //   .then(data => console.log('test get paged comments', data));
 
-import { getSetting } from './api/setting';
-getSetting().then(data => console.log('settings fetched:', {data}));
+// import { getSetting } from './api/setting.js';
+// getSetting().then(data => console.log('projects:', {data}));
+
+import { getProjectData } from './api/project.js';
+getProjectData().then(data => console.log('projects:', data.filter(e=>e.github!==null).map(e=>e.github)));

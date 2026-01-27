@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build",
     "preview:Pager": "vue serve ./src/components/Pager/preview.vue",
     "preview:Avatar": "vue serve ./src/components/Avatar/preview.vue",
