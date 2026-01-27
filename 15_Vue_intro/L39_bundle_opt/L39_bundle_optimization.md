@@ -222,9 +222,37 @@ vue-cli-service build --modern
 
 ![](../assets/39.6.png)
 
-此时 `dist/js/` 文件夹下会出现两套打包文件（其间 `webpack-bundle-analyzer` 插件虽然会因为 `8888` 端口占用问题中断运行，但不影响浏览器查看）：
+此时 `dist/js/` 文件夹下会出现两套打包文件：
 
 ![](../assets/39.8.png)
+
+> [!tip]
+>
+> **关于 webpack-bundle-analyzer 插件动态端口的配置**
+>
+> 自从构建命令带上 `--modern` 参数后，`webpack-bundle-analyzer` 插件就会因为默认端口固定为 `8888` 导致第二次自动打包时端口出现冲突。原视频未对该问题进行处理，因此只能展示兼容版本下的构建结果，对仅支持现代浏览器的 `bundle` 包无法顺利展示。经查阅 `GitHub` 官方文档，视频演示的插件版本为 `v4.4.0`，当时已支持动态端口。
+>
+> 具体配置如下：
+>
+> ```js
+> // webpack.config.js:
+> const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+> 
+> const config = (process.env.NODE_ENV === 'development') ? {} : {
+>     plugins: [ new BundleAnalyzerPlugin({
+>       analyzerPort: 'auto',  // 8888 by default
+>     }) ],
+>     /* snip */
+>   };
+> 
+> module.exports = config;
+> ```
+>
+> 最终运行 `npm run build` 将自动打开两个分析页，对应两个不同的端口：
+>
+> ![](../assets/39.12.png)
+>
+> 更多配置详见该插件 [官方文档](https://github.com/webpack/webpack-bundle-analyzer)。
 
 如果不想在打包时附带源码映射文件（`*.js.map`），可以在 `webpack.config.js` 禁用 `devtool` 配置：
 

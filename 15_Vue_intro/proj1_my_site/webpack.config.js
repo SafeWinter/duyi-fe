@@ -1,7 +1,9 @@
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const config = (process.env.NODE_ENV === 'development') ? {} : {
-    plugins: [ new BundleAnalyzerPlugin() ],
+    plugins: [ new BundleAnalyzerPlugin({
+      analyzerPort: 'auto',
+    }) ],
     externals: {
       vue: 'Vue',
       vuex: 'Vuex',
