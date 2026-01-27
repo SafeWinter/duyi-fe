@@ -3,11 +3,9 @@ import VueRouter from "vue-router";
 import routes from './routes';
 import { titleMaker } from '../utils'
 
-if(!window.VueRouter) {
-  Vue.use(VueRouter);
-}
+Vue.use(VueRouter);
 
-let router = new VueRouter({
+const router = new VueRouter({
   mode: "history",
   routes
 });

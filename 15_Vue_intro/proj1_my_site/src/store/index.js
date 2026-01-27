@@ -1,29 +1,23 @@
 import Vue from 'vue';
-import {Store, install} from 'vuex';
+import Vuex from 'vuex';
 
 import banner from './banner';
 import setting from './setting';
 import about from './about';
 import project from './project';
 
-if(!window.Vuex) {
-  install(Vue);
-}
+Vue.use(Vuex);
 
-const devMode = process.env.NODE_ENV === 'development';
-
-const store = new Store({
+const store = new Vuex.Store({
   modules: {
     banner,
     setting,
     about,
     project
   },
-  strict: devMode,
+  strict: true,
 });
 
-if(devMode){
-  window.store = store;  // for debugging
-}
+window.store = store;  // for debugging
 
 export default store;

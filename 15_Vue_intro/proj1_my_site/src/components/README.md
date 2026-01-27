@@ -95,7 +95,7 @@
 
 # Contact
 
-<img src="../../../assets/9.4.gif" alt="iShot2020-11-30下午04.55.47" style="zoom:40%;" />
+![](../../../assets/9.4.gif)
 
 该组件需要横向撑满容器，背景色透明。
 
