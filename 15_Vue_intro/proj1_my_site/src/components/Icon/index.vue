@@ -22,6 +22,7 @@ const classMap = new Map([
   ["empty", "icon-empty"],
   ["chat", "icon-chat"],
   ["toTop", "icon-to-top"],
+  ["loading", "icon-loading"],
 ]);
 
 export const types = [...classMap.keys()];
@@ -43,5 +44,6 @@ export default {
 </script>
 <style>
 /* @import "//at.alicdn.com/t/font_2164449_nalfgtq7il.css"; // original Duyi icons */
-@import "//at.alicdn.com/t/c/font_5112736_as9xsfpfolg.css"; /* custom my-site icons */
+/* @import "//at.alicdn.com/t/c/font_5112736_as9xsfpfolg.css"; // custom my-site icons V1.0 */
+@import "//at.alicdn.com/t/c/font_5112736_tm3s4lhivjl.css"; /* custom my-site icons V2.0 */
 </style>

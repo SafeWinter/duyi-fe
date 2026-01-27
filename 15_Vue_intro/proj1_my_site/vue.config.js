@@ -2,8 +2,9 @@ module.exports = {
   devServer: {
     proxy: {
       '/api': {
-        target: 'http://test.com.cn',
+        target: 'http://test.my-site.com',
       },
     },
   },
+  configureWebpack: require('./webpack.config'),
 }

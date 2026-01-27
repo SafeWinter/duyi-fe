@@ -24,7 +24,7 @@ import './eventBus.js';
 
 import store from './store';
 store.dispatch('setting/fetchSetting')
-  .then(data => {
+  .then(() => {
     new Vue({
       router,
       store,

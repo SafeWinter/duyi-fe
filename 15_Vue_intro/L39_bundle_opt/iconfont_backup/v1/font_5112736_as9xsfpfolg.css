@@ -1,0 +1,87 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 5112736 */
+  src: url('//at.alicdn.com/t/c/font_5112736_as9xsfpfolg.woff2?t=1768796153457') format('woff2'),
+       url('//at.alicdn.com/t/c/font_5112736_as9xsfpfolg.woff?t=1768796153457') format('woff'),
+       url('//at.alicdn.com/t/c/font_5112736_as9xsfpfolg.ttf?t=1768796153457') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-mail:before {
+  content: "\e62c";
+}
+
+.icon-chat:before {
+  content: "\e615";
+}
+
+.icon-down:before {
+  content: "\e886";
+}
+
+.icon-success:before {
+  content: "\e600";
+}
+
+.icon-qq:before {
+  content: "\e6a0";
+}
+
+.icon-wechat:before {
+  content: "\e6b1";
+}
+
+.icon-info:before {
+  content: "\e649";
+}
+
+.icon-warn:before {
+  content: "\e638";
+}
+
+.icon-up:before {
+  content: "\e60b";
+}
+
+.icon-error:before {
+  content: "\e645";
+}
+
+.icon-blog:before {
+  content: "\e60d";
+}
+
+.icon-close:before {
+  content: "\e609";
+}
+
+.icon-github:before {
+  content: "\e885";
+}
+
+.icon-home:before {
+  content: "\e63f";
+}
+
+.icon-empty:before {
+  content: "\e6a6";
+}
+
+.icon-to-top:before {
+  content: "\e83d";
+}
+
+.icon-code:before {
+  content: "\e60e";
+}
+
+.icon-about:before {
+  content: "\e688";
+}
+
