@@ -1,5 +1,6 @@
 import 'nprogress/nprogress.css';
 import {start, done, configure} from 'nprogress';
+import NotFound from '@/views/NotFound';
 
 // Docs: https://github.com/rstacruz/nprogress
 configure({
@@ -76,4 +77,10 @@ export default [
     component: makeAsyncComp(Project),
     meta: { title: "项目&效果" },
   },
+  {
+    name: "NotFound",
+    path: "*",
+    component: NotFound,
+    meta: { title: "404 - 找不到页面"}
+  }
 ];

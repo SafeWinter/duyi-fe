@@ -44,7 +44,12 @@ export default {
   },
   methods: {
     async getRemoteData() {
-      return await getBlog(this.id)
+      const content = await getBlog(this.id);
+      if(!content) { // in case of null due to serve exception
+        this.$router.push('/404');
+        return;
+      }
+      return content;
     },
     correctHashedUrl() {
       const hash = location.hash;
