@@ -10,6 +10,7 @@
       <!-- 界面模板 -->
       <!-- mustache -->
       <h1>系统名称：{{title}}</h1>
+      <p>{{a.abc}}</p>
       <ul>
         <li v-for="(item, i) in products">
           名称：{{item.name}}
@@ -24,10 +25,21 @@
     </div>
     <script src="./vue.min.js"></script>
     <script>
+      var methods = {
+        remove(i) {
+          console.log(this === vm); // true
+          this.products.splice(i, 1);
+        },
+        changeStock(product, newStock) {
+          if (newStock < 0) {
+            newStock = 0;
+          }
+          product.stock = newStock;
+        },
+      };
       // vm：vue实例
       var vm = new Vue({
         // 配置
-        el: "#app", // css选择器
         data: {
           // 和界面相关的数据
           title: "库存管理系统",
@@ -36,19 +48,28 @@
             { name: "xiaomi", stock: 5 },
             { name: "huawei", stock: 6 },
           ],
+          a: {},
         },
-        methods: {
-          remove(i) {
-            this.products.splice(i, 1);
-          },
-          changeStock(product, newStock) {
-            if (newStock < 0) {
-              newStock = 0;
-            }
-            product.stock = newStock;
-          },
-        },
+        methods,
+        render(h){
+          // DIY1:
+          // const titles = [];
+          // for(let i = 1; i <= 6; i++) {
+          //   titles.push(h(`h${i}`, `${i} 级标题`))
+          // }
+
+          // DIY2:
+          // const titles = Array(6).fill().map(
+          //   (_, i) => h(`h${i + 1}`, `${i + 1} 级标题`));
+          
+          // DIY3:
+          const titles = Array.from({length: 6},
+            (_, i) => h(`h${i + 1}`, `${i + 1} 级标题`));
+          return h('div', titles);
+        }
       });
+
+      vm.$mount("#app");
     </script>
   </body>
 </html>
