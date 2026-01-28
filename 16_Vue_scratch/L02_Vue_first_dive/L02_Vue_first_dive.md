@@ -80,3 +80,61 @@ https://unpkg.com/vue@2
 实测效果图：
 
 ![](../assets/2.2.png)
+
+
+
+### 3.2 新建分支与标签同名冲突
+
+实测时新建标签 `S16L02_firstDive` 并推送成功，再用该名称创建 `Git` 分支，推送到远程跟踪分支报错：
+
+![](../assets/2.3.png)
+
+此时应写出分支的完整路径：
+
+```bash
+git push --set-upstream origin HEAD:refs/heads/S16L02_firstDive
+```
+
+
+
+### 3.3 代码优化
+
+使用自定义 `filter` 简化模板：
+
+```vue
+<span>{{item.stock | fmtStock}}</span>
+<script>
+var vm = new Vue({
+  filters: {
+    fmtStock: v => v > 0 ? v : '无货'
+  }
+});
+</script>
+```
+
+使用 `v-on` 指令绑定 `disabled` 属性：
+
+```vue
+<button :disabled="item.stock === 0" 
+  @click="changeStock(item, item.stock - 1)">-</button>
+```
+
+使用 `Math.max()` 简化 `if` 逻辑：
+
+```js
+// before
+changeStock(product, newStock) {
+  if (newStock < 0) {
+    newStock = 0;
+  }
+  product.stock = newStock;
+}
+// after
+changeStock(product, newStock) {
+  product.stock = Math.max(0, newStock);
+}
+```
+
+最终效果（代码详见 `S16L02_firstDive` 分支，`SHA-ID`：`01053e23`）：
+
+![](../assets/2.4.png)
