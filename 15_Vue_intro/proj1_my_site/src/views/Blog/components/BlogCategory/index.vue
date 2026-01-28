@@ -2,11 +2,13 @@
   <div v-loading="loading" class="blog-category-container">
     <h2>文章分类</h2>
     <hyerachy-list :data="categories" :currId="currId" @selected="handleSelected" />
+    <Empty v-if="isEmpty" text="暂无分类" />
   </div>
 </template>
 
 <script>
 import HyerachyList from '../HierarchyList';
+import Empty from '@/components/Empty';
 import { fetchRemoteData } from '@/mixins';
 import { getBlogCategories } from '@/api/blog';
 
@@ -14,11 +16,15 @@ export default {
   name: 'BlogCategory',
   mixins: [fetchRemoteData([])],
   components: {
-    HyerachyList
+    HyerachyList,
+    Empty
   },
   computed: {
     hasData() {
-      return this.data && this.data.length && this.data.length > 0;
+      return this.data.length > 0;
+    },
+    isEmpty() {
+      return !this.loading && !this.hasData;
     },
     categories() {
       // categories elem: {id: 6, name: '分类6', articleCount: 257}
@@ -86,6 +92,7 @@ export default {
   overflow-y: auto;
   text-align: justify;
   font-size: 0.875rem;
+  position: relative;
 
   h2 {
     padding: 0;

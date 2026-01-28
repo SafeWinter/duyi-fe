@@ -1,6 +1,7 @@
 <template>
   <div class="blog-list-container" ref="blogList" v-loading="loading">
     <BlogCard v-for="blog in blogs" :key="blog.id" :data="blog" />
+    <Empty v-if="noArticles" text="暂无文章"/>
     <footer class="pager">
       <Pager :current="current" :total="total" @pageChange="handlePageChange"/>
     </footer>
@@ -10,15 +11,17 @@
 <script>
 import BlogCard from './BlogCard';
 import Pager from '@/components/Pager';
+import Empty from '@/components/Empty';
 import { fetchRemoteData, mainScroll } from '@/mixins';
 import { getBlogs } from '@/api/blog';
 
 export default {
   name: 'BlogList',
-  mixins: [fetchRemoteData([]), mainScroll('blogList')],
+  mixins: [fetchRemoteData({total: 0, rows:[]}), mainScroll('blogList')],
   components: {
     BlogCard,
     Pager,
+    Empty
   },
   data() {
     return {
@@ -31,6 +34,9 @@ export default {
     },
     total() {
       return this.data.total || 0;
+    },
+    noArticles() {
+      return !this.loading && this.blogs.length === 0;
     },
     routeInfo() {
       const {params, query} = this.$route;

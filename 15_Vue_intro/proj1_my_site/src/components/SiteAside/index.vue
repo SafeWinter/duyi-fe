@@ -41,7 +41,7 @@ export default {
 @import "~@/styles/global.less";
 @import "~@/styles/variables.less";
 .site-aside-container {
-  height: 100%;
+  height: 100vh;
   padding-block: 1.5em;
   display: flex;
   flex-direction: column;

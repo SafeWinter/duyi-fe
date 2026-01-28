@@ -2,17 +2,20 @@
   <div class="blog-toc-container">
     <h2>目录</h2>
     <hierachy-list :data="tocTree" :currId="currId" @selected="handleClick"/>
+    <Empty v-if="noData" text="暂无目录" />
   </div>
 </template>
 
 <script>
 import HierachyList from "../HierarchyList";
+import Empty from '@/components/Empty';
 import { renameToc } from '@/utils';
 
 export default {
   name: "BlogToc",
   components: {
     HierachyList,
+    Empty
   },
   props: {
     toc: {
@@ -24,6 +27,9 @@ export default {
     tocTree() {
       // console.log("toc:", this.toc);
       return renameToc(this.toc);
+    },
+    noData(){
+      return this.toc && this.toc.length === 0;
     },
     bookMarks() {
       const navTitles = (treeNodes, marks = []) => {

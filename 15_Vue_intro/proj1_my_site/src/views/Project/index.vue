@@ -1,11 +1,13 @@
 <template>
   <div class="project-container" ref="projContainer" v-loading="loading">
     <project-card v-for="item in data" :item="item" :key="item.id" />
+    <Empty v-if="noData" text="暂无项目" />
   </div>
 </template>
 
 <script>
 import ProjectCard from './ProjectCard';
+import Empty from '@/components/Empty';
 import { mapState } from 'vuex';
 import { mainScroll } from '@/mixins';
 
@@ -13,10 +15,14 @@ export default {
   name: 'Project',
   mixins: [mainScroll('projContainer')],
   components: {
-    ProjectCard
+    ProjectCard,
+    Empty
   },
   computed: {
-    ...mapState('project', ['data', 'loading'])
+    ...mapState('project', ['data', 'loading']),
+    noData(){
+      return !this.loading && this.data.length === 0;
+    },
   },
   created(){
     this.$store.dispatch('project/fetchData');

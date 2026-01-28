@@ -9,6 +9,7 @@ Mock.mock('/api/blogtype', 'get', function () {
   return Mock.mock({
     code: 0,
     msg: '获取模拟博客类型成功',
+    // data: [],  // testing Empty comp
     'data|10-20': [{
       'id|+1': 1,
       name: "分类@id",
@@ -29,6 +30,10 @@ Mock.mock(/^\/api\/blog(\?.+)?$/, 'get', function (options) {
   return Mock.mock({
     code: 0,
     msg: '获取模拟博客文章列表成功',
+    // data: {  // testing Empty comp
+    //   total: 0,
+    //   rows: []
+    // },
     'data|10-20': {
       'total|2000-3000': 1, // 总数
       [`rows|${limit}`]: [ // 当前页列表数据
@@ -80,6 +85,7 @@ Mock.mock(/^\/api\/blog\/[^/]+$/, 'get', function (options) {
         "scanNumber|0-10000": 0,
         "commentNumber|0-100": 0,
         createDate: () => parseInt(Mock.Random.date('T')),
+        // toc: [], // testing for Empty comp
         toc: [{
             name: "概述",
             anchor: "article-md-title-1"

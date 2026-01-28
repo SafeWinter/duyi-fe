@@ -47,16 +47,17 @@ export default {
   flex-direction: row;
   .centered();
 
-  .aside {
+  & ::v-deep .aside {
     width: 250px;
     height: 100%;
-    overflow: hidden;
+    overflow-y: auto;
+    background-color: @dark;
   }
 
   .main {
     height: 100%;
     background-color: @gray;
-    overflow: hidden;
+    // overflow: hidden;
   }
 
   & .to-top-container {
