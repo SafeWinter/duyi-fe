@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue 2.x First Dive</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 界面模板 -->
+      <!-- mustache -->
+      <h1>系统名称：{{title}}</h1>
+      <ul>
+        <li v-for="(item, i) in products">
+          名称：{{item.name}}
+
+          <button @click="changeStock(item, item.stock - 1)">-</button>
+          <span v-if="item.stock>0">{{item.stock}}</span>
+          <span v-else>无货</span>
+          <button @click="changeStock(item, item.stock + 1)">+</button>
+          <button @click="remove(i)">删除</button>
+        </li>
+      </ul>
+    </div>
+    <script src="./vue.min.js"></script>
+    <script>
+      // vm：vue实例
+      var vm = new Vue({
+        // 配置
+        el: "#app", // css选择器
+        data: {
+          // 和界面相关的数据
+          title: "库存管理系统",
+          products: [
+            { name: "iphone", stock: 10 },
+            { name: "xiaomi", stock: 5 },
+            { name: "huawei", stock: 6 },
+          ],
+        },
+        methods: {
+          remove(i) {
+            this.products.splice(i, 1);
+          },
+          changeStock(product, newStock) {
+            if (newStock < 0) {
+              newStock = 0;
+            }
+            product.stock = newStock;
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
