@@ -1,15 +1,21 @@
 const template = `
 <div class="product-container">
-  <ul>
+  <ul v-if="hasData">
     <li v-for="product in products" :key="product.id">
       名称：{{product.name}}; 
       库存：
-      <button :disabled="product.stock === 0" @click="changeStock(product, product.stock - 1)">&minus;</button>
+      <button 
+        :disabled="product.stock === 0" 
+        @click="changeStock(product, product.stock - 1)"
+      >
+        &minus;
+      </button>
       <span>{{product.stock | fmtStock}}</span>
       <button @click="changeStock(product, product.stock + 1)">&plus;</button>
       <button @click="remove(product.id)">删除</button>
     </li>
   </ul>
+  <div v-else>暂无库存</div>
 </div>
 `;
 
@@ -18,21 +24,23 @@ export default {
   filters: {
     fmtStock: (v) => (+v > 0 ? v : "无货"),
   },
-  data() {
-    return {
-      products: [
-        { id: 1, name: "iPhone", stock: 10 },
-        { id: 2, name: "Xiaomi", stock: 5 },
-        { id: 3, name: "Huaway", stock: 15 },
-      ],
-    };
+  props: {
+    products: {
+      type: Object,
+      required: true
+    }
+  },
+  computed: {
+    hasData() {
+      return this.products && this.products.length > 0;
+    }
   },
   methods: {
     changeStock(item, newStock) {
-      item.stock = Math.max(0, newStock);
+      this.$emit('stockChange', item, newStock);
     },
     remove(id) {
-      this.products = this.products.filter((e) => e.id !== id);
+      this.$emit('remove', id);
     },
   },
   template,
