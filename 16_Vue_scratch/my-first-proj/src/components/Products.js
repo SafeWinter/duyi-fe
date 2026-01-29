@@ -1,36 +1,39 @@
-// 商品列表组件
-var template = `<ul>
-  <li v-for="(item, i) in products">
-  名称：{{item.name}}
-
-  <button @click="changeStock(item, item.stock - 1)">-</button>
-  <span v-if="item.stock>0">{{item.stock}}</span>
-  <span v-else>无货</span>
-  <button @click="changeStock(item, item.stock + 1)">+</button>
-  <button @click="remove(i)">删除</button>
-  </li>
-</ul>`;
+const template = `
+<div class="product-container">
+  <ul>
+    <li v-for="product in products" :key="product.id">
+      名称：{{product.name}}; 
+      库存：
+      <button :disabled="product.stock === 0" @click="changeStock(product, product.stock - 1)">&minus;</button>
+      <span>{{product.stock | fmtStock}}</span>
+      <button @click="changeStock(product, product.stock + 1)">&plus;</button>
+      <button @click="remove(product.id)">删除</button>
+    </li>
+  </ul>
+</div>
+`;
 
 export default {
-  template,
+  name: "Products",
+  filters: {
+    fmtStock: (v) => (+v > 0 ? v : "无货"),
+  },
   data() {
     return {
       products: [
-        { id: 1, name: "iphone", stock: 10 },
-        { id: 1, name: "xiaomi", stock: 10 },
-        { id: 1, name: "huawei", stock: 10 },
+        { id: 1, name: "iPhone", stock: 10 },
+        { id: 2, name: "Xiaomi", stock: 5 },
+        { id: 3, name: "Huaway", stock: 15 },
       ],
     };
   },
   methods: {
-    remove(i) {
-      this.products.splice(i, 1);
+    changeStock(item, newStock) {
+      item.stock = Math.max(0, newStock);
     },
-    changeStock(product, newStock) {
-      if (newStock < 0) {
-        newStock = 0;
-      }
-      product.stock = newStock;
+    remove(id) {
+      this.products = this.products.filter((e) => e.id !== id);
     },
   },
+  template,
 };
