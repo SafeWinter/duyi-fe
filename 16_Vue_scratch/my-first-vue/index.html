@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vue 2.x First Dive</title>
+    <title>L05 - template & computed</title>
   </head>
   <body>
     <div id="app">
@@ -27,7 +27,6 @@
     <script>
       var methods = {
         remove(i) {
-          console.log(this === vm); // true
           this.products.splice(i, 1);
         },
         changeStock(product, newStock) {
@@ -51,22 +50,6 @@
           a: {},
         },
         methods,
-        render(h){
-          // DIY1:
-          // const titles = [];
-          // for(let i = 1; i <= 6; i++) {
-          //   titles.push(h(`h${i}`, `${i} 级标题`))
-          // }
-
-          // DIY2:
-          // const titles = Array(6).fill().map(
-          //   (_, i) => h(`h${i + 1}`, `${i + 1} 级标题`));
-          
-          // DIY3:
-          const titles = Array.from({length: 6},
-            (_, i) => h(`h${i + 1}`, `${i + 1} 级标题`));
-          return h('div', titles);
-        }
       });
 
       vm.$mount("#app");

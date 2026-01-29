@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>L05 - v-on Demo</title>
+  </head>
+  <body>
+    <div id="app">
+      <a href="http://www.baidu.com" @click.prevent="test($event)">点击我</a>
+      <div @click="test3">
+        <button @click.stop="test2">点击我</button>
+      </div>
+    </div>
+    <script src="./vue.min.js"></script>
+    <script>
+      // vm：vue实例
+      var vm = new Vue({
+        // 配置
+        el: "#app", // css选择器
+        methods: {
+          test(e) {
+            console.log("hello", e);
+          },
+          test2(e) {
+            console.log("button:click", e);
+          },
+          test3() {
+            console.log("div:click");
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
