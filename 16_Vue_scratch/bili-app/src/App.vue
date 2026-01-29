@@ -1,5 +1,3 @@
 <template>
-  <div>
-    <h1>asdfasfasfd</h1>
-  </div>
+  <div><h1>My Bili App</h1></div>
 </template>
