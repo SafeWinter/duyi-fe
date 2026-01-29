@@ -3,56 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>L05 - template & computed</title>
+    <title>Document</title>
   </head>
   <body>
-    <div id="app">
-      <!-- 界面模板 -->
-      <!-- mustache -->
-      <h1>系统名称：{{title}}</h1>
-      <p>{{a.abc}}</p>
-      <ul>
-        <li v-for="(item, i) in products">
-          名称：{{item.name}}
-
-          <button @click="changeStock(item, item.stock - 1)">-</button>
-          <span v-if="item.stock>0">{{item.stock}}</span>
-          <span v-else>无货</span>
-          <button @click="changeStock(item, item.stock + 1)">+</button>
-          <button @click="remove(i)">删除</button>
-        </li>
-      </ul>
-    </div>
+    <div id="app"></div>
     <script src="./vue.min.js"></script>
     <script>
-      var methods = {
-        remove(i) {
-          this.products.splice(i, 1);
-        },
-        changeStock(product, newStock) {
-          if (newStock < 0) {
-            newStock = 0;
-          }
-          product.stock = newStock;
-        },
+      var MyComp = {
+        props: ["title"],
+        template: `<h1>{{title}}</h1>`,
       };
+      // Vue.component("MyComp", MyComp);
       // vm：vue实例
       var vm = new Vue({
-        // 配置
-        data: {
-          // 和界面相关的数据
-          title: "库存管理系统",
-          products: [
-            { name: "iphone", stock: 10 },
-            { name: "xiaomi", stock: 5 },
-            { name: "huawei", stock: 6 },
-          ],
-          a: {},
+        el: "#app",
+        components: {
+          MyComp,
         },
-        methods,
+        template: `<div>
+            <MyComp title="库存管理"></MyComp>
+          </div>`,
       });
-
-      vm.$mount("#app");
     </script>
   </body>
 </html>
