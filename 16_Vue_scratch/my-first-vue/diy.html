@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DIY: Vue template validation</title>
+  <style>
+    #app {
+      width: 400px;
+      height: 300px;
+      border: 3px solid violet;
+    }
+  </style>
+</head>
+<body>
+  <h1>断言：Vue 的模板引擎不是基于 mustache.js 实现的</h1>
+  <p>如果不成立，则 Vue 中应该能识别 mustache.js 的其他语法，例如 section 语法：</p>
+  <p>原始模板：</p>
+  <pre>
+&lt;div id="app">
+  &lt:p>
+    {{#arr}}
+    <div>name={{name}}, stock={{stock}}</div>
+    {{/arr}}
+  &lt;/p>
+&lt;/div>
+  </pre>
+  <p>实际渲染情况（div#app 元素消失）：</p>
+  <div id="app">
+    <p>
+      {{#arr}}
+      <div>name={{name}}, stock={{stock}}</div>
+      {{/arr}}
+    </p>
+  </div>
+
+  <h3>实测截图：</h3>
+  <img src="./not_based_on_mustache.png" alt="Vue 的模板引擎不是基于 mustache.js 实现的" title="Vue 的模板引擎不是基于 mustache.js 实现的">
+
+  <script src="./vue.min.js"></script>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data(){
+        return {
+          arr: [
+            {name: 'iPhone', stock: 50},
+            {name: 'Xiaomi', stock: 60},
+          ],
+        }
+      }
+    });
+  </script>
+</body>
+</html>
