@@ -1,14 +1,9 @@
-import Vue from "vue";
-import App from "./App.vue";
-import channelServ from "./services/channel";
+import Vue from 'vue'
+import App from './App.vue'
 
-async function test() {
-  var channels = await channelServ.getChannels();
-  console.log(channels);
-}
-
-test();
+import api from './services/channel.js';
+api.getChannels().then(data => console.log(data));
 
 new Vue({
-  render: (h) => h(App),
-}).$mount("#app");
+  render: h => h(App),
+}).$mount('#app')
