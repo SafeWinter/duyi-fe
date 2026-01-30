@@ -41,7 +41,7 @@ export default {
 
 ![](../assets/12.2.png)
 
-`Vue` 组件生命周期示意图：
+`Vue` 组件生命周期示意图（**重点**）：
 
 ![](../assets/12.3.png)
 
@@ -75,7 +75,26 @@ export default {
 
 
 
-实测效果：
+:four: 适当精简模板层级：可在 `Channel` 组件上直接使用 `v-for` 遍历频道元素。添加到子组件上的样式类最终会放到子组件的根元素上（仅适用于 `Vue 2.x`）：
+
+```html
+<!-- ChannelList.vue -->
+<div class="channel-list-container">
+  <Channel class="item" v-for="item in data" :key="item.id"
+    :activeId="activeId" 
+    :channel="item" 
+    @activate="id => $emit('activate', id)"
+  />
+</div>
+```
+
+最终 `item` 放到了 `Channel` 组件的根元素上：
+
+![](../assets/12.5.png)
+
+
+
+实测效果图：
 
 ![](../assets/12.4.gif)
 
