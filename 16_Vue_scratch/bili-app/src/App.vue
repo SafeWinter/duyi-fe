@@ -1,36 +1,40 @@
 <template>
-  <div>
-    <div style="width:100px; height:30px; border:1px solid">
-      <Item :isActive="curActive === 'dongman'" @active="curActive = 'dongman'">
-        动漫
-      </Item>
-    </div>
-    <div style="width:100px; height:30px; border:1px solid">
-      <Item
-        :isActive="curActive === 'dianjing'"
-        @active="curActive = 'dianjing'"
-      >
-        电竞
-      </Item>
-    </div>
+  <div class="app-container">
+    <Item :isActive="active === '1'" @activate="dealActivate('1')" >
+      动漫
+    </Item>
+    <Item :isActive="active === '2'" @activate="dealActivate('2')" >
+      电竞
+    </Item>
   </div>
 </template>
 
 <script>
-import Item from "./components/Item";
+import Item from './components/Item';
+
 export default {
+  name: 'App',
   components: {
-    Item,
+    Item
   },
-  data() {
+  data(){
     return {
-      curActive: "dianjing",
-    };
+      active: '',
+    }
   },
   methods: {
-    test(e) {
-      console.log(e);
-    },
+    dealActivate(value) {
+      this.active = value;
+    }
   },
 };
 </script>
+
+<style scoped>
+/* class fell through 样式类透传 */
+.item-container {
+  width:100px; 
+  height:30px;
+  border: 1px solid violet;
+}
+</style>
