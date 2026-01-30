@@ -100,3 +100,34 @@ export default {
 
 实测代码详见 `Git` 标签 `S16L12_channelList_diy`。
 
+
+
+> [!tip]
+>
+> **git cherry-pick 命令实战**
+>
+> 提交本节实测代码时，发现笔记中漏掉了最后一条备忘记录，但又不想退回 `main` 分支重新操作一遍；此时可以在当前分支直接提交一个版本，等切回主分支后，使用 `cherry-pick` 快速同步新增的笔记内容：
+>
+> ```bash
+> > git logs -5
+> * 530d09f (tag: S16L12_channelList_diy, origin/S16L12_channelList, S16L12_channelList) DIY: implemented Channel & ChannelList via new API
+> * 8b0e066 updated notes for 16_Vue_scratch:L12
+> * fff1116 (HEAD -> main, tag: S16L12_channelList_done, origin/main, origin/HEAD) added notes for 16_Vue_scratch:L12: Channel & ChannelList components
+> | * 471bdaa (tag: S16L11_channelData_diy, origin/S16L11_channelData, S16L11_channelData) DIY: fetch channel data from latest API
+> |/
+> * df18ede (tag: S16L11_channelData_done) added notes for 16_Vue_scratch:L11: fetch channel data
+> # 记录要同步的 SHA-ID：8b0e066
+> > git cherry-pick 8b0e066
+> [main 6f40bd5] updated notes for 16_Vue_scratch:L12
+>  Date: Fri Jan 30 23:53:20 2026 +0800
+>  2 files changed, 21 insertions(+), 2 deletions(-)
+>  create mode 100644 16_Vue_scratch/assets/12.5.png
+>  # 同步到远程仓库
+> > git push
+> # 再次确认
+> > gitk --all
+> ```
+>
+> 实测截图（红框完全相同，同步成功）：
+>
+> ![](../assets/12.6.png)
