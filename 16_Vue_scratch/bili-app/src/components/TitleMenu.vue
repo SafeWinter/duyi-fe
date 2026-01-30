@@ -1,11 +1,11 @@
 <template>
   <div class="title-menu">
-    <Item :isActive="isActive" @active="$emit('active')">
+    <Item :isActive="isActive" @activate="$emit('activate')">
       <div class="inner">
-        <div class="left">
+        <div class="title left">
           <slot name="title"></slot>
         </div>
-        <div class="right">
+        <div class="icon right">
           <slot name="icon"></slot>
         </div>
       </div>
@@ -14,17 +14,17 @@
 </template>
 
 <script>
-import Item from "./Item";
+import Item from "./Item.vue";
 export default {
-  props: {
-    isActive: {
-      type: Boolean, //约束该属性的类型是boolean
-      // required: true, //约束该属性必须要传递
-      default: false,
-    },
-  },
+  name: "TitleMenu",
   components: {
     Item,
+  },
+  props: {
+    isActive: {
+      type: Boolean,
+      required: true,
+    }
   },
 };
 </script>
@@ -34,18 +34,21 @@ export default {
   width: 100%;
   height: 46px;
   line-height: 46px;
+
+  --titleColor: #212121;
+  --iconColor: #999;
 }
 .inner {
   padding: 0 20px;
 }
 .left {
   float: left;
-  color: #212121;
+  color: var(--titleColor);
   font-weight: 500;
 }
 .right {
   float: right;
-  font-size: 12px;
-  color: #999;
+  font-size: .75em;
+  color: var(--iconColor);
 }
 </style>

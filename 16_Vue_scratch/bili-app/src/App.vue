@@ -1,32 +1,45 @@
 <template>
-  <div>
-    <div style="width:250px">
-      <TitleMenu :isActive="activeId === 100" @active="activeId = 100">
-        <template v-slot:title>
-          <!-- 给title具名插槽传递内容 -->
-          发现频道
-        </template>
-        <template v-slot:icon>
-          >
-        </template>
-      </TitleMenu>
-      <ChannelList :activeId="activeId" @active="activeId = $event" />
-    </div>
+  <div class="app-container">
+    <TitleMenu :isActive="activeId === 0" @activate="activeId = 0">
+      <template #title>发现频道</template>
+      <template v-slot:icon>&gt;</template>
+    </TitleMenu>
+    <ChannelList :data="data" :activeId="activeId" @activate="handleActivate" />
   </div>
 </template>
 
 <script>
-import TitleMenu from "./components/TitleMenu";
-import ChannelList from "./components/ChannelList";
+import ChannelList from './components/ChannelList';
+import TitleMenu from './components/TitleMenu';
+import api from './services/channel.js';
+
 export default {
+  name: 'App',
   components: {
     TitleMenu,
-    ChannelList,
+    ChannelList
   },
-  data() {
+  data(){
     return {
-      activeId: 100, // 默认选中的是热门
-    };
+      activeId: 0,
+      data: []
+    }
+  },
+  async created() {
+    this.data = await api.getChannels();
+    // console.log('data fetched:', this.data);
+  },
+  methods: {
+    handleActivate(id) {
+      this.activeId = id;
+    }
   },
 };
 </script>
+
+<style scoped>
+.app-container {
+  width: 250px;
+  border: 1px solid gray;
+}
+</style>

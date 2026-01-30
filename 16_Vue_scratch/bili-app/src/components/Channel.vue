@@ -1,9 +1,9 @@
 <template>
-  <div class="channel">
-    <Item :isActive="isActive" @active="$emit('active')">
+  <div class="channel-container">
+    <Item :isActive="activeId === channel.id" @activate="$emit('activate', channel.id)">
       <div class="inner">
-        <span class="name">{{ data.name }}</span>
-        <span class="number">{{ data.channel_count }}</span>
+        <span class="label">{{ channel.cname }}</span>
+        <span class="num">{{ channel.count }}</span>
       </div>
     </Item>
   </div>
@@ -12,43 +12,46 @@
 <script>
 import Item from "./Item";
 export default {
-  props: {
-    isActive: {
-      type: Boolean, //约束该属性的类型是boolean
-      // required: true, //约束该属性必须要传递
-      default: false,
-    },
-    data: {
-      type: Object,
-      default: () => ({}),
-    },
-  },
+  name: "Channel",
   components: {
     Item,
+  },
+  props: {
+    activeId: {
+      type: Number,
+      required: true,
+    },
+    channel: {
+      type: Object,
+      default: () => ({}),
+    }
   },
 };
 </script>
 
 <style scoped>
-.channel {
+.channel-container {
   width: 100%;
   height: 40px;
   line-height: 40px;
+
+  --titleColor: #212121;
+  --iconColor: #999;
 }
 .inner {
   padding: 0 20px;
+  display: flex;
+  gap: 0.2em;
 }
-.name {
-  font-size: 14px;
-  color: #212121;
+
+.label {
+  color: var(--titleColor);
+  font-size: .875em;
+  flex: 1;
 }
-.number {
-  font-size: 12px;
-  color: #999;
-  margin-left: 8px;
-}
-.name,
-.number {
-  float: left;
+.num {
+  color: var(--iconColor);
+  font-size: .75em;
+  flex: 0;
 }
 </style>

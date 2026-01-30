@@ -1,41 +1,42 @@
 <template>
-  <div class="channel-list">
-    <div v-for="item in channels" :key="item.id" class="item">
-      <Channel
-        @active="$emit('active', item.id)"
-        :isActive="item.id === activeId"
-        :data="item"
-      />
-    </div>
+  <div class="channel-list-container">
+    <Channel class="item" v-for="item in data" :key="item.id"
+      :activeId="activeId" 
+      :channel="item" 
+      @activate="id => $emit('activate', id)"
+    />
   </div>
 </template>
 
 <script>
-import Channel from "./Channel";
-import channelServ from "../services/channel";
+import Channel from './Channel';
+
 export default {
+  name: 'ChannelList',
   components: {
-    Channel,
+    Channel
   },
-  props: ["activeId"],
-  data() {
-    return {
-      channels: [],
-    };
+  props: {
+    activeId: {
+      type: Number,
+      required: true,
+    },
+    data: {
+      type: Array,
+      default: () => ([]),
+    }
   },
-  async created() {
-    var datas = await channelServ.getChannels();
-    this.channels = datas.filter((item) => item.name !== "热门");
-  },
-};
+}
 </script>
 
 <style scoped>
-.channel-list {
+.channel-list-container {
+  width: 100%;
   overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
 }
 .item {
-  float: left;
   width: 50%;
 }
 </style>
