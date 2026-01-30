@@ -1,36 +1,29 @@
 <template>
   <div>
-    <div style="width:100px; height:30px; border:1px solid">
-      <Item :isActive="curActive === 'dongman'" @active="curActive = 'dongman'">
-        动漫
-      </Item>
-    </div>
-    <div style="width:100px; height:30px; border:1px solid">
-      <Item
-        :isActive="curActive === 'dianjing'"
-        @active="curActive = 'dianjing'"
-      >
-        电竞
-      </Item>
+    <div style="width:250px">
+      <TitleMenu :isActive="select" @active="select = true">
+        <template v-slot:title>
+          <!-- 给title具名插槽传递内容 -->
+          发现频道
+        </template>
+        <template v-slot:icon>
+          >
+        </template>
+      </TitleMenu>
     </div>
   </div>
 </template>
 
 <script>
-import Item from "./components/Item";
+import TitleMenu from "./components/TitleMenu";
 export default {
   components: {
-    Item,
+    TitleMenu,
   },
   data() {
     return {
-      curActive: "dianjing",
+      select: false,
     };
-  },
-  methods: {
-    test(e) {
-      console.log(e);
-    },
   },
 };
 </script>
