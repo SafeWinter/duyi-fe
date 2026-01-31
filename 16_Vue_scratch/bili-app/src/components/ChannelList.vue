@@ -1,97 +1,84 @@
 <template>
-  <div>
-    <div
-      class="channel-list"
-      :style="{
-        height: `${height}px`,
-      }"
-    >
-      <div
-        v-for="item in channels"
-        :key="item.id"
-        class="item"
-        :style="{
-          width: `${100 / columns}%`,
-        }"
-      >
-        <Channel
-          @active="$emit('active', item.id)"
-          :isActive="item.id === activeId"
-          :data="item"
-        />
-      </div>
-    </div>
-
-    <div class="collapse" @click="isExpand = !isExpand">
-      <span>{{ isExpand ? "折叠" : "展开" }}</span>
-      <i
-        class="iconfont"
-        :class="isExpand ? 'icon-arrow-up' : 'icon-jiantou9'"
-      ></i>
-    </div>
+  <div class="channel-list-container">
+    <section class="list-container" :style="dynmHeight">
+      <Channel v-for="item in data" :key="item.id" 
+        :style="dynmWidth"
+        :activeId="activeId" 
+        :channel="item"
+        :height="rowHeight" 
+        @activate="id => $emit('activate', id)"
+      />
+    </section>
+    <CollapseBar class="bar"
+      :collapsed="collapsed" 
+      :height="barHeight" 
+      @change="collapsed = !collapsed"
+    />
   </div>
 </template>
 
 <script>
-import Channel from "./Channel";
-import channelServ from "../services/channel";
+import Channel from './Channel';
+import CollapseBar from './CollapseBar';
+
 export default {
+  name: 'ChannelList',
   components: {
     Channel,
+    CollapseBar
   },
   props: {
     activeId: {
       type: Number,
       required: true,
     },
-    columns: {
+    data: {
+      type: Array,
+      default: () => ([]),
+    },
+    cols: {
       type: Number,
-      default: 2,
+      default: 2
+    },
+    rowHeight: { // 列表元素高度
+      type: Number,
+      default: 40,  // px
+    },
+    barHeight: {  // 折叠条高度
+      type: Number,
+      default: 40,  // px
+    },
+    minRows: {  // 折叠时展示的行数
+      type: Number,
+      default: 3
+    }
+  },
+  computed: {
+    dynmWidth() {
+      const width = `${Math.round(1e5 / this.cols) / 1e3}%`;
+      return { width };
+    },
+    dynmHeight() {
+      const rows = this.collapsed ? this.minRows
+        : Math.ceil(this.data.length / this.cols);
+      return {height: `${this.rowHeight * rows}px`};
     },
   },
   data() {
     return {
-      channels: [],
-      isExpand: true, // 是否是展开状态
-    };
+      collapsed: false,
+    }
   },
-  computed: {
-    height() {
-      var rows = 3;
-      if (this.isExpand) {
-        // 高度？
-        rows = Math.ceil(this.channels.length / this.columns);
-      }
-      return rows * 40;
-    },
-  },
-  async created() {
-    var datas = await channelServ.getChannels();
-    this.channels = datas.filter((item) => item.name !== "热门");
-  },
-};
+}
 </script>
 
 <style scoped>
-@import "//at.alicdn.com/t/font_1564527_7ksvh9f13lg.css";
-.channel-list {
+.list-container {
+  width: 100%;
   overflow: hidden;
-  transition: 0.3s;
-}
-.item {
-  float: left;
-}
-.collapse {
-  clear: both;
-  height: 40px;
-  line-height: 40px;
-  text-align: center;
-  color: #999;
-  font-size: 14px;
-  cursor: pointer;
-}
-.iconfont {
-  font-size: 12px;
-  margin-left: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  user-select: none;
+  transition: height 0.3s ease-out;
 }
 </style>
