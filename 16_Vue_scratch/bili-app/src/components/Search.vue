@@ -52,6 +52,9 @@ export default {
   padding-left: 8px;
   padding-right: 45px;
 }
+.search-area input::placeholder {
+  color: #999;
+}
 .icon {
   position: absolute;
   width: 40px;
