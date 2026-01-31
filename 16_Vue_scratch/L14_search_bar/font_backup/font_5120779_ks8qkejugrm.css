@@ -1,0 +1,23 @@
+@font-face {
+  font-family: "bili"; /* Project id 5120779 */
+  src: url('//at.alicdn.com/t/c/font_5120779_ks8qkejugrm.woff2?t=1769794129699') format('woff2'),
+       url('//at.alicdn.com/t/c/font_5120779_ks8qkejugrm.woff?t=1769794129699') format('woff'),
+       url('//at.alicdn.com/t/c/font_5120779_ks8qkejugrm.ttf?t=1769794129699') format('truetype');
+}
+
+.bili {
+  font-family: "bili" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.b-up:before {
+  content: "\e60b";
+}
+
+.b-down:before {
+  content: "\e886";
+}
+
