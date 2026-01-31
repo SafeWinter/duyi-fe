@@ -1,29 +1,32 @@
 <template>
-  <div class="channel-search">
-    <Search @search="handleSearch" placeHolder="搜索频道" />
+  <div class="channel-search-container">
+    <SearchBar placeholder="搜索频道" @search="handleSearch"/>
   </div>
 </template>
 
 <script>
-import Search from "./Search";
+import SearchBar from './SearchBar';
+
 export default {
+  name: 'ChannelSearch',
   components: {
-    Search,
+    SearchBar
   },
   methods: {
-    handleSearch(e) {
-      console.log("搜索", e);
-    },
+    handleSearch(keyword) {
+      // search logics here
+      console.log(keyword);
+    }
   },
-};
+}
 </script>
 
 <style scoped>
-.channel-search {
-  width: 100%;
+.channel-search-container {
   box-sizing: border-box;
-  padding: 0 18px;
+  width: 100%;
   height: 34px;
-  margin: 18px 0;
+  margin-block: 18px;
+  padding-inline: 18px;
 }
 </style>

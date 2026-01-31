@@ -1,32 +1,37 @@
 <template>
-  <i class="iconfont" :class="[iconClass, extraClass]"></i>
+    <i class="icon-container" :class="[iconCls, extraCls]"></i>
 </template>
 
 <script>
-var map = {
-  arrowUp: "icon-arrow-up",
-  arrowDown: "icon-jiantou9",
-  search: "icon-search",
-};
+
+const ICON_MAP = new Map([
+  ['up', 'bili b-up'],
+  ['down', 'bili b-down'],
+  ['search', 'bili b-search'],
+]);
+
 export default {
+  name: 'Icon',
   props: {
     type: {
       type: String,
       required: true,
     },
-    extraClass: {
+    extraCls: {
       type: String,
-      default: "",
-    },
+      default: ''
+    }
   },
   computed: {
-    iconClass() {
-      return map[this.type];
-    },
-  },
+    iconCls() {
+      return ICON_MAP.get(this.type);
+    }
+  }
 };
 </script>
 
 <style scoped>
-@import "//at.alicdn.com/t/font_1564527_xeqdi43zgw.css";
+/* @import '//at.alicdn.com/t/c/font_5120779_ks8qkejugrm.css'; v1: no search icon */
+@import '//at.alicdn.com/t/c/font_5120779_lsieqh95kg.css';
+/* .icon-container {} */
 </style>

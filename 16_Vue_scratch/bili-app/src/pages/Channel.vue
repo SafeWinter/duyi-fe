@@ -1,26 +1,37 @@
 <template>
-  <Layout>
-    <template v-slot:head>
-      菜单
-    </template>
-    <template v-slot:left>
-      <Aside />
-    </template>
-    <template v-slot:main>
-      主区域
-    </template>
-  </Layout>
+  <div class="page-container">
+    <Layout>
+      <template #left>
+        <BiliAside />
+      </template>
+      <template #head>
+        菜单
+      </template>
+      <template #main>
+        主区域
+      </template>
+    </Layout>
+  </div>
 </template>
 
 <script>
-import Layout from "@/components/Layout";
-import Aside from "@/components/Aside";
+import Layout from '@/components/Layout';
+import BiliAside from '@/components/BiliAside';
+
 export default {
+  name: 'Channel',
   components: {
     Layout,
-    Aside,
+    BiliAside
   },
-};
+}
 </script>
 
-<style></style>
+<style scoped>
+.page-container {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+</style>
