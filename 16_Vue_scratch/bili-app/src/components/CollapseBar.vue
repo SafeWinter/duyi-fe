@@ -39,7 +39,8 @@ export default {
 </script>
 
 <style scoped>
-@import '//at.alicdn.com/t/c/font_5120779_ks8qkejugrm.css';
+/* @import '//at.alicdn.com/t/c/font_5120779_ks8qkejugrm.css'; V1: no search icon */
+@import '//at.alicdn.com/t/c/font_5120779_lsieqh95kg.css';  /* V2: latest */
 
 .collapse-bar-container {
   box-sizing: border-box;
