@@ -45,6 +45,7 @@ Mock.mock(/^\/api\/blog(\?.+)?$/, 'get', function (options) {});
 ```js
 {
     createDate: () => parseInt(Mock.Random.date('T')),
+    timestamp: +Mock.Random.date('T')  // from vue-element-admin ./mock/article.js
 }
 ```
 
